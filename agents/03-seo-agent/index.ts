@@ -1,7 +1,17 @@
 /**
- * SEO Agent - Restaurant Local Optimization
- * Spécialisé dans le référencement technique et stratégique pour restaurants
+ * SEO Agent - Phase 2 Advanced SEO Engine
+ * Intelligence artificielle SEO complÃ¨te avec 4 modules intÃ©grÃ©s:
+ * - Content AI Generator (GPT-4 + Claude)
+ * - Keyword Research AutomatisÃ©
+ * - Content Calendar Intelligent
+ * - SEO Monitoring AvancÃ©
  */
+
+import seoOrchestrator, { SEOCampaignConfig, SEOCampaignResult, defaultCampaignConfig } from './workflows/seo-orchestrator';
+import contentAIGenerator, { ContentGenerationConfig, GeneratedContent } from './workflows/content-ai-generator';
+import keywordResearch, { KeywordResearchResult, ResearchConfig } from './workflows/keyword-research';
+import contentCalendar, { ContentCalendar, ContentCalendarConfig } from './workflows/content-calendar';
+import seoMonitoring, { SEODashboard, MonitoringConfig } from './workflows/seo-monitoring';
 
 export interface RestaurantSEOConfig {
   businessName: string;
@@ -20,20 +30,240 @@ export interface RestaurantSEOConfig {
 
 export class SEOAgent {
   private config: RestaurantSEOConfig;
+  private orchestrator = seoOrchestrator;
+  private activeCampaigns: Map<string, SEOCampaignResult>;
 
   constructor(config: RestaurantSEOConfig) {
     this.config = config;
+    this.activeCampaigns = new Map();
   }
 
   /**
-   * Génère le Schema.org structuré pour restaurant
+   * PHASE 2 - API Principal: Lance une campagne SEO complÃ¨te avec IA
+   */
+  async launchAdvancedSEOCampaign(customConfig?: Partial<SEOCampaignConfig>): Promise<SEOCampaignResult> {
+    console.log('ğŸš€ LANCEMENT CAMPAGNE SEO PHASE 2 AVANCÃ‰E');
+    
+    const campaignConfig: SEOCampaignConfig = {
+      ...defaultCampaignConfig,
+      businessInfo: {
+        name: this.config.businessName,
+        industry: 'restaurant',
+        location: this.config.city,
+        targetAudience: ['food lovers', 'couples', 'business diners'],
+        competitors: ['restaurant-concurrent1.fr', 'restaurant-concurrent2.fr']
+      },
+      ...customConfig
+    };
+
+    const campaign = await this.orchestrator.launchCompleteSEOCampaign(campaignConfig);
+    this.activeCampaigns.set(campaign.campaignId, campaign);
+    
+    console.log(`âœ… Campagne ${campaign.campaignId} lancÃ©e avec succÃ¨s!`);
+    console.log(`ğŸ“Š RÃ©sultats: ${campaign.generatedKeywords} mots-clÃ©s, ${campaign.plannedContent} contenus, ${campaign.expectedTraffic} trafic estimÃ©`);
+    
+    return campaign;
+  }
+
+  /**
+   * PHASE 2 - GÃ©nÃ©ration de contenu IA en masse
+   */
+  async generateAIContent(
+    sector: 'restaurant' | 'ecommerce' | 'saas',
+    contentTypes: string[],
+    keywords: string[]
+  ): Promise<Record<string, GeneratedContent>> {
+    console.log('ğŸ¤– GÃ©nÃ©ration de contenu IA en masse...');
+    
+    const config: ContentGenerationConfig = {
+      sector,
+      targetAudience: ['target_audience'],
+      brand: {
+        name: this.config.businessName,
+        tone: 'luxury',
+        values: ['excellence', 'quality', 'tradition']
+      },
+      seoParams: {
+        primaryKeywords: keywords.slice(0, 3),
+        secondaryKeywords: keywords.slice(3),
+        targetLanguage: 'fr',
+        geoLocation: this.config.city
+      }
+    };
+
+    const results: Record<string, GeneratedContent> = {};
+    
+    for (const contentType of contentTypes) {
+      const content = await contentAIGenerator.generateOptimizedContent(
+        config,
+        contentType as any
+      );
+      results[contentType] = content;
+    }
+
+    console.log(`âœ… ${Object.keys(results).length} contenus gÃ©nÃ©rÃ©s avec IA`);
+    return results;
+  }
+
+  /**
+   * PHASE 2 - Recherche de mots-clÃ©s automatisÃ©e avec APIs
+   */
+  async performAdvancedKeywordResearch(
+    seedKeywords?: string[],
+    competitors?: string[]
+  ): Promise<KeywordResearchResult> {
+    console.log('ğŸ” Recherche de mots-clÃ©s avancÃ©e avec APIs...');
+    
+    const config: ResearchConfig = {
+      industry: 'restaurant',
+      geoLocation: this.config.city,
+      language: 'fr',
+      competitors: competitors || ['restaurant-concurrent1.fr'],
+      seedKeywords: seedKeywords || this.config.keywords.primary,
+      businessType: 'local',
+      targetAudience: ['food lovers', 'couples']
+    };
+
+    const research = await keywordResearch.performCompleteResearch(config);
+    
+    console.log(`âœ… Recherche terminÃ©e: ${research.seedKeywords.length} mots-clÃ©s principaux, ${research.longTailKeywords.length} longue traÃ®ne`);
+    return research;
+  }
+
+  /**
+   * PHASE 2 - Calendrier de contenu intelligent 12 mois
+   */
+  async generateIntelligentContentCalendar(
+    keywords?: any[],
+    publicationFrequency: number = 4
+  ): Promise<ContentCalendar> {
+    console.log('ğŸ“… GÃ©nÃ©ration calendrier de contenu intelligent...');
+    
+    const config: ContentCalendarConfig = {
+      industry: 'restaurant',
+      businessGoals: ['increase_visibility', 'drive_reservations'],
+      contentTypes: ['blog_post', 'seasonal_content', 'event_content'],
+      publicationFrequency: {
+        blogPosts: publicationFrequency,
+        landingPages: 1,
+        seasonalContent: 2
+      },
+      team: {
+        writers: ['ai_writer_1', 'ai_writer_2'],
+        editors: ['ai_editor'],
+        seoSpecialists: ['seo_specialist']
+      },
+      holidays: ['FR'],
+      targetAudience: [{
+        segments: ['food_lovers'],
+        buyingCycle: 'awareness'
+      }]
+    };
+
+    // Utiliser les mots-clÃ©s fournis ou faire une recherche
+    const keywordsData = keywords || (await this.performAdvancedKeywordResearch()).seedKeywords;
+    
+    const calendar = await contentCalendar.generateYearlyCalendar(config, keywordsData);
+    
+    console.log(`âœ… Calendrier gÃ©nÃ©rÃ©: ${calendar.items.length} contenus planifiÃ©s sur 12 mois`);
+    return calendar;
+  }
+
+  /**
+   * PHASE 2 - Monitoring SEO temps rÃ©el avec alertes
+   */
+  async startAdvancedSEOMonitoring(domain?: string): Promise<SEODashboard> {
+    console.log('ğŸ“ˆ DÃ©marrage monitoring SEO avancÃ©...');
+    
+    const config: MonitoringConfig = {
+      domain: domain || `https://${this.config.businessName.toLowerCase().replace(/\s+/g, '-')}.fr`,
+      trackedKeywords: this.config.keywords.primary,
+      competitors: ['restaurant-concurrent1.fr', 'restaurant-concurrent2.fr'],
+      alertThresholds: {
+        positionDrop: 5,
+        trafficDrop: 20,
+        technicalScore: 70
+      },
+      auditFrequency: 'daily',
+      reportRecipients: ['seo@domain.com'],
+      integrations: {
+        googleSearchConsole: true,
+        googleAnalytics: true,
+        semrush: true,
+        ahrefs: false
+      }
+    };
+
+    await seoMonitoring.startRealTimeMonitoring();
+    const dashboard = await seoMonitoring.generateDashboard();
+    
+    console.log(`âœ… Monitoring actif - Score technique: ${dashboard.overview.technicalScore}/100`);
+    return dashboard;
+  }
+
+  /**
+   * PHASE 2 - Rapport de performance complet
+   */
+  async generateAdvancedSEOReport(campaignId?: string): Promise<string> {
+    if (campaignId) {
+      return await this.orchestrator.generatePerformanceReport(campaignId);
+    }
+    
+    // Rapport gÃ©nÃ©ral
+    const dashboard = await seoMonitoring.generateDashboard();
+    
+    return `
+# RAPPORT SEO AVANCÃ‰ - ${this.config.businessName}
+
+## ğŸ“Š Vue d'ensemble
+- Mots-clÃ©s suivis: ${dashboard.overview.totalKeywords}
+- Position moyenne: ${dashboard.overview.averagePosition}
+- Trafic estimÃ©: ${dashboard.overview.totalTraffic} visites/mois
+- Score de visibilitÃ©: ${dashboard.overview.visibilityScore}/100
+- Score technique: ${dashboard.overview.technicalScore}/100
+
+## ğŸš€ Top Performers
+${dashboard.topMovers.gainers.map(k => `- ${k.keyword}: +${k.positionChange} positions`).join('\n')}
+
+## âš ï¸ Points d'attention
+${dashboard.topMovers.losers.map(k => `- ${k.keyword}: ${k.positionChange} positions`).join('\n')}
+
+## ğŸ“‹ Actions prioritaires
+${dashboard.nextActions.map(a => `- ${a.priority}: ${a.action}`).join('\n')}
+
+---
+Rapport gÃ©nÃ©rÃ© le ${new Date().toLocaleDateString()} avec l'Agent SEO Phase 2
+`;
+  }
+
+  /**
+   * PHASE 2 - API de statut des campagnes
+   */
+  async getCampaignStatus(campaignId: string): Promise<SEOCampaignResult | undefined> {
+    return this.activeCampaigns.get(campaignId);
+  }
+
+  /**
+   * PHASE 2 - Liste des campagnes actives
+   */
+  getActiveCampaigns(): string[] {
+    return Array.from(this.activeCampaigns.keys());
+  }
+
+  // ===============================
+  // MÃ‰THODES LEGACY (PHASE 1)
+  // ConservÃ©es pour compatibilitÃ©
+  // ===============================
+
+  /**
+   * Gï¿½nï¿½re le Schema.org structurï¿½ pour restaurant
    */
   generateRestaurantSchema(): string {
     return `{
   "@context": "https://schema.org",
   "@type": "Restaurant",
   "name": "${this.config.businessName}",
-  "description": "Restaurant gastronomique premium au cSur de ${this.config.city}. Cuisine raffinée par le Chef étoilé Antoine Dubois. Réservation en ligne.",
+  "description": "Restaurant gastronomique premium au cSur de ${this.config.city}. Cuisine raffinï¿½e par le Chef ï¿½toilï¿½ Antoine Dubois. Rï¿½servation en ligne.",
   "address": {
     "@type": "PostalAddress",
     "streetAddress": "${this.config.address}",
@@ -71,7 +301,7 @@ export class SEOAgent {
     "@type": "Rating",
     "ratingValue": "1"
   },
-  "award": "Étoile Michelin 2020-2024",
+  "award": "ï¿½toile Michelin 2020-2024",
   "founder": {
     "@type": "Person",
     "name": "Chef Antoine Dubois"
@@ -90,14 +320,14 @@ export class SEOAgent {
   }
 
   /**
-   * Génère les meta tags optimisés
+   * Gï¿½nï¿½re les meta tags optimisï¿½s
    */
   generateMetaTags(): Record<string, string> {
     return {
       // Meta tags de base
-      'title': 'Le Gourmet - Restaurant Gastronomique Étoilé Paris | Chef Antoine Dubois',
-      'description': 'Restaurant gastronomique étoilé Michelin au cSur de Paris. Cuisine française raffinée par le Chef Antoine Dubois. Réservation en ligne. Expérience gastronomique inoubliable.',
-      'keywords': 'restaurant gastronomique paris, étoile michelin, chef antoine dubois, cuisine française, restaurant étoilé, réservation restaurant paris, gastronomie française',
+      'title': 'Le Gourmet - Restaurant Gastronomique ï¿½toilï¿½ Paris | Chef Antoine Dubois',
+      'description': 'Restaurant gastronomique ï¿½toilï¿½ Michelin au cSur de Paris. Cuisine franï¿½aise raffinï¿½e par le Chef Antoine Dubois. Rï¿½servation en ligne. Expï¿½rience gastronomique inoubliable.',
+      'keywords': 'restaurant gastronomique paris, ï¿½toile michelin, chef antoine dubois, cuisine franï¿½aise, restaurant ï¿½toilï¿½, rï¿½servation restaurant paris, gastronomie franï¿½aise',
       'robots': 'index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1',
       'author': 'Le Gourmet Paris',
       'viewport': 'width=device-width, initial-scale=1.0',
@@ -105,26 +335,26 @@ export class SEOAgent {
 
       // Open Graph (Facebook)
       'og:type': 'restaurant',
-      'og:title': 'Le Gourmet - Restaurant Gastronomique Étoilé Paris',
-      'og:description': 'Restaurant gastronomique étoilé Michelin au cSur de Paris. Cuisine française raffinée par le Chef Antoine Dubois.',
+      'og:title': 'Le Gourmet - Restaurant Gastronomique ï¿½toilï¿½ Paris',
+      'og:description': 'Restaurant gastronomique ï¿½toilï¿½ Michelin au cSur de Paris. Cuisine franï¿½aise raffinï¿½e par le Chef Antoine Dubois.',
       'og:url': 'https://legourmet-paris.fr',
       'og:site_name': 'Le Gourmet',
       'og:image': 'https://legourmet-paris.fr/images/og-restaurant.jpg',
       'og:image:width': '1200',
       'og:image:height': '630',
-      'og:image:alt': 'Restaurant Le Gourmet - Intérieur élégant',
+      'og:image:alt': 'Restaurant Le Gourmet - Intï¿½rieur ï¿½lï¿½gant',
       'og:locale': 'fr_FR',
 
       // Twitter Cards
       'twitter:card': 'summary_large_image',
-      'twitter:title': 'Le Gourmet - Restaurant Gastronomique Étoilé Paris',
-      'twitter:description': 'Restaurant gastronomique étoilé Michelin au cSur de Paris. Cuisine française raffinée par le Chef Antoine Dubois.',
+      'twitter:title': 'Le Gourmet - Restaurant Gastronomique ï¿½toilï¿½ Paris',
+      'twitter:description': 'Restaurant gastronomique ï¿½toilï¿½ Michelin au cSur de Paris. Cuisine franï¿½aise raffinï¿½e par le Chef Antoine Dubois.',
       'twitter:image': 'https://legourmet-paris.fr/images/twitter-restaurant.jpg',
       'twitter:image:alt': 'Restaurant Le Gourmet - Chef Antoine Dubois',
       'twitter:site': '@legourmetparis',
       'twitter:creator': '@legourmetparis',
 
-      // Géolocalisation
+      // Gï¿½olocalisation
       'geo.region': 'FR-75',
       'geo.placename': 'Paris',
       'geo.position': '48.8566;2.3522',
@@ -136,7 +366,7 @@ export class SEOAgent {
       'apple-mobile-web-app-status-bar-style': 'black-translucent',
       'theme-color': '#d4af37',
 
-      // Référencement local
+      // Rï¿½fï¿½rencement local
       'business:contact_data:street_address': '15 Rue de la Gastronomie',
       'business:contact_data:locality': 'Paris',
       'business:contact_data:postal_code': '75001',
@@ -147,7 +377,7 @@ export class SEOAgent {
   }
 
   /**
-   * Génère le sitemap XML
+   * Gï¿½nï¿½re le sitemap XML
    */
   generateSitemap(): string {
     const baseUrl = 'https://legourmet-paris.fr';
@@ -195,7 +425,7 @@ export class SEOAgent {
   }
 
   /**
-   * Analyse des mots-clés restaurant local
+   * Analyse des mots-clï¿½s restaurant local
    */
   getKeywordStrategy(): {
     primary: string[];
@@ -206,30 +436,30 @@ export class SEOAgent {
     return {
       primary: [
         'restaurant gastronomique paris',
-        'restaurant étoilé paris',
-        'chef étoilé paris',
-        'cuisine française raffinée'
+        'restaurant ï¿½toilï¿½ paris',
+        'chef ï¿½toilï¿½ paris',
+        'cuisine franï¿½aise raffinï¿½e'
       ],
       secondary: [
         'restaurant michelin paris',
-        'gastronomie française',
+        'gastronomie franï¿½aise',
         'restaurant haute cuisine',
         'chef antoine dubois',
-        'réservation restaurant étoilé'
+        'rï¿½servation restaurant ï¿½toilï¿½'
       ],
       longTail: [
         'meilleur restaurant gastronomique paris 1er',
-        'restaurant étoile michelin réservation en ligne',
-        'chef étoilé cuisine française moderne',
+        'restaurant ï¿½toile michelin rï¿½servation en ligne',
+        'chef ï¿½toilï¿½ cuisine franï¿½aise moderne',
         'restaurant romantique paris gastronomique',
-        'dîner gastronomique paris occasion spéciale'
+        'dï¿½ner gastronomique paris occasion spï¿½ciale'
       ],
       local: [
         'restaurant gastronomique 1er arrondissement',
-        'restaurant étoilé châtelet',
-        'cuisine française louvre',
+        'restaurant ï¿½toilï¿½ chï¿½telet',
+        'cuisine franï¿½aise louvre',
         'restaurant romantique centre paris',
-        'gastronomie île de france'
+        'gastronomie ï¿½le de france'
       ]
     };
   }
@@ -244,14 +474,14 @@ export class SEOAgent {
   } {
     return {
       altTexts: {
-        'hero': 'Restaurant Le Gourmet - Salle à manger élégante avec vue cuisine ouverte',
-        'chef': 'Chef Antoine Dubois en tenue de cuisine dans son restaurant étoilé',
-        'plat-1': 'Foie gras poêlé compotée de figues plat signature Le Gourmet',
-        'plat-2': 'Saint-Jacques snackées purée topinambour truffe noire',
-        'plat-3': 'BSuf de Wagyu légumes glacés jus de viande restaurant gastronomique',
-        'interieur': 'Intérieur restaurant Le Gourmet ambiance feutrée tables dressées',
+        'hero': 'Restaurant Le Gourmet - Salle ï¿½ manger ï¿½lï¿½gante avec vue cuisine ouverte',
+        'chef': 'Chef Antoine Dubois en tenue de cuisine dans son restaurant ï¿½toilï¿½',
+        'plat-1': 'Foie gras poï¿½lï¿½ compotï¿½e de figues plat signature Le Gourmet',
+        'plat-2': 'Saint-Jacques snackï¿½es purï¿½e topinambour truffe noire',
+        'plat-3': 'BSuf de Wagyu lï¿½gumes glacï¿½s jus de viande restaurant gastronomique',
+        'interieur': 'Intï¿½rieur restaurant Le Gourmet ambiance feutrï¿½e tables dressï¿½es',
         'cuisine': 'Cuisine professionnelle Le Gourmet chef au travail',
-        'dessert': 'Dessert signature pâtisserie fine restaurant étoilé Paris'
+        'dessert': 'Dessert signature pï¿½tisserie fine restaurant ï¿½toilï¿½ Paris'
       },
       fileNames: [
         'restaurant-le-gourmet-hero-1200x630.webp',
@@ -315,28 +545,28 @@ Allow: /*.webp$`;
       },
       recommendations: [
         'Optimiser les images en format WebP avec lazy loading',
-        'Implémenter le cache navigateur pour les ressources statiques',
+        'Implï¿½menter le cache navigateur pour les ressources statiques',
         'Minifier CSS et JavaScript',
         'Utiliser un CDN pour les images',
         'Optimiser les fonts avec font-display: swap',
-        'Implémenter le preloading pour les ressources critiques',
-        'Réduire la taille du DOM (objectif <1500 éléments)',
-        'Optimiser les animations CSS pour éviter le layout shift'
+        'Implï¿½menter le preloading pour les ressources critiques',
+        'Rï¿½duire la taille du DOM (objectif <1500 ï¿½lï¿½ments)',
+        'Optimiser les animations CSS pour ï¿½viter le layout shift'
       ],
       criticalIssues: [
         'Ajouter les meta tags Open Graph manquants',
         'Corriger les erreurs de validation HTML',
-        'Implémenter le Schema.org Restaurant',
-        'Optimiser les titres H1-H6 pour la hiérarchie',
+        'Implï¿½menter le Schema.org Restaurant',
+        'Optimiser les titres H1-H6 pour la hiï¿½rarchie',
         'Ajouter les attributs alt sur toutes les images',
         'Configurer HTTPS et redirections 301',
-        'Créer et soumettre le sitemap XML'
+        'Crï¿½er et soumettre le sitemap XML'
       ]
     };
   }
 
   /**
-   * Stratégie de contenu local
+   * Stratï¿½gie de contenu local
    */
   getContentStrategy(): {
     topics: string[];
@@ -345,32 +575,32 @@ Allow: /*.webp$`;
   } {
     return {
       topics: [
-        'Histoire et tradition de la gastronomie française',
+        'Histoire et tradition de la gastronomie franï¿½aise',
         'Techniques culinaires du Chef Antoine Dubois',
         'Produits de saison et sourcing local',
         'Accords mets et vins',
-        'Événements privés et occasions spéciales',
-        'Guide des spécialités régionales françaises'
+        'ï¿½vï¿½nements privï¿½s et occasions spï¿½ciales',
+        'Guide des spï¿½cialitï¿½s rï¿½gionales franï¿½aises'
       ],
       calendar: {
-        'Janvier': ['Menu hivernal', 'Truffe noire Périgord', 'Saint-Valentin'],
-        'Février': ['Saint-Valentin gastronomique', 'Produits de saison'],
+        'Janvier': ['Menu hivernal', 'Truffe noire Pï¿½rigord', 'Saint-Valentin'],
+        'Fï¿½vrier': ['Saint-Valentin gastronomique', 'Produits de saison'],
         'Mars': ['Printemps culinaire', 'Asperges nouvelles'],
-        'Avril': ['Cuisine de Pâques', 'Agneau de lait'],
-        'Mai': ['Terrasse été', 'Légumes primeurs'],
-        'Juin': ['Cuisine estivale', 'Produits méditerranéens'],
-        'Juillet': ['Menu été', 'Vacances gourmandes'],
-        'Août': ['Saison des fruits', 'Cuisine légère'],
-        'Septembre': ['Rentrée gastronomique', 'Champignons'],
+        'Avril': ['Cuisine de Pï¿½ques', 'Agneau de lait'],
+        'Mai': ['Terrasse ï¿½tï¿½', 'Lï¿½gumes primeurs'],
+        'Juin': ['Cuisine estivale', 'Produits mï¿½diterranï¿½ens'],
+        'Juillet': ['Menu ï¿½tï¿½', 'Vacances gourmandes'],
+        'Aoï¿½t': ['Saison des fruits', 'Cuisine lï¿½gï¿½re'],
+        'Septembre': ['Rentrï¿½e gastronomique', 'Champignons'],
         'Octobre': ['Automne saveurs', 'Gibier de saison'],
-        'Novembre': ['Menu automnal', 'Châtaignes et marrons'],
-        'Décembre': ['Fêtes de fin d\'année', 'Réveillons']
+        'Novembre': ['Menu automnal', 'Chï¿½taignes et marrons'],
+        'Dï¿½cembre': ['Fï¿½tes de fin d\'annï¿½e', 'Rï¿½veillons']
       },
       localSEO: [
         'Restaurant gastronomique 1er arrondissement Paris',
-        'Étoile Michelin Châtelet Les Halles',
-        'Chef étoilé près du Louvre',
-        'Cuisine française Île de la Cité',
+        'ï¿½toile Michelin Chï¿½telet Les Halles',
+        'Chef ï¿½toilï¿½ prï¿½s du Louvre',
+        'Cuisine franï¿½aise ï¿½le de la Citï¿½',
         'Restaurant romantique Marais',
         'Gastronomie Beaubourg Pompidou'
       ]
@@ -378,20 +608,31 @@ Allow: /*.webp$`;
   }
 }
 
-// Configuration par défaut pour Le Gourmet
+// Configuration par dï¿½faut pour Le Gourmet
 const restaurantSEOConfig: RestaurantSEOConfig = {
   businessName: 'Le Gourmet',
   address: '15 Rue de la Gastronomie, 75001 Paris',
   city: 'Paris',
   phone: '+33142601578',
-  cuisine: ['Cuisine française', 'Gastronomie', 'Cuisine moderne'],
+  cuisine: ['Cuisine franï¿½aise', 'Gastronomie', 'Cuisine moderne'],
   priceRange: '$$$',
-  features: ['Étoile Michelin', 'Chef étoilé', 'Réservation en ligne'],
+  features: ['ï¿½toile Michelin', 'Chef ï¿½toilï¿½', 'Rï¿½servation en ligne'],
   keywords: {
-    primary: ['restaurant gastronomique paris', 'restaurant étoilé', 'chef étoilé'],
-    secondary: ['cuisine française', 'michelin', 'gastronomie'],
-    local: ['restaurant 1er arrondissement', 'châtelet', 'louvre']
+    primary: ['restaurant gastronomique paris', 'restaurant ï¿½toilï¿½', 'chef ï¿½toilï¿½'],
+    secondary: ['cuisine franï¿½aise', 'michelin', 'gastronomie'],
+    local: ['restaurant 1er arrondissement', 'chï¿½telet', 'louvre']
   }
 };
 
 export default new SEOAgent(restaurantSEOConfig);
+
+// Export des types Phase 2
+export type {
+  SEOCampaignConfig,
+  SEOCampaignResult,
+  ContentGenerationConfig,
+  GeneratedContent,
+  KeywordResearchResult,
+  ContentCalendar,
+  SEODashboard
+};

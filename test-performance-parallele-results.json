@@ -1,0 +1,87 @@
+{
+  "singleProject": {
+    "projectId": "restaurant-baseline",
+    "executionTime": 7726,
+    "phases": 4,
+    "tasks": 6,
+    "completedTasks": 6,
+    "successRate": 100,
+    "averageTaskTime": 1287.6666666666667,
+    "resourceUsage": {
+      "memory": 10,
+      "cpu": 12,
+      "concurrent": 0
+    }
+  },
+  "multipleProjects": {
+    "projectCount": 3,
+    "totalTime": 17302,
+    "successfulProjects": 3,
+    "successRate": 100,
+    "averageTimePerProject": 5767.333333333333,
+    "totalTasks": 24,
+    "completedTasks": 24,
+    "resourceUsage": {
+      "memory": 10,
+      "cpu": 40,
+      "concurrent": 0
+    },
+    "conflicts": 0,
+    "resolvedConflicts": 0
+  },
+  "parallelGains": {
+    "singleProjectTime": 8,
+    "multipleProjectsTime": 17,
+    "theoreticalSequentialTime": 23,
+    "actualGain": 25,
+    "parallelEfficiency": 134,
+    "scalabilityFactor": 1.34,
+    "throughputImprovement": 1.34
+  },
+  "resourceUtilization": {
+    "singleProject": {
+      "memory": 10,
+      "cpu": 12,
+      "concurrent": 0
+    },
+    "multipleProjects": {
+      "memory": 10,
+      "cpu": 40,
+      "concurrent": 0
+    },
+    "memoryIncrease": 0,
+    "cpuIncrease": 233,
+    "resourceEfficiency": -133,
+    "bottlenecks": [
+      "cpu"
+    ]
+  },
+  "scalability": {
+    "tests": [
+      {
+        "projectCount": 1,
+        "totalTime": 7,
+        "avgTimePerProject": 7,
+        "throughput": 0.14
+      },
+      {
+        "projectCount": 2,
+        "totalTime": 12,
+        "avgTimePerProject": 6,
+        "throughput": 0.17
+      },
+      {
+        "projectCount": 3,
+        "totalTime": 15,
+        "avgTimePerProject": 5,
+        "throughput": 0.21
+      }
+    ],
+    "linearScaling": 140,
+    "recommendedMaxConcurrency": 3
+  },
+  "bottlenecks": [],
+  "performanceScore": 42,
+  "executionTime": 58998,
+  "status": "INSUFFISANT"
+}

@@ -33,16 +33,20 @@ Système d'agence digitale autonome avec 6 agents IA spécialisés (5 agents op�
 - Zod validation
 
 ### Infrastructure
-- Database : Neon DB (PostgreSQL 16)
-- ORM : Prisma 5.x
+- Database : Neon DB (PostgreSQL 16) **via MCP**
+- ORM : Prisma 5.x + Drizzle
 - Cache : Redis (Upstash)
 - Hosting : Vercel (via MCP)
 
 ### Intégrations MCP
+- **Neon MCP** : Base de données PostgreSQL serverless
+  - Branching : Dev/staging/prod branches
+  - Auto-scaling : 0 to millions of queries
+  - Connection pooling : PgBouncer intégré
+  - Backups : Point-in-time recovery
 - Vercel MCP : Déploiements
-- Figma MCP : Import designs
+- Figma MCP : Import designs  
 - Stripe MCP : Paiements
-- Neon MCP : Base de données
 - Docker MCP : Conteneurisation
 
 ## 📚 Ressources

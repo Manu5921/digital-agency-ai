@@ -1,0 +1,406 @@
+{
+  "orchestrator": {
+    "version": "1.0.0",
+    "name": "Digital Agency AI - Master Orchestrator",
+    "description": "Coordinateur central pour l'écosystème multi-agents",
+    "status": "active",
+    "capabilities": [
+      "project-coordination",
+      "agent-management",
+      "conflict-resolution",
+      "resource-allocation",
+      "performance-monitoring",
+      "quality-assurance"
+    ]
+  },
+  "configuration": {
+    "maxConcurrentAgents": 6,
+    "timeoutMs": 300000,
+    "retryAttempts": 3,
+    "priorityLevels": ["critical", "high", "medium", "low"],
+    "resourceLimits": {
+      "memory": 8192,
+      "cpu": 80,
+      "concurrent": 10,
+      "apiCallsPerMinute": 60
+    }
+  },
+  "agents": {
+    "design-agent": {
+      "id": "design-agent",
+      "name": "Design Specialist",
+      "role": "design",
+      "status": "active",
+      "capabilities": [
+        "html-css-generation",
+        "responsive-design",
+        "ui-components",
+        "prototyping",
+        "design-systems",
+        "image-to-code"
+      ],
+      "specializations": [
+        "restaurant-layouts",
+        "ecommerce-designs",
+        "landing-pages",
+        "dashboard-interfaces"
+      ],
+      "performance": {
+        "averageTaskTime": "3h",
+        "qualityScore": 92,
+        "successRate": 96
+      }
+    },
+    "webdev-agent": {
+      "id": "webdev-agent",
+      "name": "Web Development Specialist", 
+      "role": "development",
+      "status": "active",
+      "capabilities": [
+        "nextjs-development",
+        "typescript",
+        "react-components",
+        "api-development",
+        "database-integration",
+        "testing"
+      ],
+      "specializations": [
+        "full-stack-applications",
+        "api-design",
+        "database-modeling",
+        "performance-optimization"
+      ],
+      "performance": {
+        "averageTaskTime": "4h",
+        "qualityScore": 89,
+        "successRate": 94
+      }
+    },
+    "seo-agent": {
+      "id": "seo-agent",
+      "name": "SEO Specialist",
+      "role": "seo",
+      "status": "active", 
+      "capabilities": [
+        "technical-seo",
+        "content-strategy",
+        "local-seo",
+        "analytics",
+        "schema-markup",
+        "keyword-research"
+      ],
+      "specializations": [
+        "local-business-seo",
+        "ecommerce-seo",
+        "content-optimization",
+        "technical-audits"
+      ],
+      "performance": {
+        "averageTaskTime": "2h",
+        "qualityScore": 91,
+        "successRate": 97
+      }
+    },
+    "marketing-agent": {
+      "id": "marketing-agent", 
+      "name": "Marketing Specialist",
+      "role": "marketing",
+      "status": "active",
+      "capabilities": [
+        "google-ads",
+        "meta-ads",
+        "analytics",
+        "conversion-optimization",
+        "email-marketing",
+        "social-media"
+      ],
+      "specializations": [
+        "local-advertising",
+        "ecommerce-marketing",
+        "lead-generation",
+        "brand-awareness"
+      ],
+      "performance": {
+        "averageTaskTime": "2.5h",
+        "qualityScore": 88,
+        "successRate": 93
+      }
+    },
+    "techops-agent": {
+      "id": "techops-agent",
+      "name": "TechOps Specialist",
+      "role": "operations",
+      "status": "active",
+      "capabilities": [
+        "deployment",
+        "vercel-integration",
+        "monitoring",
+        "performance-optimization",
+        "security",
+        "ci-cd"
+      ],
+      "specializations": [
+        "vercel-deployment",
+        "performance-monitoring",
+        "security-hardening",
+        "automation-pipelines"
+      ],
+      "performance": {
+        "averageTaskTime": "1.5h",
+        "qualityScore": 95,
+        "successRate": 98
+      }
+    },
+    "automation-agent": {
+      "id": "automation-agent",
+      "name": "Automation Specialist", 
+      "role": "automation",
+      "status": "active",
+      "capabilities": [
+        "n8n-workflows",
+        "ocr-processing",
+        "crm-integration", 
+        "chatbots",
+        "process-automation",
+        "data-integration"
+      ],
+      "specializations": [
+        "business-process-automation",
+        "customer-workflow-automation",
+        "data-processing",
+        "integration-development"
+      ],
+      "performance": {
+        "averageTaskTime": "2h",
+        "qualityScore": 87,
+        "successRate": 92
+      }
+    }
+  },
+  "workflows": {
+    "restaurant": {
+      "id": "restaurant",
+      "name": "Restaurant Digital Package",
+      "description": "Workflow complet pour restaurants avec parallélisation optimisée",
+      "estimatedDuration": "10.5h",
+      "efficiencyGain": "25%",
+      "phases": [
+        {
+          "id": "phase-1",
+          "name": "Analysis & Design", 
+          "parallel": false,
+          "estimatedTime": "3h",
+          "agents": ["design-agent"],
+          "deliverables": ["HTML prototype", "CSS styling", "Responsive design"]
+        },
+        {
+          "id": "phase-2",
+          "name": "Development & Foundation",
+          "parallel": false,
+          "dependencies": ["phase-1"],
+          "estimatedTime": "4h", 
+          "agents": ["webdev-agent"],
+          "deliverables": ["Next.js app", "Components", "API routes"]
+        },
+        {
+          "id": "phase-3",
+          "name": "Optimization & Marketing",
+          "parallel": true,
+          "dependencies": ["phase-2"],
+          "estimatedTime": "2h",
+          "agents": ["seo-agent", "marketing-agent"],
+          "deliverables": ["SEO optimization", "Marketing campaigns"]
+        },
+        {
+          "id": "phase-4", 
+          "name": "Deployment & Automation",
+          "parallel": true,
+          "dependencies": ["phase-3"],
+          "estimatedTime": "1.5h",
+          "agents": ["techops-agent", "automation-agent"], 
+          "deliverables": ["Vercel deployment", "N8N workflows"]
+        }
+      ]
+    },
+    "ecommerce": {
+      "id": "ecommerce",
+      "name": "E-commerce Platform",
+      "description": "Boutique en ligne complète avec paiements et CRM",
+      "estimatedDuration": "18h",
+      "efficiencyGain": "28%",
+      "phases": [
+        {
+          "id": "phase-1",
+          "name": "Store Design & Catalog",
+          "parallel": false,
+          "estimatedTime": "5h",
+          "agents": ["design-agent"]
+        },
+        {
+          "id": "phase-2", 
+          "name": "Platform Development",
+          "parallel": false,
+          "dependencies": ["phase-1"],
+          "estimatedTime": "8h",
+          "agents": ["webdev-agent"]
+        },
+        {
+          "id": "phase-3",
+          "name": "Marketing & SEO",
+          "parallel": true,
+          "dependencies": ["phase-2"],
+          "estimatedTime": "4h",
+          "agents": ["seo-agent", "marketing-agent"]
+        },
+        {
+          "id": "phase-4",
+          "name": "Operations & Automation", 
+          "parallel": true,
+          "dependencies": ["phase-3"],
+          "estimatedTime": "3h",
+          "agents": ["techops-agent", "automation-agent"]
+        }
+      ]
+    }
+  },
+  "communication": {
+    "channels": [
+      {
+        "id": "system",
+        "name": "System Notifications",
+        "type": "broadcast",
+        "persistent": true
+      },
+      {
+        "id": "project-coordination",
+        "name": "Project Coordination", 
+        "type": "multicast",
+        "persistent": true
+      },
+      {
+        "id": "design-dev",
+        "name": "Design-Development Channel",
+        "type": "direct",
+        "participants": ["design-agent", "webdev-agent"]
+      },
+      {
+        "id": "optimization",
+        "name": "SEO-Marketing Optimization",
+        "type": "direct", 
+        "participants": ["seo-agent", "marketing-agent"]
+      },
+      {
+        "id": "deployment",
+        "name": "Deployment Coordination",
+        "type": "direct",
+        "participants": ["techops-agent", "automation-agent"]
+      }
+    ],
+    "protocols": {
+      "heartbeatInterval": 30000,
+      "messageRetention": 300,
+      "timeoutMs": 30000,
+      "retryAttempts": 3
+    }
+  },
+  "monitoring": {
+    "metricsCollection": {
+      "interval": 60000,
+      "retention": "24h",
+      "maxHistory": 1440
+    },
+    "alertThresholds": {
+      "system": {
+        "memoryUtilization": 85,
+        "cpuUtilization": 80,
+        "responseTime": 5000,
+        "errorRate": 5
+      },
+      "agents": {
+        "responseTime": 10000,
+        "errorRate": 10,
+        "successRate": 90
+      },
+      "projects": {
+        "delayThreshold": 20,
+        "qualityThreshold": 80,
+        "budgetVariance": 15
+      }
+    }
+  },
+  "conflictResolution": {
+    "strategies": [
+      {
+        "type": "resource",
+        "strategy": "resource-sharing",
+        "priority": 1
+      },
+      {
+        "type": "priority",
+        "strategy": "priority-ordering",
+        "priority": 2
+      },
+      {
+        "type": "timing",
+        "strategy": "rescheduling",
+        "priority": 2
+      },
+      {
+        "type": "dependency",
+        "strategy": "rescheduling",
+        "priority": 3
+      }
+    ],
+    "escalationRules": {
+      "maxAttempts": 3,
+      "criticalImmediateEscalation": true,
+      "timeoutEscalation": 300000
+    }
+  },
+  "quality": {
+    "standards": {
+      "codeQuality": 85,
+      "testCoverage": 80,
+      "documentation": 75,
+      "performance": 90
+    },
+    "reviewProcess": {
+      "automated": true,
+      "peerReview": false,
+      "clientReview": true
+    }
+  },
+  "integrations": {
+    "apis": {
+      "anthropic": {
+        "enabled": true,
+        "rateLimit": 60
+      },
+      "openai": {
+        "enabled": true,
+        "rateLimit": 30
+      },
+      "vercel": {
+        "enabled": true,
+        "deploymentAutomation": true
+      }
+    },
+    "tools": {
+      "n8n": {
+        "enabled": true,
+        "host": "https://n8n.legourmet-paris.fr"
+      },
+      "analytics": {
+        "enabled": true,
+        "provider": "vercel"
+      }
+    }
+  },
+  "metadata": {
+    "createdAt": "2025-06-18T00:00:00Z",
+    "lastUpdated": "2025-06-18T00:00:00Z",
+    "version": "1.0.0",
+    "environment": "production",
+    "maintainer": "Digital Agency AI Team"
+  }
+}

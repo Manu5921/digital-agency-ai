@@ -1,0 +1,347 @@
+{
+  "orchestrator": {
+    "initialized": true,
+    "agents": {
+      "total": 6,
+      "available": 6,
+      "busy": 0,
+      "offline": 0,
+      "details": [
+        {
+          "id": "design-agent",
+          "name": "Design Specialist",
+          "status": "available",
+          "capabilities": [
+            "html-css",
+            "responsive-design",
+            "ui-components",
+            "prototyping",
+            "design-systems"
+          ],
+          "performance": {
+            "tasksCompleted": 1,
+            "averageTime": 0,
+            "successRate": 100,
+            "qualityScore": 85,
+            "efficiency": 80
+          },
+          "resources": {
+            "memory": 0,
+            "cpu": 0,
+            "apiCalls": 0,
+            "concurrent": 0
+          },
+          "lastSeen": "2025-06-17T16:54:00.182Z"
+        },
+        {
+          "id": "webdev-agent",
+          "name": "Web Development Specialist",
+          "status": "available",
+          "capabilities": [
+            "nextjs",
+            "typescript",
+            "react",
+            "api-development",
+            "database-integration"
+          ],
+          "performance": {
+            "tasksCompleted": 1,
+            "averageTime": 0,
+            "successRate": 100,
+            "qualityScore": 85,
+            "efficiency": 80
+          },
+          "resources": {
+            "memory": 0,
+            "cpu": 0,
+            "apiCalls": 0,
+            "concurrent": 0
+          },
+          "lastSeen": "2025-06-17T16:54:00.183Z"
+        },
+        {
+          "id": "seo-agent",
+          "name": "SEO Specialist",
+          "status": "available",
+          "capabilities": [
+            "technical-seo",
+            "content-strategy",
+            "local-seo",
+            "analytics",
+            "schema-markup"
+          ],
+          "performance": {
+            "tasksCompleted": 1,
+            "averageTime": 0,
+            "successRate": 100,
+            "qualityScore": 85,
+            "efficiency": 80
+          },
+          "resources": {
+            "memory": 0,
+            "cpu": 0,
+            "apiCalls": 0,
+            "concurrent": 0
+          },
+          "lastSeen": "2025-06-17T16:54:00.183Z"
+        },
+        {
+          "id": "marketing-agent",
+          "name": "Marketing Specialist",
+          "status": "available",
+          "capabilities": [
+            "google-ads",
+            "meta-ads",
+            "analytics",
+            "conversion-optimization",
+            "email-marketing"
+          ],
+          "performance": {
+            "tasksCompleted": 1,
+            "averageTime": 0,
+            "successRate": 100,
+            "qualityScore": 85,
+            "efficiency": 80
+          },
+          "resources": {
+            "memory": 0,
+            "cpu": 0,
+            "apiCalls": 0,
+            "concurrent": 0
+          },
+          "lastSeen": "2025-06-17T16:54:00.183Z"
+        },
+        {
+          "id": "techops-agent",
+          "name": "TechOps Specialist",
+          "status": "available",
+          "capabilities": [
+            "deployment",
+            "vercel",
+            "monitoring",
+            "performance",
+            "security"
+          ],
+          "performance": {
+            "tasksCompleted": 1,
+            "averageTime": 0,
+            "successRate": 100,
+            "qualityScore": 85,
+            "efficiency": 80
+          },
+          "resources": {
+            "memory": 0,
+            "cpu": 0,
+            "apiCalls": 0,
+            "concurrent": 0
+          },
+          "lastSeen": "2025-06-17T16:54:00.183Z"
+        },
+        {
+          "id": "automation-agent",
+          "name": "Automation Specialist",
+          "status": "available",
+          "capabilities": [
+            "n8n-workflows",
+            "ocr",
+            "crm-integration",
+            "chatbots",
+            "process-automation"
+          ],
+          "performance": {
+            "tasksCompleted": 1,
+            "averageTime": 0,
+            "successRate": 100,
+            "qualityScore": 85,
+            "efficiency": 80
+          },
+          "resources": {
+            "memory": 0,
+            "cpu": 0,
+            "apiCalls": 0,
+            "concurrent": 0
+          },
+          "lastSeen": "2025-06-17T16:54:00.183Z"
+        }
+      ]
+    },
+    "workflows": {
+      "status": "running",
+      "uptime": 0.074727792,
+      "version": "1.0.0"
+    },
+    "coreFeatures": {
+      "projectLaunch": true,
+      "workflowExecution": true,
+      "parallelProcessing": true,
+      "resourceManagement": true,
+      "eventSystem": true
+    },
+    "performance": {
+      "throughput": 0,
+      "efficiency": 80,
+      "resourceUsage": {
+        "memory": 10,
+        "cpu": 28,
+        "concurrent": 0
+      }
+    },
+    "status": "✅ Opérationnel"
+  },
+  "communication": {
+    "messaging": {
+      "directMessage": true,
+      "broadcast": false,
+      "channels": 6,
+      "agents": 3
+    },
+    "performance": {
+      "messagesPerMinute": 1,
+      "deliveryRate": 96,
+      "responseTime": 1157
+    },
+    "status": "✅ Fonctionnel"
+  },
+  "conflictResolution": {
+    "conflicts": {
+      "detected": 4,
+      "resolved": 2,
+      "active": 2
+    },
+    "resolution": {
+      "successRate": 50,
+      "averageTime": 1,
+      "strategies": {
+        "resource-sharing": 1,
+        "priority": 1
+      }
+    },
+    "performance": {
+      "detectionAccuracy": 95,
+      "efficiency": 87
+    },
+    "status": "✅ Opérationnel"
+  },
+  "metrics": {
+    "collection": {
+      "hasCurrentMetrics": false,
+      "dataPoints": 0
+    },
+    "system": null,
+    "agents": null,
+    "performance": null,
+    "status": "❌ Inactif"
+  },
+  "coordination": {
+    "project": {
+      "id": "restaurant-test-project",
+      "launched": true,
+      "executionTime": 9570,
+      "status": "completed"
+    },
+    "workflow": {
+      "phases": 4,
+      "parallelPhases": 2,
+      "totalTasks": 6,
+      "completedTasks": 6
+    },
+    "agents": {
+      "participated": 6,
+      "successful": 6
+    },
+    "performance": {
+      "actualTime": 10,
+      "estimatedParallelGain": 25
+    },
+    "status": "✅ Succès"
+  },
+  "performance": {
+    "maturity": {
+      "score": 80,
+      "components": [
+        {
+          "component": "orchestrator",
+          "status": "✅",
+          "working": true
+        },
+        {
+          "component": "communication",
+          "status": "✅",
+          "working": true
+        },
+        {
+          "component": "conflictResolution",
+          "status": "✅",
+          "working": true
+        },
+        {
+          "component": "metrics",
+          "status": "❌",
+          "working": false
+        },
+        {
+          "component": "coordination",
+          "status": "✅",
+          "working": true
+        }
+      ]
+    },
+    "parallelization": {
+      "current": 25,
+      "theoretical": 46,
+      "phases": {
+        "sequential": [
+          "Design",
+          "Development"
+        ],
+        "parallel": [
+          "SEO+Marketing",
+          "TechOps+Automation"
+        ]
+      }
+    },
+    "timeline": {
+      "traditional": "14-18h",
+      "current": "10.5-13h",
+      "optimized": "7-9h"
+    },
+    "resourceUtilization": {
+      "current": 65,
+      "optimized": 85,
+      "bottlenecks": [
+        "communication",
+        "coordination"
+      ]
+    }
+  },
+  "recommendations": [],
+  "summary": {
+    "maturityScore": 80,
+    "executionTime": 15,
+    "status": "OPÉRATIONNEL",
+    "recommendation": "PRODUCTION READY"
+  },
+  "testResults": [
+    {
+      "name": "Orchestrateur Principal",
+      "success": true
+    },
+    {
+      "name": "Système de Communication",
+      "success": true
+    },
+    {
+      "name": "Résolution de Conflits",
+      "success": true
+    },
+    {
+      "name": "Collecte de Métriques",
+      "success": false
+    },
+    {
+      "name": "Coordination Multi-Agents",
+      "success": true
+    }
+  ],
+  "executionTime": 14579
+}

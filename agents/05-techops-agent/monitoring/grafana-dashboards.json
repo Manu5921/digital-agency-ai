@@ -1,0 +1,640 @@
+{
+  "dashboards": [
+    {
+      "id": "digital-agency-overview",
+      "title": "Digital Agency AI - System Overview",
+      "description": "Enterprise-level system overview dashboard for Digital Agency AI multi-agent platform",
+      "tags": ["digital-agency", "overview", "enterprise", "agents"],
+      "timezone": "UTC",
+      "refresh": "30s",
+      "time": {
+        "from": "now-1h",
+        "to": "now"
+      },
+      "templating": {
+        "list": [
+          {
+            "name": "environment",
+            "type": "query",
+            "query": "label_values(up, environment)",
+            "current": {
+              "value": "production",
+              "text": "production"
+            }
+          },
+          {
+            "name": "cluster",
+            "type": "query",
+            "query": "label_values(up{environment=\"$environment\"}, cluster)",
+            "current": {
+              "value": "all",
+              "text": "All"
+            }
+          },
+          {
+            "name": "agent",
+            "type": "query",
+            "query": "label_values(up{environment=\"$environment\", cluster=~\"$cluster\"}, agent)",
+            "current": {
+              "value": "all",
+              "text": "All Agents"
+            }
+          }
+        ]
+      },
+      "panels": [
+        {
+          "id": 1,
+          "title": "System Health Score",
+          "type": "stat",
+          "targets": [
+            {
+              "expr": "avg(agent_health_score{environment=\"$environment\", cluster=~\"$cluster\", agent=~\"$agent\"})",
+              "legendFormat": "Health Score"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "min": 0,
+              "max": 100,
+              "unit": "percent",
+              "thresholds": {
+                "steps": [
+                  {"color": "red", "value": 0},
+                  {"color": "yellow", "value": 70},
+                  {"color": "green", "value": 90}
+                ]
+              }
+            }
+          },
+          "gridPos": {"h": 8, "w": 6, "x": 0, "y": 0}
+        },
+        {
+          "id": 2,
+          "title": "Active Agents",
+          "type": "stat",
+          "targets": [
+            {
+              "expr": "count(up{environment=\"$environment\", cluster=~\"$cluster\", agent=~\"$agent\"} == 1)",
+              "legendFormat": "Active"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "color": {"mode": "thresholds"},
+              "thresholds": {
+                "steps": [
+                  {"color": "red", "value": 0},
+                  {"color": "yellow", "value": 3},
+                  {"color": "green", "value": 5}
+                ]
+              }
+            }
+          },
+          "gridPos": {"h": 8, "w": 6, "x": 6, "y": 0}
+        },
+        {
+          "id": 3,
+          "title": "Tasks Completed (24h)",
+          "type": "stat",
+          "targets": [
+            {
+              "expr": "sum(increase(agent_tasks_completed_total{environment=\"$environment\", cluster=~\"$cluster\", agent=~\"$agent\"}[24h]))",
+              "legendFormat": "Tasks"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "color": {"mode": "palette-classic"},
+              "unit": "short"
+            }
+          },
+          "gridPos": {"h": 8, "w": 6, "x": 12, "y": 0}
+        },
+        {
+          "id": 4,
+          "title": "Error Rate",
+          "type": "stat",
+          "targets": [
+            {
+              "expr": "sum(rate(agent_errors_total{environment=\"$environment\", cluster=~\"$cluster\", agent=~\"$agent\"}[5m])) / sum(rate(agent_requests_total{environment=\"$environment\", cluster=~\"$cluster\", agent=~\"$agent\"}[5m])) * 100",
+              "legendFormat": "Error Rate"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "min": 0,
+              "max": 100,
+              "unit": "percent",
+              "thresholds": {
+                "steps": [
+                  {"color": "green", "value": 0},
+                  {"color": "yellow", "value": 1},
+                  {"color": "red", "value": 5}
+                ]
+              }
+            }
+          },
+          "gridPos": {"h": 8, "w": 6, "x": 18, "y": 0}
+        },
+        {
+          "id": 5,
+          "title": "Agent Performance Overview",
+          "type": "graph",
+          "targets": [
+            {
+              "expr": "avg by (agent) (agent_response_time_seconds{environment=\"$environment\", cluster=~\"$cluster\", agent=~\"$agent\"})",
+              "legendFormat": "{{agent}} - Response Time"
+            },
+            {
+              "expr": "avg by (agent) (agent_throughput_requests_per_second{environment=\"$environment\", cluster=~\"$cluster\", agent=~\"$agent\"})",
+              "legendFormat": "{{agent}} - Throughput"
+            }
+          ],
+          "yAxes": [
+            {"label": "Response Time (s)", "side": "left"},
+            {"label": "Throughput (req/s)", "side": "right"}
+          ],
+          "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8}
+        },
+        {
+          "id": 6,
+          "title": "Resource Utilization",
+          "type": "graph",
+          "targets": [
+            {
+              "expr": "avg by (agent) (rate(container_cpu_usage_seconds_total{container!=\"POD\", pod=~\".*agent.*\", namespace=\"digital-agency-system\"}[5m]) * 100)",
+              "legendFormat": "{{agent}} - CPU %"
+            },
+            {
+              "expr": "avg by (agent) (container_memory_working_set_bytes{container!=\"POD\", pod=~\".*agent.*\", namespace=\"digital-agency-system\"} / 1024 / 1024)",
+              "legendFormat": "{{agent}} - Memory MB"
+            }
+          ],
+          "yAxes": [
+            {"label": "CPU %", "side": "left"},
+            {"label": "Memory MB", "side": "right"}
+          ],
+          "gridPos": {"h": 8, "w": 12, "x": 12, "y": 8}
+        }
+      ]
+    },
+    {
+      "id": "digital-agency-agents",
+      "title": "Digital Agency AI - Agent Details",
+      "description": "Detailed monitoring dashboard for individual agents",
+      "tags": ["digital-agency", "agents", "detailed"],
+      "timezone": "UTC",
+      "refresh": "30s",
+      "panels": [
+        {
+          "id": 1,
+          "title": "Agent Status Matrix",
+          "type": "table",
+          "targets": [
+            {
+              "expr": "up{job=~\".*agent.*\", environment=\"$environment\"}",
+              "format": "table",
+              "instant": true
+            }
+          ],
+          "transformations": [
+            {
+              "id": "organize",
+              "options": {
+                "excludeByName": {"Time": true, "__name__": true},
+                "renameByName": {
+                  "agent": "Agent",
+                  "instance": "Instance",
+                  "Value": "Status"
+                }
+              }
+            }
+          ],
+          "gridPos": {"h": 8, "w": 24, "x": 0, "y": 0}
+        },
+        {
+          "id": 2,
+          "title": "Design Agent Metrics",
+          "type": "row",
+          "collapsed": false,
+          "gridPos": {"h": 1, "w": 24, "x": 0, "y": 8}
+        },
+        {
+          "id": 3,
+          "title": "Design Generations",
+          "type": "graph",
+          "targets": [
+            {
+              "expr": "rate(design_agent_generations_total{environment=\"$environment\"}[5m])",
+              "legendFormat": "Generations/sec"
+            }
+          ],
+          "gridPos": {"h": 6, "w": 8, "x": 0, "y": 9}
+        },
+        {
+          "id": 4,
+          "title": "Figma API Calls",
+          "type": "graph",
+          "targets": [
+            {
+              "expr": "rate(design_agent_figma_api_calls_total{environment=\"$environment\"}[5m])",
+              "legendFormat": "API Calls/sec"
+            }
+          ],
+          "gridPos": {"h": 6, "w": 8, "x": 8, "y": 9}
+        },
+        {
+          "id": 5,
+          "title": "Image Processing Time",
+          "type": "graph",
+          "targets": [
+            {
+              "expr": "histogram_quantile(0.95, rate(design_agent_image_processing_duration_seconds_bucket{environment=\"$environment\"}[5m]))",
+              "legendFormat": "95th percentile"
+            }
+          ],
+          "gridPos": {"h": 6, "w": 8, "x": 16, "y": 9}
+        },
+        {
+          "id": 6,
+          "title": "WebDev Agent Metrics",
+          "type": "row",
+          "collapsed": false,
+          "gridPos": {"h": 1, "w": 24, "x": 0, "y": 15}
+        },
+        {
+          "id": 7,
+          "title": "Code Generation Rate",
+          "type": "graph",
+          "targets": [
+            {
+              "expr": "rate(webdev_agent_code_generations_total{environment=\"$environment\"}[5m])",
+              "legendFormat": "Generations/sec"
+            }
+          ],
+          "gridPos": {"h": 6, "w": 8, "x": 0, "y": 16}
+        },
+        {
+          "id": 8,
+          "title": "Build Success Rate",
+          "type": "stat",
+          "targets": [
+            {
+              "expr": "sum(rate(webdev_agent_builds_successful_total{environment=\"$environment\"}[5m])) / sum(rate(webdev_agent_builds_total{environment=\"$environment\"}[5m])) * 100",
+              "legendFormat": "Success Rate"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "unit": "percent",
+              "min": 0,
+              "max": 100,
+              "thresholds": {
+                "steps": [
+                  {"color": "red", "value": 0},
+                  {"color": "yellow", "value": 90},
+                  {"color": "green", "value": 95}
+                ]
+              }
+            }
+          },
+          "gridPos": {"h": 6, "w": 8, "x": 8, "y": 16}
+        },
+        {
+          "id": 9,
+          "title": "API Response Time",
+          "type": "graph",
+          "targets": [
+            {
+              "expr": "histogram_quantile(0.95, rate(webdev_agent_api_duration_seconds_bucket{environment=\"$environment\"}[5m]))",
+              "legendFormat": "95th percentile"
+            }
+          ],
+          "gridPos": {"h": 6, "w": 8, "x": 16, "y": 16}
+        }
+      ]
+    },
+    {
+      "id": "digital-agency-infrastructure",
+      "title": "Digital Agency AI - Infrastructure",
+      "description": "Infrastructure monitoring for Kubernetes, databases, and external services",
+      "tags": ["digital-agency", "infrastructure", "kubernetes"],
+      "timezone": "UTC",
+      "refresh": "30s",
+      "panels": [
+        {
+          "id": 1,
+          "title": "Kubernetes Cluster Health",
+          "type": "stat",
+          "targets": [
+            {
+              "expr": "sum(up{job=\"kubernetes-nodes\"}) / count(up{job=\"kubernetes-nodes\"}) * 100",
+              "legendFormat": "Node Health"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "unit": "percent",
+              "thresholds": {
+                "steps": [
+                  {"color": "red", "value": 0},
+                  {"color": "yellow", "value": 80},
+                  {"color": "green", "value": 95}
+                ]
+              }
+            }
+          },
+          "gridPos": {"h": 6, "w": 6, "x": 0, "y": 0}
+        },
+        {
+          "id": 2,
+          "title": "Pod Status",
+          "type": "piechart",
+          "targets": [
+            {
+              "expr": "sum by (phase) (kube_pod_status_phase{namespace=\"digital-agency-system\"})",
+              "legendFormat": "{{phase}}"
+            }
+          ],
+          "gridPos": {"h": 6, "w": 6, "x": 6, "y": 0}
+        },
+        {
+          "id": 3,
+          "title": "CPU Utilization",
+          "type": "graph",
+          "targets": [
+            {
+              "expr": "sum(rate(container_cpu_usage_seconds_total{namespace=\"digital-agency-system\"}[5m])) by (pod)",
+              "legendFormat": "{{pod}}"
+            }
+          ],
+          "gridPos": {"h": 6, "w": 6, "x": 12, "y": 0}
+        },
+        {
+          "id": 4,
+          "title": "Memory Utilization",
+          "type": "graph",
+          "targets": [
+            {
+              "expr": "sum(container_memory_working_set_bytes{namespace=\"digital-agency-system\"}) by (pod) / 1024 / 1024",
+              "legendFormat": "{{pod}}"
+            }
+          ],
+          "gridPos": {"h": 6, "w": 6, "x": 18, "y": 0}
+        },
+        {
+          "id": 5,
+          "title": "Database Performance",
+          "type": "row",
+          "collapsed": false,
+          "gridPos": {"h": 1, "w": 24, "x": 0, "y": 6}
+        },
+        {
+          "id": 6,
+          "title": "PostgreSQL Connections",
+          "type": "graph",
+          "targets": [
+            {
+              "expr": "pg_stat_database_numbackends{datname=\"digitalagency\"}",
+              "legendFormat": "Active Connections"
+            }
+          ],
+          "gridPos": {"h": 6, "w": 8, "x": 0, "y": 7}
+        },
+        {
+          "id": 7,
+          "title": "Database Query Performance",
+          "type": "graph",
+          "targets": [
+            {
+              "expr": "rate(pg_stat_database_tup_returned{datname=\"digitalagency\"}[5m])",
+              "legendFormat": "Rows Returned/sec"
+            }
+          ],
+          "gridPos": {"h": 6, "w": 8, "x": 8, "y": 7}
+        },
+        {
+          "id": 8,
+          "title": "Redis Performance",
+          "type": "graph",
+          "targets": [
+            {
+              "expr": "rate(redis_commands_processed_total[5m])",
+              "legendFormat": "Commands/sec"
+            }
+          ],
+          "gridPos": {"h": 6, "w": 8, "x": 16, "y": 7}
+        }
+      ]
+    },
+    {
+      "id": "digital-agency-security",
+      "title": "Digital Agency AI - Security",
+      "description": "Security monitoring and compliance dashboard",
+      "tags": ["digital-agency", "security", "compliance"],
+      "timezone": "UTC",
+      "refresh": "1m",
+      "panels": [
+        {
+          "id": 1,
+          "title": "Security Score",
+          "type": "gauge",
+          "targets": [
+            {
+              "expr": "avg(security_compliance_score{environment=\"$environment\"})",
+              "legendFormat": "Compliance Score"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "min": 0,
+              "max": 100,
+              "unit": "percent",
+              "thresholds": {
+                "steps": [
+                  {"color": "red", "value": 0},
+                  {"color": "yellow", "value": 70},
+                  {"color": "green", "value": 90}
+                ]
+              }
+            }
+          },
+          "gridPos": {"h": 8, "w": 6, "x": 0, "y": 0}
+        },
+        {
+          "id": 2,
+          "title": "Security Violations",
+          "type": "stat",
+          "targets": [
+            {
+              "expr": "sum(security_violations_total{environment=\"$environment\", severity=\"critical\"})",
+              "legendFormat": "Critical"
+            }
+          ],
+          "fieldConfig": {
+            "defaults": {
+              "color": {"mode": "thresholds"},
+              "thresholds": {
+                "steps": [
+                  {"color": "green", "value": 0},
+                  {"color": "yellow", "value": 1},
+                  {"color": "red", "value": 5}
+                ]
+              }
+            }
+          },
+          "gridPos": {"h": 4, "w": 6, "x": 6, "y": 0}
+        },
+        {
+          "id": 3,
+          "title": "Failed Authentication Attempts",
+          "type": "graph",
+          "targets": [
+            {
+              "expr": "rate(auth_failed_attempts_total{environment=\"$environment\"}[5m])",
+              "legendFormat": "Failed Attempts/sec"
+            }
+          ],
+          "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0}
+        },
+        {
+          "id": 4,
+          "title": "Certificate Expiry",
+          "type": "table",
+          "targets": [
+            {
+              "expr": "(cert_expiry_timestamp - time()) / 86400",
+              "format": "table",
+              "instant": true
+            }
+          ],
+          "gridPos": {"h": 4, "w": 6, "x": 6, "y": 4}
+        }
+      ]
+    }
+  ],
+  "alerts": [
+    {
+      "id": "agent-down",
+      "name": "Agent Down",
+      "message": "Digital Agency AI agent is down",
+      "frequency": "30s",
+      "conditions": [
+        {
+          "query": {
+            "queryType": "",
+            "refId": "A"
+          },
+          "reducer": {
+            "params": [],
+            "type": "last"
+          },
+          "evaluator": {
+            "params": [1],
+            "type": "lt"
+          }
+        }
+      ],
+      "executionErrorState": "alerting",
+      "noDataState": "no_data",
+      "for": "1m"
+    },
+    {
+      "id": "high-error-rate",
+      "name": "High Error Rate",
+      "message": "Error rate is above 5% for Digital Agency AI agents",
+      "frequency": "30s",
+      "conditions": [
+        {
+          "query": {
+            "expr": "sum(rate(agent_errors_total[5m])) / sum(rate(agent_requests_total[5m])) * 100 > 5",
+            "queryType": "",
+            "refId": "A"
+          }
+        }
+      ],
+      "for": "2m"
+    },
+    {
+      "id": "high-response-time",
+      "name": "High Response Time",
+      "message": "Agent response time is above 5 seconds",
+      "frequency": "30s",
+      "conditions": [
+        {
+          "query": {
+            "expr": "histogram_quantile(0.95, rate(agent_response_time_seconds_bucket[5m])) > 5",
+            "queryType": "",
+            "refId": "A"
+          }
+        }
+      ],
+      "for": "5m"
+    },
+    {
+      "id": "security-violation",
+      "name": "Security Violation",
+      "message": "Critical security violation detected in Digital Agency AI",
+      "frequency": "10s",
+      "conditions": [
+        {
+          "query": {
+            "expr": "increase(security_violations_total{severity=\"critical\"}[1m]) > 0",
+            "queryType": "",
+            "refId": "A"
+          }
+        }
+      ],
+      "for": "0s"
+    },
+    {
+      "id": "database-connection-high",
+      "name": "High Database Connections",
+      "message": "Database connection count is approaching limits",
+      "frequency": "1m",
+      "conditions": [
+        {
+          "query": {
+            "expr": "pg_stat_database_numbackends{datname=\"digitalagency\"} > 80",
+            "queryType": "",
+            "refId": "A"
+          }
+        }
+      ],
+      "for": "5m"
+    },
+    {
+      "id": "disk-space-low",
+      "name": "Low Disk Space",
+      "message": "Disk space is running low on Kubernetes nodes",
+      "frequency": "1m",
+      "conditions": [
+        {
+          "query": {
+            "expr": "(node_filesystem_avail_bytes{mountpoint=\"/\"} / node_filesystem_size_bytes{mountpoint=\"/\"}) * 100 < 10",
+            "queryType": "",
+            "refId": "A"
+          }
+        }
+      ],
+      "for": "5m"
+    },
+    {
+      "id": "certificate-expiry",
+      "name": "Certificate Expiring Soon",
+      "message": "SSL certificate will expire within 7 days",
+      "frequency": "1h",
+      "conditions": [
+        {
+          "query": {
+            "expr": "(cert_expiry_timestamp - time()) / 86400 < 7",
+            "queryType": "",
+            "refId": "A"
+          }
+        }
+      ],
+      "for": "0s"
+    }
+  ]
+}

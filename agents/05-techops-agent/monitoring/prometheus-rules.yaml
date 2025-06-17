@@ -1,0 +1,501 @@
+# Prometheus Alerting Rules for Digital Agency AI - Phase 3 TechOps
+# Enterprise-grade alerting rules with intelligent thresholds and escalation
+
+groups:
+  # Application Health Rules
+  - name: digital-agency.application
+    interval: 30s
+    rules:
+      - alert: AgentDown
+        expr: up{job=~".*agent.*", environment="production"} == 0
+        for: 1m
+        labels:
+          severity: critical
+          component: agent
+          runbook: https://runbooks.digital-agency.com/agent-down
+        annotations:
+          summary: "Digital Agency AI agent is down"
+          description: "Agent {{ $labels.agent }} in environment {{ $labels.environment }} has been down for more than 1 minute."
+          impact: "High - Agent functionality unavailable"
+          action: "Check agent logs and restart if necessary"
+
+      - alert: HighErrorRate
+        expr: |
+          (
+            sum(rate(agent_errors_total{environment="production"}[5m])) by (agent) /
+            sum(rate(agent_requests_total{environment="production"}[5m])) by (agent)
+          ) * 100 > 5
+        for: 2m
+        labels:
+          severity: warning
+          component: agent
+          runbook: https://runbooks.digital-agency.com/high-error-rate
+        annotations:
+          summary: "High error rate detected for {{ $labels.agent }}"
+          description: "Error rate for {{ $labels.agent }} is {{ $value | humanizePercentage }} which is above the 5% threshold."
+          impact: "Medium - Degraded user experience"
+          action: "Investigate error logs and recent deployments"
+
+      - alert: CriticalErrorRate
+        expr: |
+          (
+            sum(rate(agent_errors_total{environment="production"}[5m])) by (agent) /
+            sum(rate(agent_requests_total{environment="production"}[5m])) by (agent)
+          ) * 100 > 15
+        for: 1m
+        labels:
+          severity: critical
+          component: agent
+          runbook: https://runbooks.digital-agency.com/critical-error-rate
+        annotations:
+          summary: "Critical error rate for {{ $labels.agent }}"
+          description: "Error rate for {{ $labels.agent }} is {{ $value | humanizePercentage }} which is above the critical 15% threshold."
+          impact: "High - Service severely degraded"
+          action: "Immediate investigation required, consider rollback"
+
+      - alert: HighResponseTime
+        expr: |
+          histogram_quantile(0.95, 
+            sum(rate(agent_response_time_seconds_bucket{environment="production"}[5m])) by (agent, le)
+          ) > 5
+        for: 3m
+        labels:
+          severity: warning
+          component: performance
+          runbook: https://runbooks.digital-agency.com/high-response-time
+        annotations:
+          summary: "High response time for {{ $labels.agent }}"
+          description: "95th percentile response time for {{ $labels.agent }} is {{ $value | humanizeDuration }} which exceeds 5 seconds."
+          impact: "Medium - Poor user experience"
+          action: "Check resource utilization and scaling policies"
+
+      - alert: VeryHighResponseTime
+        expr: |
+          histogram_quantile(0.95, 
+            sum(rate(agent_response_time_seconds_bucket{environment="production"}[5m])) by (agent, le)
+          ) > 15
+        for: 1m
+        labels:
+          severity: critical
+          component: performance
+          runbook: https://runbooks.digital-agency.com/very-high-response-time
+        annotations:
+          summary: "Very high response time for {{ $labels.agent }}"
+          description: "95th percentile response time for {{ $labels.agent }} is {{ $value | humanizeDuration }} which exceeds 15 seconds."
+          impact: "High - Service unusable"
+          action: "Immediate scaling or rollback required"
+
+      - alert: LowThroughput
+        expr: |
+          sum(rate(agent_requests_total{environment="production"}[5m])) by (agent) < 1
+        for: 5m
+        labels:
+          severity: warning
+          component: performance
+          runbook: https://runbooks.digital-agency.com/low-throughput
+        annotations:
+          summary: "Low throughput for {{ $labels.agent }}"
+          description: "Request rate for {{ $labels.agent }} is {{ $value | humanize }} req/s which is below expected levels."
+          impact: "Medium - Possible service degradation"
+          action: "Check for upstream issues or scaling problems"
+
+  # Infrastructure Health Rules
+  - name: digital-agency.infrastructure
+    interval: 1m
+    rules:
+      - alert: KubernetesNodeDown
+        expr: up{job="kubernetes-nodes"} == 0
+        for: 2m
+        labels:
+          severity: critical
+          component: infrastructure
+          runbook: https://runbooks.digital-agency.com/node-down
+        annotations:
+          summary: "Kubernetes node {{ $labels.instance }} is down"
+          description: "Node {{ $labels.instance }} has been unreachable for more than 2 minutes."
+          impact: "High - Reduced cluster capacity"
+          action: "Check node health and restart if necessary"
+
+      - alert: HighCPUUsage
+        expr: |
+          (
+            sum(rate(container_cpu_usage_seconds_total{namespace="digital-agency-system", container!="POD"}[5m])) by (pod) /
+            sum(container_spec_cpu_quota{namespace="digital-agency-system", container!="POD"} / container_spec_cpu_period{namespace="digital-agency-system", container!="POD"}) by (pod)
+          ) * 100 > 80
+        for: 5m
+        labels:
+          severity: warning
+          component: infrastructure
+          runbook: https://runbooks.digital-agency.com/high-cpu
+        annotations:
+          summary: "High CPU usage for pod {{ $labels.pod }}"
+          description: "CPU usage for {{ $labels.pod }} is {{ $value | humanizePercentage }} which exceeds 80%."
+          impact: "Medium - Performance degradation possible"
+          action: "Consider scaling up or optimizing resource usage"
+
+      - alert: CriticalCPUUsage
+        expr: |
+          (
+            sum(rate(container_cpu_usage_seconds_total{namespace="digital-agency-system", container!="POD"}[5m])) by (pod) /
+            sum(container_spec_cpu_quota{namespace="digital-agency-system", container!="POD"} / container_spec_cpu_period{namespace="digital-agency-system", container!="POD"}) by (pod)
+          ) * 100 > 95
+        for: 2m
+        labels:
+          severity: critical
+          component: infrastructure
+          runbook: https://runbooks.digital-agency.com/critical-cpu
+        annotations:
+          summary: "Critical CPU usage for pod {{ $labels.pod }}"
+          description: "CPU usage for {{ $labels.pod }} is {{ $value | humanizePercentage }} which exceeds 95%."
+          impact: "High - Service throttling likely"
+          action: "Immediate scaling required"
+
+      - alert: HighMemoryUsage
+        expr: |
+          (
+            sum(container_memory_working_set_bytes{namespace="digital-agency-system", container!="POD"}) by (pod) /
+            sum(container_spec_memory_limit_bytes{namespace="digital-agency-system", container!="POD"}) by (pod)
+          ) * 100 > 85
+        for: 5m
+        labels:
+          severity: warning
+          component: infrastructure
+          runbook: https://runbooks.digital-agency.com/high-memory
+        annotations:
+          summary: "High memory usage for pod {{ $labels.pod }}"
+          description: "Memory usage for {{ $labels.pod }} is {{ $value | humanizePercentage }} which exceeds 85%."
+          impact: "Medium - Risk of OOM kills"
+          action: "Monitor for memory leaks and consider scaling"
+
+      - alert: CriticalMemoryUsage
+        expr: |
+          (
+            sum(container_memory_working_set_bytes{namespace="digital-agency-system", container!="POD"}) by (pod) /
+            sum(container_spec_memory_limit_bytes{namespace="digital-agency-system", container!="POD"}) by (pod)
+          ) * 100 > 95
+        for: 1m
+        labels:
+          severity: critical
+          component: infrastructure
+          runbook: https://runbooks.digital-agency.com/critical-memory
+        annotations:
+          summary: "Critical memory usage for pod {{ $labels.pod }}"
+          description: "Memory usage for {{ $labels.pod }} is {{ $value | humanizePercentage }} which exceeds 95%."
+          impact: "High - Imminent OOM kill risk"
+          action: "Immediate scaling or restart required"
+
+      - alert: PodCrashLooping
+        expr: |
+          rate(kube_pod_container_status_restarts_total{namespace="digital-agency-system"}[15m]) * 60 * 15 > 5
+        for: 5m
+        labels:
+          severity: critical
+          component: infrastructure
+          runbook: https://runbooks.digital-agency.com/pod-crash-loop
+        annotations:
+          summary: "Pod {{ $labels.pod }} is crash looping"
+          description: "Pod {{ $labels.pod }} has restarted {{ $value }} times in the last 15 minutes."
+          impact: "High - Service instability"
+          action: "Check pod logs and configuration"
+
+      - alert: LowDiskSpace
+        expr: |
+          (
+            node_filesystem_avail_bytes{mountpoint="/"} /
+            node_filesystem_size_bytes{mountpoint="/"}
+          ) * 100 < 10
+        for: 5m
+        labels:
+          severity: critical
+          component: infrastructure
+          runbook: https://runbooks.digital-agency.com/low-disk-space
+        annotations:
+          summary: "Low disk space on node {{ $labels.instance }}"
+          description: "Disk space on {{ $labels.instance }} is {{ $value | humanizePercentage }} which is below 10%."
+          impact: "High - Risk of service disruption"
+          action: "Clean up disk space or expand storage"
+
+  # Database Health Rules
+  - name: digital-agency.database
+    interval: 1m
+    rules:
+      - alert: PostgreSQLDown
+        expr: pg_up == 0
+        for: 1m
+        labels:
+          severity: critical
+          component: database
+          runbook: https://runbooks.digital-agency.com/postgresql-down
+        annotations:
+          summary: "PostgreSQL instance is down"
+          description: "PostgreSQL instance {{ $labels.instance }} is not responding."
+          impact: "Critical - Data layer unavailable"
+          action: "Check database logs and restart if necessary"
+
+      - alert: HighDatabaseConnections
+        expr: |
+          pg_stat_database_numbackends{datname="digitalagency"} /
+          pg_settings_max_connections * 100 > 80
+        for: 5m
+        labels:
+          severity: warning
+          component: database
+          runbook: https://runbooks.digital-agency.com/high-db-connections
+        annotations:
+          summary: "High database connection usage"
+          description: "Database connection usage is {{ $value | humanizePercentage }} which exceeds 80%."
+          impact: "Medium - Risk of connection exhaustion"
+          action: "Check for connection leaks and consider scaling"
+
+      - alert: CriticalDatabaseConnections
+        expr: |
+          pg_stat_database_numbackends{datname="digitalagency"} /
+          pg_settings_max_connections * 100 > 95
+        for: 2m
+        labels:
+          severity: critical
+          component: database
+          runbook: https://runbooks.digital-agency.com/critical-db-connections
+        annotations:
+          summary: "Critical database connection usage"
+          description: "Database connection usage is {{ $value | humanizePercentage }} which exceeds 95%."
+          impact: "High - Connection exhaustion imminent"
+          action: "Immediate investigation of connection usage required"
+
+      - alert: SlowDatabaseQueries
+        expr: |
+          rate(pg_stat_database_tup_returned{datname="digitalagency"}[5m]) /
+          rate(pg_stat_database_tup_fetched{datname="digitalagency"}[5m]) < 0.8
+        for: 10m
+        labels:
+          severity: warning
+          component: database
+          runbook: https://runbooks.digital-agency.com/slow-queries
+        annotations:
+          summary: "Database queries are running slowly"
+          description: "Query efficiency is {{ $value | humanizePercentage }} which indicates slow queries."
+          impact: "Medium - Application performance degraded"
+          action: "Analyze slow query log and optimize queries"
+
+      - alert: RedisDown
+        expr: redis_up == 0
+        for: 1m
+        labels:
+          severity: critical
+          component: cache
+          runbook: https://runbooks.digital-agency.com/redis-down
+        annotations:
+          summary: "Redis instance is down"
+          description: "Redis instance {{ $labels.instance }} is not responding."
+          impact: "High - Cache layer unavailable"
+          action: "Check Redis logs and restart if necessary"
+
+      - alert: HighRedisMemoryUsage
+        expr: |
+          redis_memory_used_bytes / redis_memory_max_bytes * 100 > 85
+        for: 5m
+        labels:
+          severity: warning
+          component: cache
+          runbook: https://runbooks.digital-agency.com/high-redis-memory
+        annotations:
+          summary: "High Redis memory usage"
+          description: "Redis memory usage is {{ $value | humanizePercentage }} which exceeds 85%."
+          impact: "Medium - Risk of eviction or OOM"
+          action: "Check for memory leaks and consider scaling"
+
+  # Security Rules
+  - name: digital-agency.security
+    interval: 30s
+    rules:
+      - alert: SecurityViolationCritical
+        expr: |
+          increase(security_violations_total{severity="critical", environment="production"}[1m]) > 0
+        for: 0s
+        labels:
+          severity: critical
+          component: security
+          runbook: https://runbooks.digital-agency.com/security-violation
+        annotations:
+          summary: "Critical security violation detected"
+          description: "{{ $value }} critical security violation(s) detected in the last minute."
+          impact: "Critical - Security breach possible"
+          action: "Immediate security team escalation required"
+
+      - alert: FailedAuthenticationSpike
+        expr: |
+          rate(auth_failed_attempts_total{environment="production"}[5m]) > 10
+        for: 2m
+        labels:
+          severity: warning
+          component: security
+          runbook: https://runbooks.digital-agency.com/auth-spike
+        annotations:
+          summary: "High rate of failed authentication attempts"
+          description: "Failed authentication rate is {{ $value | humanize }} attempts/sec which indicates possible attack."
+          impact: "Medium - Possible brute force attack"
+          action: "Review authentication logs and consider IP blocking"
+
+      - alert: CertificateExpiringSoon
+        expr: |
+          (cert_expiry_timestamp - time()) / 86400 < 7
+        for: 0s
+        labels:
+          severity: warning
+          component: security
+          runbook: https://runbooks.digital-agency.com/cert-expiry
+        annotations:
+          summary: "Certificate expiring soon"
+          description: "Certificate {{ $labels.name }} will expire in {{ $value | humanize }} days."
+          impact: "Medium - Service disruption risk"
+          action: "Renew certificate before expiration"
+
+      - alert: CertificateExpiringSoon
+        expr: |
+          (cert_expiry_timestamp - time()) / 86400 < 1
+        for: 0s
+        labels:
+          severity: critical
+          component: security
+          runbook: https://runbooks.digital-agency.com/cert-expiry-critical
+        annotations:
+          summary: "Certificate expiring within 24 hours"
+          description: "Certificate {{ $labels.name }} will expire in {{ $value | humanize }} hours."
+          impact: "High - Imminent service disruption"
+          action: "Immediate certificate renewal required"
+
+      - alert: UnauthorizedAPIAccess
+        expr: |
+          rate(http_requests_total{status=~"4[0-3][0-9]", environment="production"}[5m]) > 5
+        for: 3m
+        labels:
+          severity: warning
+          component: security
+          runbook: https://runbooks.digital-agency.com/unauthorized-access
+        annotations:
+          summary: "High rate of unauthorized API access"
+          description: "Unauthorized API access rate is {{ $value | humanize }} requests/sec."
+          impact: "Medium - Possible unauthorized access attempts"
+          action: "Review access logs and API security"
+
+  # Business Logic Rules
+  - name: digital-agency.business
+    interval: 1m
+    rules:
+      - alert: LowTaskCompletionRate
+        expr: |
+          rate(agent_tasks_completed_total{environment="production"}[1h]) /
+          rate(agent_tasks_started_total{environment="production"}[1h]) < 0.9
+        for: 10m
+        labels:
+          severity: warning
+          component: business
+          runbook: https://runbooks.digital-agency.com/low-completion-rate
+        annotations:
+          summary: "Low task completion rate for {{ $labels.agent }}"
+          description: "Task completion rate for {{ $labels.agent }} is {{ $value | humanizePercentage }} which is below 90%."
+          impact: "Medium - Business process efficiency degraded"
+          action: "Investigate task failures and system performance"
+
+      - alert: HighTaskFailureRate
+        expr: |
+          rate(agent_tasks_failed_total{environment="production"}[5m]) /
+          rate(agent_tasks_started_total{environment="production"}[5m]) > 0.1
+        for: 5m
+        labels:
+          severity: critical
+          component: business
+          runbook: https://runbooks.digital-agency.com/high-failure-rate
+        annotations:
+          summary: "High task failure rate for {{ $labels.agent }}"
+          description: "Task failure rate for {{ $labels.agent }} is {{ $value | humanizePercentage }} which exceeds 10%."
+          impact: "High - Business processes severely impacted"
+          action: "Immediate investigation of task failures required"
+
+      - alert: APIRateLimitReached
+        expr: |
+          rate(http_requests_total{status="429", environment="production"}[5m]) > 1
+        for: 2m
+        labels:
+          severity: warning
+          component: business
+          runbook: https://runbooks.digital-agency.com/rate-limit
+        annotations:
+          summary: "API rate limit being reached"
+          description: "Rate limit responses detected at {{ $value | humanize }} requests/sec."
+          impact: "Medium - External service capacity constraints"
+          action: "Review API usage patterns and rate limits"
+
+      - alert: ExternalServiceDown
+        expr: |
+          probe_success{job="blackbox-external-services"} == 0
+        for: 2m
+        labels:
+          severity: warning
+          component: external
+          runbook: https://runbooks.digital-agency.com/external-service-down
+        annotations:
+          summary: "External service {{ $labels.instance }} is down"
+          description: "External service {{ $labels.instance }} is not responding to health checks."
+          impact: "Medium - Dependent functionality may be affected"
+          action: "Check external service status and implement fallbacks"
+
+  # Multi-Cloud Rules
+  - name: digital-agency.multicloud
+    interval: 1m
+    rules:
+      - alert: CloudProviderDegraded
+        expr: |
+          multicloud_provider_health_score < 80
+        for: 5m
+        labels:
+          severity: warning
+          component: multicloud
+          runbook: https://runbooks.digital-agency.com/provider-degraded
+        annotations:
+          summary: "Cloud provider {{ $labels.provider }} is degraded"
+          description: "Health score for {{ $labels.provider }} is {{ $value }} which is below 80."
+          impact: "Medium - Service quality may be affected"
+          action: "Monitor provider status and prepare for failover"
+
+      - alert: CloudProviderCritical
+        expr: |
+          multicloud_provider_health_score < 50
+        for: 2m
+        labels:
+          severity: critical
+          component: multicloud
+          runbook: https://runbooks.digital-agency.com/provider-critical
+        annotations:
+          summary: "Cloud provider {{ $labels.provider }} is in critical state"
+          description: "Health score for {{ $labels.provider }} is {{ $value }} which is below 50."
+          impact: "High - Failover may be required"
+          action: "Initiate failover procedures if available"
+
+      - alert: FailoverRequired
+        expr: |
+          multicloud_provider_health_score < 30
+        for: 1m
+        labels:
+          severity: critical
+          component: multicloud
+          runbook: https://runbooks.digital-agency.com/failover-required
+        annotations:
+          summary: "Failover required for provider {{ $labels.provider }}"
+          description: "Health score for {{ $labels.provider }} is {{ $value }} requiring immediate failover."
+          impact: "Critical - Service availability at risk"
+          action: "Execute automated failover immediately"
+
+      - alert: CrossCloudReplicationLag
+        expr: |
+          multicloud_replication_lag_seconds > 300
+        for: 5m
+        labels:
+          severity: warning
+          component: multicloud
+          runbook: https://runbooks.digital-agency.com/replication-lag
+        annotations:
+          summary: "High cross-cloud replication lag"
+          description: "Replication lag between {{ $labels.source }} and {{ $labels.target }} is {{ $value | humanizeDuration }}."
+          impact: "Medium - Data consistency risk"
+          action: "Check replication pipeline and network connectivity"

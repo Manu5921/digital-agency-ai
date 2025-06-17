@@ -1,0 +1,602 @@
+{
+  "agent": {
+    "id": "05-techops-agent",
+    "name": "TechOps Specialist",
+    "version": "3.0.0",
+    "phase": "Phase 3 - Cloud Native Infrastructure",
+    "description": "Enterprise-grade TechOps agent with multi-cloud orchestration, Kubernetes management, and GitOps automation",
+    "capabilities": [
+      "Multi-cloud orchestration (AWS/GCP/Azure)",
+      "Kubernetes enterprise management",
+      "Comprehensive observability suite",
+      "GitOps automation with ArgoCD",
+      "Infrastructure as Code (Terraform/Pulumi)",
+      "Security compliance automation",
+      "ML-powered auto-scaling",
+      "Disaster recovery management",
+      "Cost optimization with ML",
+      "Intelligent alerting and incident response"
+    ],
+    "status": "active",
+    "priority": "critical",
+    "dependencies": [
+      "00-orchestrator",
+      "02-webdev-agent"
+    ],
+    "integrations": [
+      "kubernetes",
+      "argocd",
+      "prometheus",
+      "grafana",
+      "jaeger",
+      "vault",
+      "terraform",
+      "helm",
+      "istio",
+      "aws",
+      "gcp",
+      "azure"
+    ]
+  },
+  "infrastructure": {
+    "multiCloud": {
+      "enabled": true,
+      "providers": {
+        "aws": {
+          "enabled": true,
+          "regions": ["us-east-1", "us-west-2", "eu-west-1"],
+          "services": ["eks", "rds", "elasticache", "s3", "cloudfront"],
+          "priority": 1,
+          "costBudget": 5000,
+          "complianceLevel": "all"
+        },
+        "gcp": {
+          "enabled": true,
+          "regions": ["us-central1", "us-east1", "europe-west1"],
+          "services": ["gke", "cloud-sql", "memorystore", "gcs", "cloud-cdn"],
+          "priority": 2,
+          "costBudget": 3000,
+          "complianceLevel": "all"
+        },
+        "azure": {
+          "enabled": true,
+          "regions": ["eastus", "westus2", "westeurope"],
+          "services": ["aks", "azure-database", "redis-cache", "blob-storage", "cdn"],
+          "priority": 3,
+          "costBudget": 2000,
+          "complianceLevel": "all"
+        }
+      },
+      "failover": {
+        "enabled": true,
+        "rtoTarget": 15,
+        "rpoTarget": 5,
+        "healthCheckInterval": 30000,
+        "autoFailback": true,
+        "triggers": ["latency", "availability", "cost", "compliance"]
+      },
+      "costOptimization": {
+        "spotInstances": true,
+        "reservedCapacity": true,
+        "rightSizing": true,
+        "scheduledScaling": true,
+        "unusedResourceCleanup": true,
+        "mlPowered": true
+      }
+    },
+    "kubernetes": {
+      "enabled": true,
+      "clusters": {
+        "production": {
+          "provider": "aws",
+          "region": "us-east-1",
+          "version": "1.28",
+          "nodes": {
+            "min": 3,
+            "max": 100,
+            "instanceTypes": ["m5.large", "m5.xlarge", "m5.2xlarge"],
+            "zones": ["us-east-1a", "us-east-1b", "us-east-1c"]
+          },
+          "security": {
+            "podSecurityStandard": "restricted",
+            "networkPolicies": true,
+            "rbacEnabled": true,
+            "admission": ["pod-security-policy", "network-policy", "limit-ranger"]
+          },
+          "mesh": {
+            "enabled": true,
+            "type": "istio",
+            "mtls": true,
+            "observability": true
+          }
+        },
+        "staging": {
+          "provider": "gcp",
+          "region": "us-central1",
+          "version": "1.28",
+          "nodes": {
+            "min": 2,
+            "max": 20,
+            "instanceTypes": ["n2-standard-2", "n2-standard-4"],
+            "zones": ["us-central1-a", "us-central1-b"]
+          },
+          "security": {
+            "podSecurityStandard": "baseline",
+            "networkPolicies": true,
+            "rbacEnabled": true,
+            "admission": ["pod-security-policy", "network-policy"]
+          },
+          "mesh": {
+            "enabled": true,
+            "type": "istio",
+            "mtls": true,
+            "observability": true
+          }
+        },
+        "development": {
+          "provider": "azure",
+          "region": "eastus",
+          "version": "1.28",
+          "nodes": {
+            "min": 1,
+            "max": 10,
+            "instanceTypes": ["Standard_D2s_v3", "Standard_D4s_v3"],
+            "zones": ["1", "2"]
+          },
+          "security": {
+            "podSecurityStandard": "baseline",
+            "networkPolicies": false,
+            "rbacEnabled": true,
+            "admission": ["pod-security-policy"]
+          },
+          "mesh": {
+            "enabled": false,
+            "type": "istio",
+            "mtls": false,
+            "observability": false
+          }
+        }
+      },
+      "scaling": {
+        "enabled": true,
+        "mlPredictions": true,
+        "metrics": ["cpu", "memory", "custom", "external"],
+        "behavior": {
+          "scaleUp": {
+            "stabilizationWindowSeconds": 60,
+            "policies": [
+              {"type": "Percent", "value": 100, "periodSeconds": 60},
+              {"type": "Pods", "value": 5, "periodSeconds": 60}
+            ]
+          },
+          "scaleDown": {
+            "stabilizationWindowSeconds": 300,
+            "policies": [
+              {"type": "Percent", "value": 10, "periodSeconds": 60},
+              {"type": "Pods", "value": 2, "periodSeconds": 60}
+            ]
+          }
+        }
+      }
+    },
+    "observability": {
+      "enabled": true,
+      "metrics": {
+        "prometheus": {
+          "enabled": true,
+          "retention": "30d",
+          "scrapeInterval": "15s",
+          "evaluationInterval": "15s",
+          "storageSize": "100Gi"
+        },
+        "grafana": {
+          "enabled": true,
+          "storageSize": "10Gi",
+          "dashboards": {
+            "system": true,
+            "application": true,
+            "infrastructure": true,
+            "security": true,
+            "business": true
+          }
+        }
+      },
+      "tracing": {
+        "jaeger": {
+          "enabled": true,
+          "sampling": {
+            "type": "probabilistic",
+            "param": 0.1
+          },
+          "storage": {
+            "type": "elasticsearch",
+            "retention": "7d"
+          }
+        }
+      },
+      "logging": {
+        "elasticsearch": {
+          "enabled": true,
+          "retention": "30d",
+          "indices": {
+            "pattern": "logs-*",
+            "lifecycle": {
+              "hot": "1d",
+              "warm": "7d",
+              "cold": "14d",
+              "delete": "30d"
+            }
+          }
+        },
+        "kibana": {
+          "enabled": true
+        },
+        "fluentd": {
+          "enabled": true,
+          "buffer": {
+            "chunk_limit_size": "8MB",
+            "queue_limit_length": 512,
+            "flush_interval": "10s"
+          }
+        }
+      },
+      "alerting": {
+        "rules": {
+          "application": 25,
+          "infrastructure": 20,
+          "security": 15,
+          "business": 10
+        },
+        "channels": [
+          {
+            "name": "slack-critical",
+            "type": "slack",
+            "severity": ["critical"],
+            "webhook": "${SLACK_WEBHOOK_CRITICAL}"
+          },
+          {
+            "name": "slack-warnings",
+            "type": "slack",
+            "severity": ["warning"],
+            "webhook": "${SLACK_WEBHOOK_WARNINGS}"
+          },
+          {
+            "name": "email-alerts",
+            "type": "email",
+            "severity": ["critical", "warning"],
+            "recipients": ["techops@digital-agency.com"]
+          },
+          {
+            "name": "pagerduty",
+            "type": "pagerduty",
+            "severity": ["critical"],
+            "integrationKey": "${PAGERDUTY_INTEGRATION_KEY}"
+          }
+        ],
+        "escalation": {
+          "enabled": true,
+          "levels": [
+            {
+              "delay": "5m",
+              "channels": ["slack-critical"],
+              "conditions": ["severity=critical", "status=firing"]
+            },
+            {
+              "delay": "15m",
+              "channels": ["email-alerts", "pagerduty"],
+              "conditions": ["severity=critical", "status=firing"]
+            }
+          ]
+        }
+      },
+      "anomalyDetection": {
+        "enabled": true,
+        "ml": {
+          "confidence": 0.8,
+          "sensitivity": "medium",
+          "learningPeriod": "7d"
+        },
+        "metrics": ["response_time", "error_rate", "throughput", "resource_usage"],
+        "autoRemediation": true
+      }
+    },
+    "security": {
+      "vault": {
+        "enabled": true,
+        "ha": true,
+        "replicas": 3,
+        "storage": "10Gi",
+        "audit": true,
+        "unsealing": "auto",
+        "policies": {
+          "rotation": {
+            "enabled": true,
+            "interval": "90d",
+            "notifyBefore": "7d"
+          }
+        }
+      },
+      "externalSecrets": {
+        "enabled": true,
+        "provider": "vault",
+        "refreshInterval": "1h",
+        "secretStores": [
+          {
+            "name": "vault-backend",
+            "provider": "vault",
+            "path": "secret"
+          }
+        ]
+      },
+      "certManager": {
+        "enabled": true,
+        "clusterIssuer": "letsencrypt-prod",
+        "dnsChallenge": true,
+        "autoRenewal": true
+      },
+      "policies": {
+        "podSecurity": "restricted",
+        "networkPolicies": true,
+        "rbac": true,
+        "admission": ["pod-security-policy", "network-policy", "limit-ranger"]
+      },
+      "compliance": {
+        "standards": ["soc2", "gdpr", "hipaa"],
+        "scanning": {
+          "frequency": "daily",
+          "autoRemediation": true,
+          "reportGeneration": true
+        },
+        "violations": {
+          "autoBlock": true,
+          "alerting": true,
+          "logging": true
+        }
+      }
+    },
+    "gitops": {
+      "argocd": {
+        "enabled": true,
+        "ha": true,
+        "projects": ["digital-agency-project"],
+        "repositories": [
+          "https://github.com/Manu5921/digital-agency-ai.git",
+          "https://charts.digital-agency.com"
+        ],
+        "applications": {
+          "production": {
+            "autoSync": true,
+            "prune": true,
+            "selfHeal": true
+          },
+          "staging": {
+            "autoSync": true,
+            "prune": true,
+            "selfHeal": true
+          },
+          "development": {
+            "autoSync": false,
+            "prune": false,
+            "selfHeal": false
+          }
+        },
+        "rollouts": {
+          "enabled": true,
+          "strategy": "canary",
+          "analysis": true,
+          "progressiveDelivery": true
+        }
+      },
+      "cicd": {
+        "github": {
+          "enabled": true,
+          "workflows": ["ci", "cd", "security"],
+          "environments": ["development", "staging", "production"],
+          "approvals": {
+            "production": true,
+            "staging": false,
+            "development": false
+          }
+        },
+        "security": {
+          "secretScanning": true,
+          "dependencyCheck": true,
+          "containerScanning": true,
+          "iacScanning": true,
+          "dastScanning": true,
+          "sbom": true,
+          "signing": true
+        }
+      },
+      "iac": {
+        "terraform": {
+          "enabled": true,
+          "version": "1.5.0",
+          "backend": "s3",
+          "stateEncryption": true,
+          "driftDetection": {
+            "enabled": true,
+            "schedule": "daily",
+            "autoRemediation": true
+          }
+        },
+        "helm": {
+          "enabled": true,
+          "version": "3.13.0",
+          "charts": ["digital-agency", "monitoring-stack", "security-stack"],
+          "repositories": [
+            "https://charts.bitnami.com/bitnami",
+            "https://prometheus-community.github.io/helm-charts",
+            "https://grafana.github.io/helm-charts"
+          ]
+        }
+      }
+    }
+  },
+  "workflows": {
+    "multiCloudManager": {
+      "enabled": true,
+      "file": "workflows/multi-cloud-manager.ts",
+      "triggers": ["provider-health", "cost-threshold", "compliance-violation"],
+      "automation": {
+        "failover": true,
+        "costOptimization": true,
+        "complianceRemediation": true
+      }
+    },
+    "kubernetesOrchestrator": {
+      "enabled": true,
+      "file": "workflows/k8s-orchestrator.ts",
+      "triggers": ["resource-request", "scaling-event", "security-policy"],
+      "automation": {
+        "scaling": true,
+        "resourceOptimization": true,
+        "securityEnforcement": true
+      }
+    },
+    "observabilityPlatform": {
+      "enabled": true,
+      "file": "workflows/observability-platform.ts",
+      "triggers": ["anomaly-detected", "threshold-breach", "incident-created"],
+      "automation": {
+        "anomalyDetection": true,
+        "incidentResponse": true,
+        "reportGeneration": true
+      }
+    },
+    "gitopsDeployment": {
+      "enabled": true,
+      "file": "workflows/gitops-deployment.ts",
+      "triggers": ["code-push", "approval-granted", "security-scan-passed"],
+      "automation": {
+        "deployment": true,
+        "rollback": true,
+        "securityScanning": true
+      }
+    }
+  },
+  "templates": {
+    "clusterTemplate": {
+      "file": "k8s-templates/cluster-template.yaml",
+      "description": "Enterprise Kubernetes cluster configuration",
+      "components": [
+        "security-policies",
+        "network-policies",
+        "rbac",
+        "service-mesh",
+        "monitoring",
+        "autoscaling"
+      ]
+    },
+    "helmChart": {
+      "file": "helm-charts/digital-agency/",
+      "description": "Enterprise Helm chart for Digital Agency AI",
+      "features": [
+        "multi-environment",
+        "auto-scaling",
+        "security",
+        "observability",
+        "service-mesh"
+      ]
+    }
+  },
+  "monitoring": {
+    "dashboards": {
+      "file": "monitoring/grafana-dashboards.json",
+      "count": 4,
+      "types": ["overview", "agents", "infrastructure", "security"]
+    },
+    "alerts": {
+      "file": "monitoring/prometheus-rules.yaml",
+      "count": 30,
+      "categories": ["application", "infrastructure", "security", "business", "multicloud"]
+    }
+  },
+  "gitops": {
+    "applications": {
+      "file": "gitops-workflows/argocd-applications.yaml",
+      "count": 6,
+      "environments": ["development", "staging", "production"]
+    },
+    "pipeline": {
+      "file": "gitops-workflows/github-actions-pipeline.yml",
+      "stages": ["security", "test", "build", "deploy"],
+      "environments": ["development", "staging", "production"],
+      "features": [
+        "security-scanning",
+        "multi-cloud-deployment",
+        "canary-rollouts",
+        "compliance-reporting"
+      ]
+    }
+  },
+  "performance": {
+    "targets": {
+      "uptime": "99.99%",
+      "rto": "15min",
+      "rpo": "5min",
+      "deploymentSpeed": "30sec",
+      "mttr": "2min",
+      "costOptimization": "30%"
+    },
+    "sla": {
+      "availability": "99.99%",
+      "responseTime": "2s",
+      "throughput": "10000 req/s",
+      "errorRate": "0.1%"
+    }
+  },
+  "communication": {
+    "channels": [
+      {
+        "type": "internal",
+        "target": "orchestrator",
+        "events": ["deployment-status", "incident-alert", "cost-optimization"]
+      },
+      {
+        "type": "internal", 
+        "target": "webdev-agent",
+        "events": ["container-ready", "security-scan-complete", "deployment-success"]
+      },
+      {
+        "type": "external",
+        "target": "slack",
+        "events": ["critical-alerts", "deployment-notifications"]
+      },
+      {
+        "type": "external",
+        "target": "pagerduty",
+        "events": ["critical-incidents", "escalations"]
+      }
+    ]
+  },
+  "costs": {
+    "infrastructure": {
+      "budget": "$10,000/month",
+      "optimization": "30% reduction target",
+      "tracking": "real-time",
+      "alerts": "80% threshold"
+    },
+    "cloudProviders": {
+      "aws": "$5,000/month",
+      "gcp": "$3,000/month", 
+      "azure": "$2,000/month"
+    }
+  },
+  "compliance": {
+    "standards": ["SOC2", "GDPR", "HIPAA", "PCI-DSS"],
+    "certifications": ["ISO 27001", "ISO 9001"],
+    "auditing": {
+      "frequency": "continuous",
+      "reports": "monthly",
+      "automation": "90%"
+    }
+  },
+  "metadata": {
+    "created": "2025-06-17T00:00:00Z",
+    "lastUpdated": "2025-06-17T00:00:00Z",
+    "version": "3.0.0",
+    "author": "TechOps Agent",
+    "phase": "Phase 3 - Cloud Native Infrastructure Complete"
+  }
+}

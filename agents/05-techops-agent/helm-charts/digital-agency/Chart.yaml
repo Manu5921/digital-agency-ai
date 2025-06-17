@@ -1,0 +1,126 @@
+apiVersion: v2
+name: digital-agency
+description: Enterprise Digital Agency AI Multi-Agent System - Phase 3 TechOps
+type: application
+version: 3.0.0
+appVersion: "3.0.0"
+
+keywords:
+  - digital-agency
+  - ai-agents
+  - multi-agent-system
+  - techops
+  - kubernetes
+  - enterprise
+
+home: https://github.com/Manu5921/digital-agency-ai
+sources:
+  - https://github.com/Manu5921/digital-agency-ai.git
+
+maintainers:
+  - name: TechOps Agent
+    email: techops@digital-agency-ai.com
+    url: https://digital-agency-ai.com
+
+annotations:
+  category: Application Platform
+  licenses: MIT
+  artifacthub.io/operator: "true"
+  artifacthub.io/operatorCapabilities: Full Lifecycle
+  artifacthub.io/prerelease: "false"
+  artifacthub.io/containsSecurityUpdates: "true"
+  artifacthub.io/changes: |
+    - kind: added
+      description: Phase 3 enterprise infrastructure features
+    - kind: added
+      description: Multi-cloud orchestration support
+    - kind: added
+      description: Advanced observability and monitoring
+    - kind: added
+      description: GitOps automation with ArgoCD
+    - kind: added
+      description: Kubernetes enterprise security policies
+    - kind: enhanced
+      description: Auto-scaling with ML predictions
+    - kind: enhanced
+      description: Service mesh integration
+    - kind: enhanced
+      description: Infrastructure as Code automation
+
+dependencies:
+  - name: postgresql
+    version: 12.x.x
+    repository: https://charts.bitnami.com/bitnami
+    condition: postgresql.enabled
+    tags:
+      - database
+  
+  - name: redis
+    version: 17.x.x
+    repository: https://charts.bitnami.com/bitnami
+    condition: redis.enabled
+    tags:
+      - cache
+  
+  - name: prometheus
+    version: 15.x.x
+    repository: https://prometheus-community.github.io/helm-charts
+    condition: monitoring.prometheus.enabled
+    tags:
+      - monitoring
+  
+  - name: grafana
+    version: 6.x.x
+    repository: https://grafana.github.io/helm-charts
+    condition: monitoring.grafana.enabled
+    tags:
+      - monitoring
+  
+  - name: jaeger
+    version: 0.x.x
+    repository: https://jaegertracing.github.io/helm-charts
+    condition: tracing.jaeger.enabled
+    tags:
+      - tracing
+  
+  - name: istio-base
+    version: 1.x.x
+    repository: https://istio-release.storage.googleapis.com/charts
+    condition: serviceMesh.istio.enabled
+    tags:
+      - service-mesh
+  
+  - name: istiod
+    version: 1.x.x
+    repository: https://istio-release.storage.googleapis.com/charts
+    condition: serviceMesh.istio.enabled
+    tags:
+      - service-mesh
+  
+  - name: cert-manager
+    version: 1.x.x
+    repository: https://charts.jetstack.io
+    condition: security.certManager.enabled
+    tags:
+      - security
+  
+  - name: external-secrets
+    version: 0.x.x
+    repository: https://charts.external-secrets.io
+    condition: security.externalSecrets.enabled
+    tags:
+      - security
+
+  - name: argocd
+    version: 5.x.x
+    repository: https://argoproj.github.io/argo-helm
+    condition: gitops.argocd.enabled
+    tags:
+      - gitops
+
+  - name: vault
+    version: 0.x.x
+    repository: https://helm.releases.hashicorp.com
+    condition: security.vault.enabled
+    tags:
+      - security

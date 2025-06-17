@@ -1,21 +1,37 @@
 /**
- * Marketing Agent - Phase 2: Marketing Automation Avancé
- * Système d'IA marketing complet avec:
+ * 🎯 MARKETING AGENT - PHASE 3: ADVANCED GROWTH HACKING
+ * Système d'IA marketing ultra-avancé avec:
+ * 
+ * Phase 2 (Existant):
  * - Campaign Optimization AI (bid management automatique)
  * - Creative Generation (ads automatiques)
  * - Attribution Model (tracking multi-touch)
  * - Customer Segmentation (ML segmentation)
  * - Marketing Orchestrator (coordination inter-agents)
  * 
- * OBJECTIFS: ROAS 3.2:1 → 5.5:1 (+72%), setup time 2.5h → 45min (-70%)
+ * Phase 3 (Nouveau):
+ * - Marketing Mix Modeling avec Attribution ML
+ * - Predictive Customer Analytics (LTV, Churn, Propensity)
+ * - Omnichannel Orchestrator (journeys cross-channel)
+ * - Influencer Marketing AI (discovery, performance, fraud)
+ * - Dashboard Prédictif ML et Coordination Multi-Agents
+ * 
+ * OBJECTIFS PHASE 3: ROAS 5.5:1 → 8.5:1 (+54%), LTV +35%, Churn -40%
  */
 
-// Import des nouveaux modules Phase 2
+// Import des modules Phase 2 (existants)
 import CampaignOptimizer from './workflows/campaign-optimizer';
 import CreativeGenerator from './workflows/creative-generator';
 import AttributionModelEngine from './workflows/attribution-model';
 import CustomerSegmentationEngine from './workflows/customer-segmentation';
 import MarketingOrchestrator from './workflows/marketing-orchestrator';
+
+// Import des nouveaux modules Phase 3
+import MarketingMixModeler from './workflows/mmm-budget-optimizer';
+import PredictiveCustomerAI from './workflows/predictive-customer-ai';
+import OmnichannelOrchestrator from './workflows/omnichannel-automation';
+import InfluencerMarketingAI from './workflows/influencer-automation';
+import MarketingAgentCoordinator from './workflows/marketing-agent-coordinator';
 
 export interface MarketingConfig {
   business: {

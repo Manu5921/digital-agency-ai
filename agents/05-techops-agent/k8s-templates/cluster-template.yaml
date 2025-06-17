@@ -1,0 +1,512 @@
+# Kubernetes Cluster Template - Phase 3 TechOps Infrastructure
+# Enterprise-grade cluster configuration with security, scalability, and observability
+
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: digital-agency-system
+  labels:
+    app.kubernetes.io/name: digital-agency
+    app.kubernetes.io/instance: production
+    app.kubernetes.io/managed-by: techops-agent
+    security.policy/tier: restricted
+---
+# Pod Security Policy
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: digital-agency-psp
+  namespace: digital-agency-system
+spec:
+  privileged: false
+  allowPrivilegeEscalation: false
+  requiredDropCapabilities:
+    - ALL
+  volumes:
+    - 'configMap'
+    - 'emptyDir'
+    - 'projected'
+    - 'secret'
+    - 'downwardAPI'
+    - 'persistentVolumeClaim'
+  hostNetwork: false
+  hostIPC: false
+  hostPID: false
+  runAsUser:
+    rule: 'MustRunAsNonRoot'
+  supplementalGroups:
+    rule: 'MustRunAs'
+    ranges:
+      - min: 1
+        max: 65535
+  fsGroup:
+    rule: 'MustRunAs'
+    ranges:
+      - min: 1
+        max: 65535
+  readOnlyRootFilesystem: true
+---
+# Network Policy - Default Deny
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: default-deny-all
+  namespace: digital-agency-system
+spec:
+  podSelector: {}
+  policyTypes:
+  - Ingress
+  - Egress
+---
+# Network Policy - Allow Internal Communication
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: allow-internal
+  namespace: digital-agency-system
+spec:
+  podSelector:
+    matchLabels:
+      app.kubernetes.io/part-of: digital-agency
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: digital-agency-system
+    - namespaceSelector:
+        matchLabels:
+          name: istio-system
+  egress:
+  - to:
+    - namespaceSelector:
+        matchLabels:
+          name: digital-agency-system
+    - namespaceSelector:
+        matchLabels:
+          name: istio-system
+  - to: []
+    ports:
+    - protocol: TCP
+      port: 53
+    - protocol: UDP
+      port: 53
+    - protocol: TCP
+      port: 443
+---
+# Service Account with RBAC
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: digital-agency-sa
+  namespace: digital-agency-system
+  labels:
+    app.kubernetes.io/name: digital-agency
+    app.kubernetes.io/managed-by: techops-agent
+automountServiceAccountToken: false
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: digital-agency-system
+  name: digital-agency-role
+rules:
+- apiGroups: [""]
+  resources: ["pods", "services", "configmaps", "secrets"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["apps"]
+  resources: ["deployments", "replicasets"]
+  verbs: ["get", "list", "watch"]
+- apiGroups: ["networking.k8s.io"]
+  resources: ["ingresses"]
+  verbs: ["get", "list", "watch"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
+metadata:
+  name: digital-agency-rolebinding
+  namespace: digital-agency-system
+subjects:
+- kind: ServiceAccount
+  name: digital-agency-sa
+  namespace: digital-agency-system
+roleRef:
+  kind: Role
+  name: digital-agency-role
+  apiGroup: rbac.authorization.k8s.io
+---
+# ConfigMap for Application Configuration
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: digital-agency-config
+  namespace: digital-agency-system
+  labels:
+    app.kubernetes.io/name: digital-agency
+    app.kubernetes.io/managed-by: techops-agent
+data:
+  # Application Configuration
+  NODE_ENV: "production"
+  LOG_LEVEL: "info"
+  METRICS_ENABLED: "true"
+  TRACING_ENABLED: "true"
+  
+  # Database Configuration
+  DB_MAX_CONNECTIONS: "20"
+  DB_TIMEOUT: "30s"
+  DB_SSL_MODE: "require"
+  
+  # Cache Configuration
+  REDIS_MAX_CONNECTIONS: "10"
+  REDIS_TIMEOUT: "5s"
+  
+  # Security Configuration
+  SECURITY_HEADERS_ENABLED: "true"
+  CORS_ENABLED: "true"
+  RATE_LIMITING_ENABLED: "true"
+  
+  # Observability Configuration
+  PROMETHEUS_METRICS_PATH: "/metrics"
+  HEALTH_CHECK_PATH: "/health"
+  READINESS_CHECK_PATH: "/ready"
+---
+# Horizontal Pod Autoscaler
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: digital-agency-hpa
+  namespace: digital-agency-system
+  labels:
+    app.kubernetes.io/name: digital-agency
+    app.kubernetes.io/managed-by: techops-agent
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: digital-agency-app
+  minReplicas: 3
+  maxReplicas: 50
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70
+  - type: Resource
+    resource:
+      name: memory
+      target:
+        type: Utilization
+        averageUtilization: 80
+  - type: Pods
+    pods:
+      metric:
+        name: http_requests_per_second
+      target:
+        type: AverageValue
+        averageValue: "100"
+  behavior:
+    scaleUp:
+      stabilizationWindowSeconds: 60
+      policies:
+      - type: Percent
+        value: 100
+        periodSeconds: 60
+      - type: Pods
+        value: 5
+        periodSeconds: 60
+      selectPolicy: Max
+    scaleDown:
+      stabilizationWindowSeconds: 300
+      policies:
+      - type: Percent
+        value: 10
+        periodSeconds: 60
+      - type: Pods
+        value: 2
+        periodSeconds: 60
+      selectPolicy: Min
+---
+# Vertical Pod Autoscaler
+apiVersion: autoscaling.k8s.io/v1
+kind: VerticalPodAutoscaler
+metadata:
+  name: digital-agency-vpa
+  namespace: digital-agency-system
+  labels:
+    app.kubernetes.io/name: digital-agency
+    app.kubernetes.io/managed-by: techops-agent
+spec:
+  targetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: digital-agency-app
+  updatePolicy:
+    updateMode: "Auto"
+  resourcePolicy:
+    containerPolicies:
+    - containerName: app
+      maxAllowed:
+        cpu: 4
+        memory: 8Gi
+      minAllowed:
+        cpu: 100m
+        memory: 128Mi
+      controlledResources: ["cpu", "memory"]
+      controlledValues: RequestsAndLimits
+---
+# Pod Disruption Budget
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata:
+  name: digital-agency-pdb
+  namespace: digital-agency-system
+  labels:
+    app.kubernetes.io/name: digital-agency
+    app.kubernetes.io/managed-by: techops-agent
+spec:
+  minAvailable: 2
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: digital-agency
+      app.kubernetes.io/instance: production
+---
+# Service Monitor for Prometheus
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: digital-agency-metrics
+  namespace: digital-agency-system
+  labels:
+    app.kubernetes.io/name: digital-agency
+    app.kubernetes.io/managed-by: techops-agent
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: digital-agency
+      app.kubernetes.io/instance: production
+  endpoints:
+  - port: metrics
+    interval: 30s
+    path: /metrics
+    honorLabels: true
+    scrapeTimeout: 10s
+---
+# Istio Virtual Service
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: digital-agency-vs
+  namespace: digital-agency-system
+  labels:
+    app.kubernetes.io/name: digital-agency
+    app.kubernetes.io/managed-by: techops-agent
+spec:
+  hosts:
+  - digital-agency.production.local
+  - api.digital-agency.com
+  gateways:
+  - digital-agency-gateway
+  http:
+  - match:
+    - uri:
+        prefix: /api/v1
+    route:
+    - destination:
+        host: digital-agency-app
+        port:
+          number: 3000
+      weight: 100
+    fault:
+      abort:
+        percentage:
+          value: 0.1
+        httpStatus: 500
+    retries:
+      attempts: 3
+      perTryTimeout: 10s
+      retryOn: 5xx,reset,connect-failure,refused-stream
+    timeout: 30s
+  - match:
+    - uri:
+        prefix: /
+    route:
+    - destination:
+        host: digital-agency-frontend
+        port:
+          number: 80
+      weight: 100
+---
+# Istio Destination Rule
+apiVersion: networking.istio.io/v1beta1
+kind: DestinationRule
+metadata:
+  name: digital-agency-dr
+  namespace: digital-agency-system
+  labels:
+    app.kubernetes.io/name: digital-agency
+    app.kubernetes.io/managed-by: techops-agent
+spec:
+  host: digital-agency-app
+  trafficPolicy:
+    connectionPool:
+      tcp:
+        maxConnections: 100
+        connectTimeout: 10s
+        tcpKeepalive:
+          time: 7200s
+          interval: 75s
+      http:
+        http1MaxPendingRequests: 50
+        http2MaxRequests: 100
+        maxRequestsPerConnection: 10
+        maxRetries: 3
+        consecutiveGatewayErrors: 5
+        interval: 30s
+        baseEjectionTime: 30s
+        maxEjectionPercent: 50
+    loadBalancer:
+      simple: LEAST_CONN
+    outlierDetection:
+      consecutiveGatewayErrors: 5
+      consecutive5xxErrors: 5
+      interval: 30s
+      baseEjectionTime: 30s
+      maxEjectionPercent: 50
+      minHealthPercent: 50
+  portLevelSettings:
+  - port:
+      number: 3000
+    loadBalancer:
+      simple: ROUND_ROBIN
+---
+# Istio Gateway
+apiVersion: networking.istio.io/v1beta1
+kind: Gateway
+metadata:
+  name: digital-agency-gateway
+  namespace: digital-agency-system
+  labels:
+    app.kubernetes.io/name: digital-agency
+    app.kubernetes.io/managed-by: techops-agent
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 443
+      name: https
+      protocol: HTTPS
+    tls:
+      mode: SIMPLE
+      credentialName: digital-agency-tls
+    hosts:
+    - api.digital-agency.com
+    - digital-agency.production.local
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - api.digital-agency.com
+    - digital-agency.production.local
+    tls:
+      httpsRedirect: true
+---
+# Security Policy
+apiVersion: security.istio.io/v1beta1
+kind: AuthorizationPolicy
+metadata:
+  name: digital-agency-authz
+  namespace: digital-agency-system
+  labels:
+    app.kubernetes.io/name: digital-agency
+    app.kubernetes.io/managed-by: techops-agent
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: digital-agency
+  rules:
+  - from:
+    - source:
+        principals: ["cluster.local/ns/istio-system/sa/istio-ingressgateway-service-account"]
+  - to:
+    - operation:
+        methods: ["GET", "POST", "PUT", "DELETE"]
+        paths: ["/api/*"]
+  - when:
+    - key: source.ip
+      notValues: ["0.0.0.0/0"]
+---
+# Peer Authentication
+apiVersion: security.istio.io/v1beta1
+kind: PeerAuthentication
+metadata:
+  name: digital-agency-peer-auth
+  namespace: digital-agency-system
+  labels:
+    app.kubernetes.io/name: digital-agency
+    app.kubernetes.io/managed-by: techops-agent
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: digital-agency
+  mtls:
+    mode: STRICT
+---
+# Resource Quota
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  name: digital-agency-quota
+  namespace: digital-agency-system
+  labels:
+    app.kubernetes.io/name: digital-agency
+    app.kubernetes.io/managed-by: techops-agent
+spec:
+  hard:
+    requests.cpu: "20"
+    requests.memory: 40Gi
+    limits.cpu: "50"
+    limits.memory: 100Gi
+    pods: "50"
+    services: "10"
+    secrets: "20"
+    configmaps: "20"
+    persistentvolumeclaims: "10"
+    requests.storage: "1Ti"
+---
+# Limit Range
+apiVersion: v1
+kind: LimitRange
+metadata:
+  name: digital-agency-limits
+  namespace: digital-agency-system
+  labels:
+    app.kubernetes.io/name: digital-agency
+    app.kubernetes.io/managed-by: techops-agent
+spec:
+  limits:
+  - default:
+      cpu: "2"
+      memory: "4Gi"
+    defaultRequest:
+      cpu: "100m"
+      memory: "128Mi"
+    max:
+      cpu: "8"
+      memory: "16Gi"
+    min:
+      cpu: "50m"
+      memory: "64Mi"
+    type: Container
+  - default:
+      storage: "10Gi"
+    max:
+      storage: "100Gi"
+    min:
+      storage: "1Gi"
+    type: PersistentVolumeClaim

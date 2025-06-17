@@ -1,0 +1,667 @@
+# ArgoCD Applications for Digital Agency AI - Phase 3 TechOps
+# Enterprise GitOps configuration with progressive deployment strategies
+
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: digital-agency-project
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: digital-agency
+    app.kubernetes.io/managed-by: techops-agent
+spec:
+  description: Digital Agency AI Multi-Agent System Project
+  sourceRepos:
+  - 'https://github.com/Manu5921/digital-agency-ai.git'
+  - 'https://charts.digital-agency.com'
+  - 'https://helm.releases.hashicorp.com'
+  - 'https://charts.bitnami.com/bitnami'
+  - 'https://prometheus-community.github.io/helm-charts'
+  - 'https://grafana.github.io/helm-charts'
+  - 'https://jaegertracing.github.io/helm-charts'
+  - 'https://istio-release.storage.googleapis.com/charts'
+  destinations:
+  - namespace: 'digital-agency-*'
+    server: https://kubernetes.default.svc
+  - namespace: 'istio-system'
+    server: https://kubernetes.default.svc
+  - namespace: 'monitoring'
+    server: https://kubernetes.default.svc
+  - namespace: 'argocd'
+    server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+  - group: ''
+    kind: Namespace
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRole
+  - group: rbac.authorization.k8s.io
+    kind: ClusterRoleBinding
+  - group: apiextensions.k8s.io
+    kind: CustomResourceDefinition
+  - group: admissionregistration.k8s.io
+    kind: MutatingAdmissionWebhook
+  - group: admissionregistration.k8s.io
+    kind: ValidatingAdmissionWebhook
+  namespaceResourceWhitelist:
+  - group: ''
+    kind: Pod
+  - group: ''
+    kind: Service
+  - group: ''
+    kind: ConfigMap
+  - group: ''
+    kind: Secret
+  - group: ''
+    kind: PersistentVolumeClaim
+  - group: apps
+    kind: Deployment
+  - group: apps
+    kind: StatefulSet
+  - group: apps
+    kind: DaemonSet
+  - group: batch
+    kind: Job
+  - group: batch
+    kind: CronJob
+  - group: networking.k8s.io
+    kind: Ingress
+  - group: networking.k8s.io
+    kind: NetworkPolicy
+  - group: policy
+    kind: PodDisruptionBudget
+  - group: autoscaling
+    kind: HorizontalPodAutoscaler
+  - group: autoscaling.k8s.io
+    kind: VerticalPodAutoscaler
+  - group: networking.istio.io
+    kind: VirtualService
+  - group: networking.istio.io
+    kind: DestinationRule
+  - group: networking.istio.io
+    kind: Gateway
+  - group: security.istio.io
+    kind: AuthorizationPolicy
+  - group: security.istio.io
+    kind: PeerAuthentication
+  roles:
+  - name: admin
+    description: Project admin
+    policies:
+    - p, proj:digital-agency-project:admin, applications, *, digital-agency-project/*, allow
+    - p, proj:digital-agency-project:admin, repositories, *, *, allow
+    - p, proj:digital-agency-project:admin, clusters, *, *, allow
+    groups:
+    - digital-agency:admins
+  - name: developer
+    description: Developer access
+    policies:
+    - p, proj:digital-agency-project:developer, applications, get, digital-agency-project/*, allow
+    - p, proj:digital-agency-project:developer, applications, sync, digital-agency-project/*, allow
+    groups:
+    - digital-agency:developers
+  syncWindows:
+  - kind: allow
+    schedule: '* * * * *'
+    duration: 24h
+    applications:
+    - '*'
+    manualSync: true
+  - kind: deny
+    schedule: '0 2 * * *'
+    duration: 2h
+    applications:
+    - 'digital-agency-production'
+    manualSync: false
+    description: 'Maintenance window - no automated syncs'
+
+---
+# Main Application - Production
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: digital-agency-production
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: digital-agency
+    app.kubernetes.io/environment: production
+    app.kubernetes.io/managed-by: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "10"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: digital-agency-project
+  source:
+    repoURL: https://github.com/Manu5921/digital-agency-ai.git
+    targetRevision: HEAD
+    path: agents/05-techops-agent/helm-charts/digital-agency
+    helm:
+      releaseName: digital-agency
+      parameters:
+      - name: global.environment
+        value: production
+      - name: app.replicaCount
+        value: "5"
+      - name: autoscaling.enabled
+        value: "true"
+      - name: autoscaling.hpa.maxReplicas
+        value: "100"
+      - name: postgresql.enabled
+        value: "true"
+      - name: redis.enabled
+        value: "true"
+      - name: monitoring.prometheus.enabled
+        value: "true"
+      - name: monitoring.grafana.enabled
+        value: "true"
+      - name: tracing.jaeger.enabled
+        value: "true"
+      - name: serviceMesh.istio.enabled
+        value: "true"
+      - name: security.certManager.enabled
+        value: "true"
+      - name: security.vault.enabled
+        value: "true"
+      - name: security.externalSecrets.enabled
+        value: "true"
+      - name: gitops.argocd.enabled
+        value: "false"
+      - name: multiCloud.enabled
+        value: "true"
+      valueFiles:
+      - values.yaml
+      - values-production.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: digital-agency-production
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+      allowEmpty: false
+    syncOptions:
+    - CreateNamespace=true
+    - PrunePropagationPolicy=foreground
+    - PruneLast=true
+    - ApplyOutOfSyncOnly=true
+    - RespectIgnoreDifferences=true
+    - Replace=false
+    retry:
+      limit: 5
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+  revisionHistoryLimit: 10
+  info:
+  - name: 'Environment'
+    value: 'Production'
+  - name: 'Owner'
+    value: 'TechOps Team'
+  - name: 'Documentation'
+    value: 'https://docs.digital-agency.com'
+
+---
+# Infrastructure Components - Monitoring Stack
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: digital-agency-monitoring
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: monitoring
+    app.kubernetes.io/environment: production
+    app.kubernetes.io/managed-by: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "5"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: digital-agency-project
+  source:
+    repoURL: https://github.com/Manu5921/digital-agency-ai.git
+    targetRevision: HEAD
+    path: agents/05-techops-agent/helm-charts/monitoring-stack
+    helm:
+      releaseName: monitoring
+      parameters:
+      - name: prometheus.server.retention
+        value: "30d"
+      - name: prometheus.server.persistentVolume.size
+        value: "100Gi"
+      - name: grafana.persistence.enabled
+        value: "true"
+      - name: grafana.persistence.size
+        value: "10Gi"
+      - name: alertmanager.enabled
+        value: "true"
+      - name: nodeExporter.enabled
+        value: "true"
+      - name: kubeStateMetrics.enabled
+        value: "true"
+      - name: pushgateway.enabled
+        value: "true"
+      valueFiles:
+      - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: monitoring
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+    retry:
+      limit: 3
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+
+---
+# Service Mesh - Istio
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: digital-agency-istio
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: istio
+    app.kubernetes.io/environment: production
+    app.kubernetes.io/managed-by: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: digital-agency-project
+  sources:
+  - repoURL: https://istio-release.storage.googleapis.com/charts
+    chart: base
+    targetRevision: 1.19.0
+    helm:
+      releaseName: istio-base
+      parameters:
+      - name: defaultRevision
+        value: default
+  - repoURL: https://istio-release.storage.googleapis.com/charts
+    chart: istiod
+    targetRevision: 1.19.0
+    helm:
+      releaseName: istiod
+      parameters:
+      - name: pilot.traceSampling
+        value: "1.0"
+      - name: global.meshConfig.defaultConfig.proxyStatsMatcher.inclusionRegexps
+        value: ".*circuit_breakers.*|.*upstream_rq_retry.*|.*upstream_rq_pending.*|.*_cx_.*"
+      - name: global.proxy.resources.requests.cpu
+        value: "100m"
+      - name: global.proxy.resources.requests.memory
+        value: "128Mi"
+      - name: global.proxy.resources.limits.cpu
+        value: "2000m"
+      - name: global.proxy.resources.limits.memory
+        value: "1Gi"
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: istio-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    - ServerSideApply=true
+    retry:
+      limit: 3
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+
+---
+# Security Infrastructure - Vault
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: digital-agency-vault
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: vault
+    app.kubernetes.io/environment: production
+    app.kubernetes.io/managed-by: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: digital-agency-project
+  source:
+    repoURL: https://helm.releases.hashicorp.com
+    chart: vault
+    targetRevision: 0.25.0
+    helm:
+      releaseName: vault
+      parameters:
+      - name: server.ha.enabled
+        value: "true"
+      - name: server.ha.replicas
+        value: "3"
+      - name: server.dataStorage.enabled
+        value: "true"
+      - name: server.dataStorage.size
+        value: "10Gi"
+      - name: server.auditStorage.enabled
+        value: "true"
+      - name: server.auditStorage.size
+        value: "10Gi"
+      - name: injector.enabled
+        value: "true"
+      - name: ui.enabled
+        value: "true"
+      - name: csi.enabled
+        value: "true"
+      valueFiles:
+      - values.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: vault
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    retry:
+      limit: 3
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+
+---
+# Application - Staging Environment
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: digital-agency-staging
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: digital-agency
+    app.kubernetes.io/environment: staging
+    app.kubernetes.io/managed-by: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "15"
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  project: digital-agency-project
+  source:
+    repoURL: https://github.com/Manu5921/digital-agency-ai.git
+    targetRevision: develop
+    path: agents/05-techops-agent/helm-charts/digital-agency
+    helm:
+      releaseName: digital-agency-staging
+      parameters:
+      - name: global.environment
+        value: staging
+      - name: app.replicaCount
+        value: "2"
+      - name: app.resources.requests.cpu
+        value: "100m"
+      - name: app.resources.requests.memory
+        value: "256Mi"
+      - name: app.resources.limits.cpu
+        value: "1000m"
+      - name: app.resources.limits.memory
+        value: "1Gi"
+      - name: autoscaling.enabled
+        value: "true"
+      - name: autoscaling.hpa.maxReplicas
+        value: "10"
+      - name: postgresql.enabled
+        value: "true"
+      - name: redis.enabled
+        value: "true"
+      - name: monitoring.prometheus.enabled
+        value: "true"
+      - name: serviceMesh.istio.enabled
+        value: "true"
+      - name: multiCloud.enabled
+        value: "false"
+      valueFiles:
+      - values.yaml
+      - values-staging.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: digital-agency-staging
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+    - CreateNamespace=true
+    retry:
+      limit: 3
+      backoff:
+        duration: 5s
+        factor: 2
+        maxDuration: 3m
+
+---
+# Rollout Configuration for Canary Deployments
+apiVersion: argoproj.io/v1alpha1
+kind: Rollout
+metadata:
+  name: digital-agency-rollout
+  namespace: digital-agency-production
+  labels:
+    app.kubernetes.io/name: digital-agency
+    app.kubernetes.io/managed-by: argo-rollouts
+spec:
+  replicas: 5
+  strategy:
+    canary:
+      maxSurge: "25%"
+      maxUnavailable: 0
+      analysis:
+        templates:
+        - templateName: success-rate
+        - templateName: latency
+        startingStep: 2
+        args:
+        - name: service-name
+          value: digital-agency-canary
+      steps:
+      - setWeight: 10
+      - pause:
+          duration: 2m
+      - setWeight: 20
+      - pause:
+          duration: 2m
+      - analysis:
+          templates:
+          - templateName: success-rate
+          - templateName: latency
+          args:
+          - name: service-name
+            value: digital-agency-canary
+      - setWeight: 40
+      - pause:
+          duration: 5m
+      - setWeight: 60
+      - pause:
+          duration: 5m
+      - setWeight: 80
+      - pause:
+          duration: 5m
+      - setWeight: 100
+      - pause:
+          duration: 2m
+      trafficRouting:
+        istio:
+          virtualService:
+            name: digital-agency-vs
+            routes:
+            - primary
+          destinationRule:
+            name: digital-agency-dr
+            canarySubsetName: canary
+            stableSubsetName: stable
+      scaleDownDelaySeconds: 30
+      abortScaleDownDelaySeconds: 60
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: digital-agency
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: digital-agency
+        version: stable
+    spec:
+      containers:
+      - name: digital-agency
+        image: digital-agency/app:latest
+        ports:
+        - containerPort: 3000
+        resources:
+          requests:
+            cpu: 200m
+            memory: 512Mi
+          limits:
+            cpu: 2000m
+            memory: 2Gi
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 5
+
+---
+# Analysis Templates for Rollout Validation
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: success-rate
+  namespace: digital-agency-production
+spec:
+  args:
+  - name: service-name
+  metrics:
+  - name: success-rate
+    interval: 2m
+    count: 3
+    successCondition: result[0] >= 0.95
+    failureCondition: result[0] < 0.90
+    provider:
+      prometheus:
+        address: http://prometheus-server.monitoring.svc.cluster.local:80
+        query: |
+          sum(rate(
+            http_requests_total{service="{{args.service-name}}",status!~"5.*"}[2m]
+          )) /
+          sum(rate(
+            http_requests_total{service="{{args.service-name}}"}[2m]
+          ))
+
+---
+apiVersion: argoproj.io/v1alpha1
+kind: AnalysisTemplate
+metadata:
+  name: latency
+  namespace: digital-agency-production
+spec:
+  args:
+  - name: service-name
+  metrics:
+  - name: latency
+    interval: 2m
+    count: 3
+    successCondition: result[0] <= 0.5
+    failureCondition: result[0] > 1.0
+    provider:
+      prometheus:
+        address: http://prometheus-server.monitoring.svc.cluster.local:80
+        query: |
+          histogram_quantile(0.95,
+            sum(rate(
+              http_request_duration_seconds_bucket{service="{{args.service-name}}"}[2m]
+            )) by (le)
+          )
+
+---
+# Application Set for Multi-Environment Management
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: digital-agency-environments
+  namespace: argocd
+  labels:
+    app.kubernetes.io/name: digital-agency
+    app.kubernetes.io/managed-by: argocd
+spec:
+  generators:
+  - list:
+      elements:
+      - environment: development
+        branch: develop
+        replicas: "1"
+        domain: dev.digital-agency.com
+        resources:
+          cpu: "100m"
+          memory: "256Mi"
+      - environment: staging
+        branch: staging
+        replicas: "2"
+        domain: staging.digital-agency.com
+        resources:
+          cpu: "200m"
+          memory: "512Mi"
+      - environment: production
+        branch: main
+        replicas: "5"
+        domain: digital-agency.com
+        resources:
+          cpu: "500m"
+          memory: "1Gi"
+  template:
+    metadata:
+      name: 'digital-agency-{{environment}}'
+      labels:
+        environment: '{{environment}}'
+    spec:
+      project: digital-agency-project
+      source:
+        repoURL: https://github.com/Manu5921/digital-agency-ai.git
+        targetRevision: '{{branch}}'
+        path: agents/05-techops-agent/helm-charts/digital-agency
+        helm:
+          parameters:
+          - name: global.environment
+            value: '{{environment}}'
+          - name: app.replicaCount
+            value: '{{replicas}}'
+          - name: app.resources.requests.cpu
+            value: '{{resources.cpu}}'
+          - name: app.resources.requests.memory
+            value: '{{resources.memory}}'
+          - name: ingress.hosts[0].host
+            value: '{{domain}}'
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: 'digital-agency-{{environment}}'
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+        syncOptions:
+        - CreateNamespace=true

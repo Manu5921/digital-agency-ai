@@ -1,0 +1,741 @@
+# Digital Agency AI - Phase 3 TechOps Infrastructure
+# Enterprise Helm Chart Values
+
+# Global Configuration
+global:
+  imageRegistry: ""
+  imagePullSecrets: []
+  storageClass: ""
+  environment: production
+  domain: digital-agency.com
+  organization: digital-agency-ai
+
+# Application Configuration
+app:
+  name: digital-agency
+  version: "3.0.0"
+  
+  # Container Configuration
+  image:
+    registry: docker.io
+    repository: digital-agency/app
+    tag: "3.0.0"
+    pullPolicy: IfNotPresent
+    pullSecrets: []
+  
+  # Deployment Configuration
+  replicaCount: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  
+  # Resource Configuration
+  resources:
+    requests:
+      cpu: 200m
+      memory: 512Mi
+    limits:
+      cpu: 2000m
+      memory: 2Gi
+  
+  # Security Context
+  securityContext:
+    runAsNonRoot: true
+    runAsUser: 1001
+    runAsGroup: 1001
+    fsGroup: 1001
+    capabilities:
+      drop:
+        - ALL
+    readOnlyRootFilesystem: true
+    allowPrivilegeEscalation: false
+  
+  # Pod Security Context
+  podSecurityContext:
+    seccompProfile:
+      type: RuntimeDefault
+    sysctls: []
+  
+  # Probes
+  livenessProbe:
+    httpGet:
+      path: /health
+      port: 3000
+    initialDelaySeconds: 30
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 3
+    successThreshold: 1
+  
+  readinessProbe:
+    httpGet:
+      path: /ready
+      port: 3000
+    initialDelaySeconds: 10
+    periodSeconds: 5
+    timeoutSeconds: 3
+    failureThreshold: 3
+    successThreshold: 1
+  
+  startupProbe:
+    httpGet:
+      path: /health
+      port: 3000
+    initialDelaySeconds: 10
+    periodSeconds: 10
+    timeoutSeconds: 5
+    failureThreshold: 30
+    successThreshold: 1
+
+# Service Configuration
+service:
+  type: ClusterIP
+  port: 80
+  targetPort: 3000
+  annotations: {}
+  labels: {}
+
+# Ingress Configuration
+ingress:
+  enabled: true
+  className: nginx
+  annotations:
+    nginx.ingress.kubernetes.io/ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/force-ssl-redirect: "true"
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTP"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+  hosts:
+    - host: api.digital-agency.com
+      paths:
+        - path: /
+          pathType: Prefix
+  tls:
+    - secretName: digital-agency-tls
+      hosts:
+        - api.digital-agency.com
+
+# Auto-scaling Configuration
+autoscaling:
+  enabled: true
+  
+  # Horizontal Pod Autoscaler
+  hpa:
+    minReplicas: 3
+    maxReplicas: 100
+    metrics:
+      - type: Resource
+        resource:
+          name: cpu
+          target:
+            type: Utilization
+            averageUtilization: 70
+      - type: Resource
+        resource:
+          name: memory
+          target:
+            type: Utilization
+            averageUtilization: 80
+      - type: Pods
+        pods:
+          metric:
+            name: http_requests_per_second
+          target:
+            type: AverageValue
+            averageValue: "100"
+    behavior:
+      scaleUp:
+        stabilizationWindowSeconds: 60
+        policies:
+          - type: Percent
+            value: 100
+            periodSeconds: 60
+          - type: Pods
+            value: 5
+            periodSeconds: 60
+        selectPolicy: Max
+      scaleDown:
+        stabilizationWindowSeconds: 300
+        policies:
+          - type: Percent
+            value: 10
+            periodSeconds: 60
+          - type: Pods
+            value: 2
+            periodSeconds: 60
+        selectPolicy: Min
+  
+  # Vertical Pod Autoscaler
+  vpa:
+    enabled: true
+    updateMode: "Auto"
+    resourcePolicy:
+      containerPolicies:
+        - containerName: app
+          maxAllowed:
+            cpu: 4
+            memory: 8Gi
+          minAllowed:
+            cpu: 100m
+            memory: 128Mi
+          controlledResources: ["cpu", "memory"]
+          controlledValues: RequestsAndLimits
+
+# Pod Disruption Budget
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 2
+
+# Network Policies
+networkPolicies:
+  enabled: true
+  defaultDenyAll: true
+  allowInternal: true
+  allowExternal:
+    - port: 443
+      protocol: TCP
+    - port: 53
+      protocol: UDP
+    - port: 53
+      protocol: TCP
+
+# Service Mesh Configuration
+serviceMesh:
+  istio:
+    enabled: true
+    injection: enabled
+    
+    # Virtual Service
+    virtualService:
+      enabled: true
+      hosts:
+        - api.digital-agency.com
+      gateways:
+        - digital-agency-gateway
+      http:
+        - match:
+            - uri:
+                prefix: /api/v1
+          route:
+            - destination:
+                host: digital-agency-app
+                port:
+                  number: 3000
+              weight: 100
+          fault:
+            abort:
+              percentage:
+                value: 0.1
+              httpStatus: 500
+          retries:
+            attempts: 3
+            perTryTimeout: 10s
+            retryOn: "5xx,reset,connect-failure,refused-stream"
+          timeout: 30s
+    
+    # Destination Rule
+    destinationRule:
+      enabled: true
+      trafficPolicy:
+        connectionPool:
+          tcp:
+            maxConnections: 100
+            connectTimeout: 10s
+          http:
+            http1MaxPendingRequests: 50
+            http2MaxRequests: 100
+            maxRequestsPerConnection: 10
+            maxRetries: 3
+        loadBalancer:
+          simple: LEAST_CONN
+        outlierDetection:
+          consecutiveGatewayErrors: 5
+          consecutive5xxErrors: 5
+          interval: 30s
+          baseEjectionTime: 30s
+          maxEjectionPercent: 50
+          minHealthPercent: 50
+    
+    # Gateway
+    gateway:
+      enabled: true
+      hosts:
+        - api.digital-agency.com
+      tls:
+        mode: SIMPLE
+        credentialName: digital-agency-tls
+    
+    # Security Policies
+    authorizationPolicy:
+      enabled: true
+      rules:
+        - from:
+            - source:
+                principals: ["cluster.local/ns/istio-system/sa/istio-ingressgateway-service-account"]
+        - to:
+            - operation:
+                methods: ["GET", "POST", "PUT", "DELETE"]
+                paths: ["/api/*"]
+    
+    peerAuthentication:
+      enabled: true
+      mtls:
+        mode: STRICT
+
+# Database Configuration
+postgresql:
+  enabled: true
+  architecture: replication
+  auth:
+    database: digitalagency
+    username: digitalagency
+    existingSecret: postgresql-secret
+    secretKeys:
+      adminPasswordKey: postgres-password
+      userPasswordKey: password
+  primary:
+    resources:
+      requests:
+        cpu: 250m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1Gi
+    persistence:
+      enabled: true
+      storageClass: ""
+      size: 50Gi
+  readReplicas:
+    replicaCount: 2
+    resources:
+      requests:
+        cpu: 250m
+        memory: 512Mi
+      limits:
+        cpu: 1000m
+        memory: 1Gi
+    persistence:
+      enabled: true
+      storageClass: ""
+      size: 50Gi
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
+# Redis Configuration
+redis:
+  enabled: true
+  architecture: replication
+  auth:
+    enabled: true
+    existingSecret: redis-secret
+    existingSecretPasswordKey: password
+  master:
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 500m
+        memory: 512Mi
+    persistence:
+      enabled: true
+      storageClass: ""
+      size: 10Gi
+  replica:
+    replicaCount: 2
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 500m
+        memory: 512Mi
+    persistence:
+      enabled: true
+      storageClass: ""
+      size: 10Gi
+  metrics:
+    enabled: true
+    serviceMonitor:
+      enabled: true
+
+# Monitoring Configuration
+monitoring:
+  prometheus:
+    enabled: true
+    server:
+      resources:
+        requests:
+          cpu: 500m
+          memory: 1Gi
+        limits:
+          cpu: 2000m
+          memory: 4Gi
+      persistence:
+        enabled: true
+        storageClass: ""
+        size: 100Gi
+        retention: 30d
+    alertmanager:
+      enabled: true
+      resources:
+        requests:
+          cpu: 100m
+          memory: 256Mi
+        limits:
+          cpu: 500m
+          memory: 512Mi
+      persistence:
+        enabled: true
+        storageClass: ""
+        size: 10Gi
+    nodeExporter:
+      enabled: true
+    kubeStateMetrics:
+      enabled: true
+    pushgateway:
+      enabled: true
+  
+  grafana:
+    enabled: true
+    admin:
+      existingSecret: grafana-secret
+      userKey: admin-user
+      passwordKey: admin-password
+    resources:
+      requests:
+        cpu: 100m
+        memory: 256Mi
+      limits:
+        cpu: 500m
+        memory: 512Mi
+    persistence:
+      enabled: true
+      storageClass: ""
+      size: 10Gi
+    datasources:
+      datasources.yaml:
+        apiVersion: 1
+        datasources:
+          - name: Prometheus
+            type: prometheus
+            url: http://prometheus-server:80
+            access: proxy
+            isDefault: true
+          - name: Jaeger
+            type: jaeger
+            url: http://jaeger-query:16686
+            access: proxy
+    dashboardProviders:
+      dashboardproviders.yaml:
+        apiVersion: 1
+        providers:
+          - name: default
+            orgId: 1
+            folder: ""
+            type: file
+            disableDeletion: false
+            editable: true
+            options:
+              path: /var/lib/grafana/dashboards/default
+
+# Tracing Configuration
+tracing:
+  jaeger:
+    enabled: true
+    collector:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 256Mi
+        limits:
+          cpu: 500m
+          memory: 512Mi
+    query:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 256Mi
+        limits:
+          cpu: 500m
+          memory: 512Mi
+    agent:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+        limits:
+          cpu: 200m
+          memory: 256Mi
+    storage:
+      type: elasticsearch
+      elasticsearch:
+        host: elasticsearch
+        port: 9200
+
+# Security Configuration
+security:
+  podSecurityStandard: restricted
+  
+  certManager:
+    enabled: true
+    installCRDs: true
+    clusterIssuer:
+      enabled: true
+      name: letsencrypt-prod
+      email: admin@digital-agency.com
+      server: https://acme-v02.api.letsencrypt.org/directory
+  
+  vault:
+    enabled: true
+    server:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 256Mi
+        limits:
+          cpu: 500m
+          memory: 512Mi
+      dataStorage:
+        enabled: true
+        storageClass: ""
+        size: 10Gi
+      auditStorage:
+        enabled: true
+        storageClass: ""
+        size: 10Gi
+    injector:
+      enabled: true
+      resources:
+        requests:
+          cpu: 100m
+          memory: 256Mi
+        limits:
+          cpu: 250m
+          memory: 512Mi
+  
+  externalSecrets:
+    enabled: true
+    secretStore:
+      vault:
+        server: http://vault:8200
+        path: secret
+        version: v2
+        auth:
+          kubernetes:
+            mountPath: kubernetes
+            role: external-secrets
+    refreshInterval: 1h
+
+# GitOps Configuration
+gitops:
+  argocd:
+    enabled: true
+    server:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 256Mi
+        limits:
+          cpu: 500m
+          memory: 512Mi
+      ingress:
+        enabled: true
+        hosts:
+          - argocd.digital-agency.com
+        tls:
+          - secretName: argocd-tls
+            hosts:
+              - argocd.digital-agency.com
+    controller:
+      resources:
+        requests:
+          cpu: 250m
+          memory: 512Mi
+        limits:
+          cpu: 1000m
+          memory: 1Gi
+    repoServer:
+      resources:
+        requests:
+          cpu: 100m
+          memory: 256Mi
+        limits:
+          cpu: 500m
+          memory: 512Mi
+    dex:
+      enabled: false
+    redis:
+      enabled: true
+      resources:
+        requests:
+          cpu: 100m
+          memory: 128Mi
+        limits:
+          cpu: 200m
+          memory: 256Mi
+
+# Multi-Cloud Configuration
+multiCloud:
+  enabled: true
+  providers:
+    aws:
+      enabled: true
+      region: us-east-1
+      credentials:
+        existingSecret: aws-credentials
+    gcp:
+      enabled: true
+      region: us-central1
+      credentials:
+        existingSecret: gcp-credentials
+    azure:
+      enabled: true
+      region: eastus
+      credentials:
+        existingSecret: azure-credentials
+  
+  failover:
+    enabled: true
+    rtoTarget: 15 # minutes
+    rpoTarget: 5  # minutes
+    healthCheckInterval: 30000 # milliseconds
+    autoFailback: true
+
+# Environment Variables
+env:
+  # Application
+  - name: NODE_ENV
+    value: production
+  - name: PORT
+    value: "3000"
+  - name: LOG_LEVEL
+    value: info
+  
+  # Database
+  - name: DATABASE_URL
+    valueFrom:
+      secretKeyRef:
+        name: postgresql-secret
+        key: database-url
+  
+  # Redis
+  - name: REDIS_URL
+    valueFrom:
+      secretKeyRef:
+        name: redis-secret
+        key: redis-url
+  
+  # Security
+  - name: JWT_SECRET
+    valueFrom:
+      secretKeyRef:
+        name: app-secrets
+        key: jwt-secret
+  
+  # External Services
+  - name: CLAUDE_API_KEY
+    valueFrom:
+      secretKeyRef:
+        name: api-secrets
+        key: claude-api-key
+  
+  - name: OPENAI_API_KEY
+    valueFrom:
+      secretKeyRef:
+        name: api-secrets
+        key: openai-api-key
+
+# ConfigMaps
+configMaps:
+  app-config:
+    data:
+      # Application Configuration
+      NODE_ENV: production
+      LOG_LEVEL: info
+      METRICS_ENABLED: "true"
+      TRACING_ENABLED: "true"
+      
+      # Performance Configuration
+      MAX_CONNECTIONS: "100"
+      TIMEOUT: "30s"
+      KEEP_ALIVE: "true"
+      
+      # Security Configuration
+      SECURITY_HEADERS_ENABLED: "true"
+      CORS_ENABLED: "true"
+      RATE_LIMITING_ENABLED: "true"
+      
+      # Monitoring Configuration
+      PROMETHEUS_METRICS_PATH: "/metrics"
+      HEALTH_CHECK_PATH: "/health"
+      READINESS_CHECK_PATH: "/ready"
+
+# Secrets (will be created if they don't exist)
+secrets:
+  postgresql-secret:
+    type: Opaque
+    data: {}
+  
+  redis-secret:
+    type: Opaque
+    data: {}
+  
+  app-secrets:
+    type: Opaque
+    data: {}
+  
+  api-secrets:
+    type: Opaque
+    data: {}
+  
+  grafana-secret:
+    type: Opaque
+    data: {}
+
+# Node Affinity and Tolerations
+nodeSelector: {}
+
+tolerations: []
+
+affinity:
+  podAntiAffinity:
+    preferredDuringSchedulingIgnoredDuringExecution:
+      - weight: 100
+        podAffinityTerm:
+          labelSelector:
+            matchExpressions:
+              - key: app.kubernetes.io/name
+                operator: In
+                values:
+                  - digital-agency
+          topologyKey: kubernetes.io/hostname
+
+# Topology Spread Constraints
+topologySpreadConstraints:
+  - maxSkew: 1
+    topologyKey: kubernetes.io/hostname
+    whenUnsatisfiable: DoNotSchedule
+    labelSelector:
+      matchLabels:
+        app.kubernetes.io/name: digital-agency
+  - maxSkew: 1
+    topologyKey: topology.kubernetes.io/zone
+    whenUnsatisfiable: DoNotSchedule
+    labelSelector:
+      matchLabels:
+        app.kubernetes.io/name: digital-agency
+
+# Additional Labels and Annotations
+commonLabels:
+  app.kubernetes.io/part-of: digital-agency
+  app.kubernetes.io/managed-by: helm
+  app.kubernetes.io/version: "3.0.0"
+
+commonAnnotations:
+  deployment.kubernetes.io/revision: "1"
+  meta.helm.sh/release-name: digital-agency
+  meta.helm.sh/release-namespace: digital-agency-system

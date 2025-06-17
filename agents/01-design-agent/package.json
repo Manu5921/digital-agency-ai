@@ -1,0 +1,68 @@
+{
+  "name": "@digital-agency-ai/design-agent-v2",
+  "version": "2.0.0",
+  "description": "Design Agent V2 Phase 2 - Extensions sectorielles avec IA et Figma MCP",
+  "main": "design-agent-v2.ts",
+  "type": "module",
+  "scripts": {
+    "dev": "node --loader ts-node/esm design-agent-v2.ts",
+    "test": "node --loader ts-node/esm test-phase2-complet.ts",
+    "demo": "node --loader ts-node/esm demo-phase2-showcase.ts",
+    "examples": "node --loader ts-node/esm example-usage.ts",
+    "build": "tsc",
+    "lint": "eslint *.ts **/*.ts",
+    "typecheck": "tsc --noEmit",
+    "validate": "npm run typecheck && npm run test",
+    "showcase": "npm run demo"
+  },
+  "keywords": [
+    "design",
+    "agent",
+    "ai",
+    "figma",
+    "dall-e",
+    "templates",
+    "design-system",
+    "automation",
+    "digital-agency"
+  ],
+  "author": "Digital Agency AI Team",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^20.x",
+    "typescript": "^5.x"
+  },
+  "devDependencies": {
+    "ts-node": "^10.x",
+    "eslint": "^8.x",
+    "@typescript-eslint/eslint-plugin": "^6.x",
+    "@typescript-eslint/parser": "^6.x"
+  },
+  "exports": {
+    ".": {
+      "import": "./design-agent-v2.ts",
+      "types": "./design-agent-v2.ts"
+    },
+    "./templates/*": "./templates/*",
+    "./workflows/*": "./workflows/*"
+  },
+  "files": [
+    "design-agent-v2.ts",
+    "templates/",
+    "workflows/",
+    "example-usage.ts",
+    "README-PHASE2.md"
+  ],
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Manu5921/digital-agency-ai.git",
+    "directory": "agents/01-design-agent"
+  },
+  "bugs": {
+    "url": "https://github.com/Manu5921/digital-agency-ai/issues"
+  },
+  "homepage": "https://github.com/Manu5921/digital-agency-ai#readme"
+}

@@ -1,7 +1,20 @@
 /**
- * TechOps Agent - Restaurant Modules & Vercel Deployment
- * Spécialisé dans l'intégration de modules Next.js et déploiement automatisé
+ * TechOps Agent - Enterprise Infrastructure & Business Intelligence Automation
+ * SpÃ©cialisÃ© dans l'orchestration enterprise, BI automation et dÃ©ploiement multi-cloud
  */
+
+// Export Business Intelligence Automation Platform
+export { default as BusinessIntelligenceAutomation } from './business-intelligence-automation';
+export { default as BIAutomationDemo, executeBIAutomationDemo } from './bi-automation-demo';
+
+// Export Enterprise TechOps Orchestrator
+export { default as EnterpriseTechOpsOrchestrator } from './workflows/enterprise-techops-orchestrator';
+export { default as EnterprisePhase3Demo, executeEnterprisePhase3Demo } from './enterprise-phase3-demo';
+
+// Export Core Infrastructure Components
+export { default as ObservabilityPlatform } from './workflows/observability-platform';
+
+// Legacy Restaurant System (original functionality preserved)
 
 export interface ModuleConfig {
   name: string;
@@ -29,7 +42,7 @@ export class TechOpsAgent {
   }
 
   /**
-   * Configuration des modules spécifiques restaurant
+   * Configuration des modules spï¿½cifiques restaurant
    */
   private setupRestaurantModules(): void {
     this.moduleConfigs = [
@@ -72,7 +85,7 @@ export class TechOpsAgent {
   }
 
   /**
-   * Génère le package.json avec toutes les dépendances
+   * Gï¿½nï¿½re le package.json avec toutes les dï¿½pendances
    */
   generatePackageJSON(): string {
     const allDependencies = this.moduleConfigs
@@ -117,7 +130,7 @@ export class TechOpsAgent {
   }
 
   /**
-   * Configuration Vercel pour déploiement
+   * Configuration Vercel pour dï¿½ploiement
    */
   generateVercelConfig(): string {
     return JSON.stringify({
@@ -236,12 +249,12 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
 
 const contactSchema = z.object({
-  firstName: z.string().min(2, 'Le prénom doit contenir au moins 2 caractères'),
-  lastName: z.string().min(2, 'Le nom doit contenir au moins 2 caractères'),
+  firstName: z.string().min(2, 'Le prï¿½nom doit contenir au moins 2 caractï¿½res'),
+  lastName: z.string().min(2, 'Le nom doit contenir au moins 2 caractï¿½res'),
   email: z.string().email('Adresse email invalide'),
-  phone: z.string().min(10, 'Numéro de téléphone invalide'),
-  date: z.string().min(1, 'Veuillez sélectionner une date'),
-  guests: z.string().min(1, 'Veuillez sélectionner le nombre de personnes'),
+  phone: z.string().min(10, 'Numï¿½ro de tï¿½lï¿½phone invalide'),
+  date: z.string().min(1, 'Veuillez sï¿½lectionner une date'),
+  guests: z.string().min(1, 'Veuillez sï¿½lectionner le nombre de personnes'),
   message: z.string().optional(),
 })
 
@@ -289,17 +302,17 @@ export default function ContactForm() {
 
   return (
     <div className="bg-white p-8 rounded-2xl shadow-lg">
-      <h3 className="text-2xl font-heading font-bold text-primary mb-6">Réservation</h3>
+      <h3 className="text-2xl font-heading font-bold text-primary mb-6">Rï¿½servation</h3>
       
       {submitStatus === 'success' && (
         <div className="mb-6 p-4 bg-green-100 text-green-800 rounded-lg">
-           Votre réservation a été envoyée avec succès. Nous vous contacterons sous 24h.
+           Votre rï¿½servation a ï¿½tï¿½ envoyï¿½e avec succï¿½s. Nous vous contacterons sous 24h.
         </div>
       )}
 
       {submitStatus === 'error' && (
         <div className="mb-6 p-4 bg-red-100 text-red-800 rounded-lg">
-          L Une erreur est survenue. Veuillez réessayer ou nous appeler directement.
+          L Une erreur est survenue. Veuillez rï¿½essayer ou nous appeler directement.
         </div>
       )}
 
@@ -307,7 +320,7 @@ export default function ContactForm() {
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Prénom *
+              Prï¿½nom *
             </label>
             <input
               {...register('firstName')}
@@ -352,7 +365,7 @@ export default function ContactForm() {
 
         <div>
           <label className="block text-sm font-medium text-gray-700 mb-2">
-            Téléphone *
+            Tï¿½lï¿½phone *
           </label>
           <input
             {...register('phone')}
@@ -368,7 +381,7 @@ export default function ContactForm() {
         <div className="grid grid-cols-2 gap-4">
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Date souhaitée *
+              Date souhaitï¿½e *
             </label>
             <input
               {...register('date')}
@@ -388,7 +401,7 @@ export default function ContactForm() {
               {...register('guests')}
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"
             >
-              <option value="">Sélectionner</option>
+              <option value="">Sï¿½lectionner</option>
               <option value="2">2 personnes</option>
               <option value="3">3 personnes</option>
               <option value="4">4 personnes</option>
@@ -410,7 +423,7 @@ export default function ContactForm() {
             {...register('message')}
             rows={3}
             className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-secondary focus:border-transparent"
-            placeholder="Allergies, occasion spéciale, préférences..."
+            placeholder="Allergies, occasion spï¿½ciale, prï¿½fï¿½rences..."
           />
         </div>
 
@@ -419,13 +432,13 @@ export default function ContactForm() {
           disabled={isSubmitting}
           className="w-full bg-secondary text-white py-4 px-6 rounded-lg font-semibold hover:bg-accent transition-colors transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isSubmitting ? '=ä Envoi en cours...' : '( Confirmer la Réservation'}
+          {isSubmitting ? '=ï¿½ Envoi en cours...' : '( Confirmer la Rï¿½servation'}
         </button>
       </form>
 
       <div className="mt-6 text-center text-sm text-gray-600">
-        <p>=Þ Ou appelez-nous directement au <strong>01 42 60 15 78</strong></p>
-        <p>ð Mar-Sam: 19h00-23h00 | Fermé Dim-Lun</p>
+        <p>=ï¿½ Ou appelez-nous directement au <strong>01 42 60 15 78</strong></p>
+        <p>ï¿½ Mar-Sam: 19h00-23h00 | Fermï¿½ Dim-Lun</p>
       </div>
     </div>
   )
@@ -457,29 +470,29 @@ export async function POST(request: NextRequest) {
     // Envoi email via Resend ou Formspree
     const emailData = {
       to: 'contact@legourmet-paris.fr',
-      subject: \`Nouvelle réservation - \${validatedData.firstName} \${validatedData.lastName}\`,
+      subject: \`Nouvelle rï¿½servation - \${validatedData.firstName} \${validatedData.lastName}\`,
       html: \`
-        <h2>Nouvelle demande de réservation</h2>
+        <h2>Nouvelle demande de rï¿½servation</h2>
         <p><strong>Nom:</strong> \${validatedData.firstName} \${validatedData.lastName}</p>
         <p><strong>Email:</strong> \${validatedData.email}</p>
-        <p><strong>Téléphone:</strong> \${validatedData.phone}</p>
-        <p><strong>Date souhaitée:</strong> \${validatedData.date}</p>
+        <p><strong>Tï¿½lï¿½phone:</strong> \${validatedData.phone}</p>
+        <p><strong>Date souhaitï¿½e:</strong> \${validatedData.date}</p>
         <p><strong>Nombre de personnes:</strong> \${validatedData.guests}</p>
         \${validatedData.message ? \`<p><strong>Message:</strong> \${validatedData.message}</p>\` : ''}
         <hr>
-        <p><em>Envoyé depuis le site Le Gourmet</em></p>
+        <p><em>Envoyï¿½ depuis le site Le Gourmet</em></p>
       \`
     }
 
-    // Simulation d'envoi (remplacer par vraie intégration)
-    console.log('Réservation reçue:', validatedData)
-    console.log('Email à envoyer:', emailData)
+    // Simulation d'envoi (remplacer par vraie intï¿½gration)
+    console.log('Rï¿½servation reï¿½ue:', validatedData)
+    console.log('Email ï¿½ envoyer:', emailData)
 
-    // TODO: Intégrer avec Resend, Formspree ou service email
+    // TODO: Intï¿½grer avec Resend, Formspree ou service email
     // await resend.emails.send(emailData)
 
     return NextResponse.json(
-      { message: 'Réservation envoyée avec succès' },
+      { message: 'Rï¿½servation envoyï¿½e avec succï¿½s' },
       { status: 200 }
     )
   } catch (error) {
@@ -487,7 +500,7 @@ export async function POST(request: NextRequest) {
     
     if (error instanceof z.ZodError) {
       return NextResponse.json(
-        { error: 'Données invalides', details: error.errors },
+        { error: 'Donnï¿½es invalides', details: error.errors },
         { status: 400 }
       )
     }
@@ -501,7 +514,7 @@ export async function POST(request: NextRequest) {
   }
 
   /**
-   * Configuration complète pour déploiement Vercel
+   * Configuration complï¿½te pour dï¿½ploiement Vercel
    */
   getDeploymentInstructions(): {
     steps: string[];
@@ -510,12 +523,12 @@ export async function POST(request: NextRequest) {
   } {
     return {
       steps: [
-        '1. Connecter le repo GitHub à Vercel',
+        '1. Connecter le repo GitHub ï¿½ Vercel',
         '2. Configurer les variables d\'environnement',
-        '3. Définir les domaines personnalisés',
+        '3. Dï¿½finir les domaines personnalisï¿½s',
         '4. Configurer les redirections et headers',
         '5. Activer les analytics Vercel',
-        '6. Setup des webhooks pour déploiement automatique'
+        '6. Setup des webhooks pour dï¿½ploiement automatique'
       ],
       commands: [
         'vercel login',

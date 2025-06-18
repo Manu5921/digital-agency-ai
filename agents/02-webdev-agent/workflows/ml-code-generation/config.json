@@ -1,0 +1,239 @@
+{
+  "mlCodeGeneration": {
+    "version": "1.0.0",
+    "description": "ML-powered code generation system for rapid website delivery",
+    "targetService": "399€ Premium Website Service",
+    "
+": {
+      "githubCopilot": {
+        "enabled": true,
+        "model": "gpt-4-turbo-preview",
+        "maxTokens": 2000,
+        "temperature": 0.3,
+        "enterpriseFeatures": {
+          "codeReview": true,
+          "securityScanning": true,
+          "complianceChecks": true,
+          "auditLogs": true
+        }
+      },
+      "codeT5Models": {
+        "enabled": true,
+        "models": {
+          "nextjs": "Salesforce/codet5-large",
+          "react": "Salesforce/codet5-base",
+          "typescript": "microsoft/codebert-base",
+          "tailwind": "huggingface/CodeBERTa-small-v1"
+        },
+        "fineTunedModels": {
+          "restaurantComponents": "custom/restaurant-components-v1",
+          "ecommercePatterns": "custom/ecommerce-patterns-v1",
+          "seoOptimizations": "custom/seo-optimizations-v1",
+          "performancePatterns": "custom/performance-patterns-v1"
+        },
+        "inference": {
+          "maxNewTokens": 2000,
+          "temperature": 0.2,
+          "topP": 0.9,
+          "repetitionPenalty": 1.1
+        }
+      },
+      "testingFramework": {
+        "enabled": true,
+        "frameworks": {
+          "jest": {
+            "version": "29.x",
+            "testEnvironment": "jsdom",
+            "coverage": {
+              "threshold": {
+                "global": {
+                  "statements": 80,
+                  "branches": 75,
+                  "functions": 85,
+                  "lines": 80
+                }
+              }
+            }
+          },
+          "playwright": {
+            "version": "1.40.x",
+            "browsers": ["chromium", "firefox", "webkit"],
+            "devices": ["Desktop", "Tablet", "Mobile"],
+            "timeout": 30000
+          },
+          "cypress": {
+            "version": "13.x",
+            "baseUrl": "http://localhost:3000",
+            "video": false,
+            "screenshots": true
+          }
+        },
+        "visualRegression": {
+          "enabled": true,
+          "threshold": 0.1,
+          "outputDir": "./screenshots",
+          "diffDir": "./diffs"
+        }
+      },
+      "performanceOptimization": {
+        "enabled": true,
+        "targets": {
+          "lcp": 2500,
+          "fid": 100,
+          "cls": 0.1,
+          "fcp": 1800,
+          "ttfb": 800
+        },
+        "bundleOptimization": {
+          "maxMainBundle": 250000,
+          "maxVendorBundle": 500000,
+          "maxAsyncChunks": 100000,
+          "compressionEnabled": true,
+          "treeshakingEnabled": true
+        },
+        "imageOptimization": {
+          "formats": ["webp", "avif"],
+          "quality": 85,
+          "lazy": true,
+          "responsive": true
+        },
+        "caching": {
+          "staticAssets": 31536000,
+          "apiResponses": 300,
+          "cdn": true,
+          "serviceWorker": true
+        }
+      }
+    },
+    "projectTemplates": {
+      "restaurant": {
+        "components": [
+          "Header", "Navigation", "HeroSection", "MenuSection", 
+          "ChefSection", "GallerySection", "TestimonialsSection", 
+          "ReservationForm", "ContactSection", "Footer"
+        ],
+        "pages": ["HomePage", "MenuPage", "AboutPage", "ContactPage", "ReservationPage"],
+        "features": ["online-reservation", "menu-display", "gallery", "contact-form"],
+        "estimatedTimeline": 4,
+        "complexity": "medium"
+      },
+      "ecommerce": {
+        "components": [
+          "Header", "ProductCard", "ProductGrid", "ShoppingCart", 
+          "CheckoutForm", "PaymentGateway", "UserAccount", 
+          "OrderHistory", "ProductSearch", "CategoryFilter"
+        ],
+        "pages": ["HomePage", "ProductsPage", "ProductDetailPage", "CartPage", "CheckoutPage", "AccountPage"],
+        "features": ["product-catalog", "shopping-cart", "payment-processing", "user-accounts", "order-management"],
+        "estimatedTimeline": 8,
+        "complexity": "high"
+      },
+      "saas": {
+        "components": [
+          "Header", "Dashboard", "FeatureSection", "PricingTable", 
+          "AuthForms", "UserProfile", "SubscriptionManager", 
+          "AnalyticsDashboard", "APIDocumentation"
+        ],
+        "pages": ["LandingPage", "DashboardPage", "PricingPage", "LoginPage", "SignupPage", "ProfilePage"],
+        "features": ["user-authentication", "subscription-billing", "dashboard", "api-integration"],
+        "estimatedTimeline": 12,
+        "complexity": "high"
+      },
+      "portfolio": {
+        "components": [
+          "Header", "HeroSection", "AboutSection", "ProjectsGrid", 
+          "ProjectCard", "SkillsSection", "ContactForm", "Footer"
+        ],
+        "pages": ["HomePage", "AboutPage", "ProjectsPage", "ContactPage"],
+        "features": ["project-showcase", "about-section", "contact-form", "responsive-design"],
+        "estimatedTimeline": 3,
+        "complexity": "low"
+      }
+    },
+    "qualityLevels": {
+      "mvp": {
+        "testCoverage": 60,
+        "performanceScore": 70,
+        "accessibilityLevel": "A",
+        "features": "core",
+        "timeMultiplier": 1.0
+      },
+      "production": {
+        "testCoverage": 80,
+        "performanceScore": 85,
+        "accessibilityLevel": "AA",
+        "features": "enhanced",
+        "timeMultiplier": 1.2
+      },
+      "enterprise": {
+        "testCoverage": 95,
+        "performanceScore": 95,
+        "accessibilityLevel": "AAA",
+        "features": "premium",
+        "timeMultiplier": 1.5
+      }
+    },
+    "integrations": {
+      "vercelMCP": {
+        "enabled": true,
+        "autoDeployment": true,
+        "environmentConfigs": ["development", "staging", "production"]
+      },
+      "figmaMCP": {
+        "enabled": true,
+        "designTokenExtraction": true,
+        "componentMapping": true
+      },
+      "stripeMCP": {
+        "enabled": false,
+        "testMode": true,
+        "webhooks": true
+      },
+      "neonMCP": {
+        "enabled": false,
+        "autoMigrations": true,
+        "connectionPooling": true
+      }
+    },
+    "monitoring": {
+      "realUserMonitoring": {
+        "enabled": true,
+        "provider": "vercel-analytics"
+      },
+      "syntheticMonitoring": {
+        "enabled": true,
+        "frequency": "5min",
+        "locations": ["us-east-1", "eu-west-1"]
+      },
+      "errorTracking": {
+        "enabled": true,
+        "provider": "sentry"
+      },
+      "performanceBudgets": {
+        "bundleSize": 500000,
+        "lcp": 2500,
+        "fid": 100,
+        "cls": 0.1
+      }
+    },
+    "cicd": {
+      "provider": "github-actions",
+      "stages": ["lint", "test", "build", "deploy"],
+      "autoDeployment": {
+        "staging": true,
+        "production": false
+      },
+      "qualityGates": {
+        "testCoverage": 80,
+        "buildSuccess": true,
+        "performanceScore": 85
+      }
+    },
+    "security": {
+      "dependencyScanning": true,
+      "secretsDetection": true,
+      "codeQLAnalysis": true,
+      "containerScanning": false
+    }
+  }
+}

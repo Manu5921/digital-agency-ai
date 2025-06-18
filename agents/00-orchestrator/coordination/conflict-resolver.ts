@@ -1,6 +1,6 @@
 /**
- * Conflict Resolver - Résolution de conflits inter-agents
- * Gère les conflits de ressources, priorités et dépendances entre agents
+ * Conflict Resolver - Rï¿½solution de conflits inter-agents
+ * Gï¿½re les conflits de ressources, prioritï¿½s et dï¿½pendances entre agents
  */
 
 import { EventEmitter } from 'events';
@@ -9,7 +9,7 @@ export interface Conflict {
   id: string;
   type: 'resource' | 'priority' | 'dependency' | 'timing' | 'data';
   severity: 'low' | 'medium' | 'high' | 'critical';
-  participants: string[]; // IDs des agents impliqués
+  participants: string[]; // IDs des agents impliquï¿½s
   description: string;
   context: ConflictContext;
   timestamp: string;
@@ -71,6 +71,17 @@ export class ConflictResolver extends EventEmitter {
   private resolutionStrategies: Map<string, ResolutionStrategy> = new Map();
   private resourceAllocations: Map<string, ResourceAllocation[]> = new Map();
   private resolutionHistory: Conflict[] = [];
+  
+  // Advanced conflict prediction and resolution
+  private conflictPredictor: ConflictPredictor;
+  private mlResolutionEngine: MLResolutionEngine;
+  private realTimeMonitor: RealTimeConflictMonitor;
+  private adaptiveOptimizer: AdaptiveOptimizer;
+  
+  // Performance metrics and learning data
+  private performanceMetrics: ConflictPerformanceMetrics;
+  private learningDatabase: ConflictLearningDatabase;
+  private riskAssessment: RiskAssessmentEngine;
 
   constructor() {
     super();
@@ -78,7 +89,7 @@ export class ConflictResolver extends EventEmitter {
   }
 
   /**
-   * Configure les stratégies de résolution par défaut
+   * Configure les stratï¿½gies de rï¿½solution par dï¿½faut
    */
   private setupResolutionStrategies(): void {
     const strategies = [
@@ -118,11 +129,11 @@ export class ConflictResolver extends EventEmitter {
       this.resolutionStrategies.set(strategy.type, strategy);
     });
 
-    console.log(`– ${strategies.length} stratégies de résolution configurées`);
+    console.log(`ï¿½ ${strategies.length} stratï¿½gies de rï¿½solution configurï¿½es`);
   }
 
   /**
-   * Détecte un conflit potentiel
+   * Dï¿½tecte un conflit potentiel
    */
   detectConflict(
     type: Conflict['type'],
@@ -147,10 +158,10 @@ export class ConflictResolver extends EventEmitter {
 
     this.conflicts.set(conflictId, conflict);
 
-    console.log(`  Conflit détecté: ${type} entre [${participants.join(', ')}]`);
+    console.log(`ï¿½ Conflit dï¿½tectï¿½: ${type} entre [${participants.join(', ')}]`);
     this.emit('conflict-detected', conflict);
 
-    // Auto-résolution pour les conflits non-critiques
+    // Auto-rï¿½solution pour les conflits non-critiques
     if (severity !== 'critical') {
       setTimeout(() => this.resolveConflict(conflictId), 1000);
     }
@@ -159,12 +170,12 @@ export class ConflictResolver extends EventEmitter {
   }
 
   /**
-   * Résout un conflit
+   * Rï¿½sout un conflit
    */
   async resolveConflict(conflictId: string): Promise<boolean> {
     const conflict = this.conflicts.get(conflictId);
     if (!conflict) {
-      console.error(`L Conflit ${conflictId} non trouvé`);
+      console.error(`L Conflit ${conflictId} non trouvï¿½`);
       return false;
     }
 
@@ -172,15 +183,15 @@ export class ConflictResolver extends EventEmitter {
     console.log(`= Analyse du conflit ${conflictId}: ${conflict.type}`);
 
     try {
-      // Sélectionner la stratégie appropriée
+      // Sï¿½lectionner la stratï¿½gie appropriï¿½e
       const strategy = this.resolutionStrategies.get(conflict.type);
       if (!strategy) {
-        throw new Error(`Aucune stratégie pour le type: ${conflict.type}`);
+        throw new Error(`Aucune stratï¿½gie pour le type: ${conflict.type}`);
       }
 
       conflict.status = 'resolving';
       
-      // Exécuter la stratégie de résolution
+      // Exï¿½cuter la stratï¿½gie de rï¿½solution
       const resolution = await strategy.handler(conflict);
       
       if (resolution) {
@@ -190,21 +201,21 @@ export class ConflictResolver extends EventEmitter {
         // Enregistrer l'historique
         this.resolutionHistory.push({ ...conflict });
         
-        // Implémenter la résolution
+        // Implï¿½menter la rï¿½solution
         await this.implementResolution(conflict);
         
-        console.log(` Conflit ${conflictId} résolu avec stratégie: ${resolution.strategy}`);
+        console.log(` Conflit ${conflictId} rï¿½solu avec stratï¿½gie: ${resolution.strategy}`);
         this.emit('conflict-resolved', { conflictId, resolution });
         
         return true;
       } else {
-        throw new Error('Échec de la résolution');
+        throw new Error('ï¿½chec de la rï¿½solution');
       }
 
     } catch (error) {
-      console.error(`L Erreur résolution conflit ${conflictId}:`, error);
+      console.error(`L Erreur rï¿½solution conflit ${conflictId}:`, error);
       
-      // Enregistrer la tentative échouée
+      // Enregistrer la tentative ï¿½chouï¿½e
       conflict.attempts.push({
         timestamp: new Date().toISOString(),
         strategy: 'auto',
@@ -212,7 +223,7 @@ export class ConflictResolver extends EventEmitter {
         notes: error.message
       });
 
-      // Escalader si critique ou trop d'échecs
+      // Escalader si critique ou trop d'ï¿½checs
       if (conflict.severity === 'critical' || conflict.attempts.length >= 3) {
         conflict.status = 'escalated';
         this.emit('conflict-escalated', conflict);
@@ -223,15 +234,15 @@ export class ConflictResolver extends EventEmitter {
   }
 
   /**
-   * Résout les conflits de ressources
+   * Rï¿½sout les conflits de ressources
    */
   private async resolveResourceConflict(conflict: Conflict): Promise<ConflictResolution> {
-    console.log(`=' Résolution conflit de ressources pour: [${conflict.participants.join(', ')}]`);
+    console.log(`=' Rï¿½solution conflit de ressources pour: [${conflict.participants.join(', ')}]`);
 
     // Analyser l'utilisation actuelle des ressources
     const resourceUsage = this.analyzeResourceUsage(conflict.participants, conflict.context.resources);
     
-    // Stratégie: Partage équitable des ressources
+    // Stratï¿½gie: Partage ï¿½quitable des ressources
     const actions: ResolutionAction[] = [];
     
     conflict.participants.forEach((agentId, index) => {
@@ -255,9 +266,9 @@ export class ConflictResolver extends EventEmitter {
       strategy: 'resource-sharing',
       actions,
       estimatedImpact: {
-        timeDelay: 15, // 15 minutes de délai
-        resourceCost: 10, // 10% de coût supplémentaire
-        qualityImpact: -1, // Légère baisse de qualité
+        timeDelay: 15, // 15 minutes de dï¿½lai
+        resourceCost: 10, // 10% de coï¿½t supplï¿½mentaire
+        qualityImpact: -1, // Lï¿½gï¿½re baisse de qualitï¿½
         stakeholderImpact: ['agents']
       },
       approvedBy: 'orchestrator',
@@ -266,18 +277,18 @@ export class ConflictResolver extends EventEmitter {
   }
 
   /**
-   * Résout les conflits de priorité
+   * Rï¿½sout les conflits de prioritï¿½
    */
   private async resolvePriorityConflict(conflict: Conflict): Promise<ConflictResolution> {
-    console.log(`=Ë Résolution conflit de priorité pour: [${conflict.participants.join(', ')}]`);
+    console.log(`=ï¿½ Rï¿½solution conflit de prioritï¿½ pour: [${conflict.participants.join(', ')}]`);
 
-    // Analyser les priorités actuelles
+    // Analyser les prioritï¿½s actuelles
     const priorities = this.analyzePriorities(conflict.participants, conflict.context.taskIds);
     
-    // Stratégie: Réorganisation par priorité métier
+    // Stratï¿½gie: Rï¿½organisation par prioritï¿½ mï¿½tier
     const actions: ResolutionAction[] = [];
     
-    // Trier par priorité (design > dev > seo > marketing > ops)
+    // Trier par prioritï¿½ (design > dev > seo > marketing > ops)
     const priorityOrder = ['design-agent', 'webdev-agent', 'seo-agent', 'marketing-agent', 'techops-agent', 'automation-agent'];
     
     const sortedParticipants = conflict.participants.sort((a, b) => {
@@ -291,7 +302,7 @@ export class ConflictResolver extends EventEmitter {
         parameters: {
           newPriority: index + 1,
           timeSlot: {
-            start: new Date(Date.now() + (index * 30 * 60000)).toISOString(), // Décalage de 30min
+            start: new Date(Date.now() + (index * 30 * 60000)).toISOString(), // Dï¿½calage de 30min
             end: new Date(Date.now() + ((index + 1) * 30 * 60000)).toISOString()
           }
         },
@@ -303,7 +314,7 @@ export class ConflictResolver extends EventEmitter {
       strategy: 'priority',
       actions,
       estimatedImpact: {
-        timeDelay: 30 * (sortedParticipants.length - 1), // 30min par agent décalé
+        timeDelay: 30 * (sortedParticipants.length - 1), // 30min par agent dï¿½calï¿½
         resourceCost: 5,
         qualityImpact: 0,
         stakeholderImpact: ['project-timeline']
@@ -314,22 +325,22 @@ export class ConflictResolver extends EventEmitter {
   }
 
   /**
-   * Résout les conflits de dépendances
+   * Rï¿½sout les conflits de dï¿½pendances
    */
   private async resolveDependencyConflict(conflict: Conflict): Promise<ConflictResolution> {
-    console.log(`= Résolution conflit de dépendances pour: [${conflict.participants.join(', ')}]`);
+    console.log(`= Rï¿½solution conflit de dï¿½pendances pour: [${conflict.participants.join(', ')}]`);
 
-    // Analyser le graphe de dépendances
+    // Analyser le graphe de dï¿½pendances
     const dependencyGraph = this.analyzeDependencies(conflict.context.taskIds);
     
-    // Stratégie: Réorganisation temporelle
+    // Stratï¿½gie: Rï¿½organisation temporelle
     const actions: ResolutionAction[] = [];
     
-    // Identifier les tâches bloquantes et bloquées
+    // Identifier les tï¿½ches bloquantes et bloquï¿½es
     const blockingTasks = dependencyGraph.blocking;
     const blockedTasks = dependencyGraph.blocked;
 
-    // Prioriser les tâches bloquantes
+    // Prioriser les tï¿½ches bloquantes
     blockingTasks.forEach((taskId, index) => {
       actions.push({
         type: 'reschedule',
@@ -342,7 +353,7 @@ export class ConflictResolver extends EventEmitter {
       });
     });
 
-    // Reprogrammer les tâches bloquées après
+    // Reprogrammer les tï¿½ches bloquï¿½es aprï¿½s
     blockedTasks.forEach((taskId, index) => {
       actions.push({
         type: 'reschedule',
@@ -359,9 +370,9 @@ export class ConflictResolver extends EventEmitter {
       strategy: 'rescheduling',
       actions,
       estimatedImpact: {
-        timeDelay: 45, // 45 minutes de délai
+        timeDelay: 45, // 45 minutes de dï¿½lai
         resourceCost: 15,
-        qualityImpact: 1, // Amélioration grâce à meilleur séquençage
+        qualityImpact: 1, // Amï¿½lioration grï¿½ce ï¿½ meilleur sï¿½quenï¿½age
         stakeholderImpact: ['project-timeline', 'agents']
       },
       approvedBy: 'orchestrator',
@@ -370,20 +381,20 @@ export class ConflictResolver extends EventEmitter {
   }
 
   /**
-   * Résout les conflits de timing
+   * Rï¿½sout les conflits de timing
    */
   private async resolveTimingConflict(conflict: Conflict): Promise<ConflictResolution> {
-    console.log(`ð Résolution conflit de timing pour: [${conflict.participants.join(', ')}]`);
+    console.log(`ï¿½ Rï¿½solution conflit de timing pour: [${conflict.participants.join(', ')}]`);
 
     const actions: ResolutionAction[] = [];
     
-    // Stratégie: Décalage temporel intelligent
+    // Stratï¿½gie: Dï¿½calage temporel intelligent
     conflict.participants.forEach((agentId, index) => {
       actions.push({
         type: 'reschedule',
         target: agentId,
         parameters: {
-          timeShift: index * 20, // Décalage de 20 minutes
+          timeShift: index * 20, // Dï¿½calage de 20 minutes
           maintainDuration: true,
           respectDependencies: true
         },
@@ -406,10 +417,10 @@ export class ConflictResolver extends EventEmitter {
   }
 
   /**
-   * Résout les conflits de données
+   * Rï¿½sout les conflits de donnï¿½es
    */
   private async resolveDataConflict(conflict: Conflict): Promise<ConflictResolution> {
-    console.log(`=¾ Résolution conflit de données pour: [${conflict.participants.join(', ')}]`);
+    console.log(`=ï¿½ Rï¿½solution conflit de donnï¿½es pour: [${conflict.participants.join(', ')}]`);
 
     const actions: ResolutionAction[] = [
       {
@@ -439,24 +450,24 @@ export class ConflictResolver extends EventEmitter {
   }
 
   /**
-   * Implémente une résolution de conflit
+   * Implï¿½mente une rï¿½solution de conflit
    */
   private async implementResolution(conflict: Conflict): Promise<void> {
     if (!conflict.resolution) return;
 
-    console.log(`=( Implémentation de la résolution: ${conflict.resolution.strategy}`);
+    console.log(`=( Implï¿½mentation de la rï¿½solution: ${conflict.resolution.strategy}`);
 
     for (const action of conflict.resolution.actions) {
       try {
         await this.executeResolutionAction(action);
-        console.log(` Action ${action.type} exécutée pour ${action.target}`);
+        console.log(` Action ${action.type} exï¿½cutï¿½e pour ${action.target}`);
       } catch (error) {
-        console.error(`L Erreur exécution action ${action.type}:`, error);
+        console.error(`L Erreur exï¿½cution action ${action.type}:`, error);
         throw error;
       }
     }
 
-    // Notifier les agents concernés
+    // Notifier les agents concernï¿½s
     this.notifyAgents(conflict.participants, {
       type: 'resolution-implemented',
       conflictId: conflict.id,
@@ -465,22 +476,22 @@ export class ConflictResolver extends EventEmitter {
   }
 
   /**
-   * Exécute une action de résolution
+   * Exï¿½cute une action de rï¿½solution
    */
   private async executeResolutionAction(action: ResolutionAction): Promise<void> {
-    // Simulation d'exécution - dans une vraie implémentation,
-    // ceci interagirait avec les agents réels
+    // Simulation d'exï¿½cution - dans une vraie implï¿½mentation,
+    // ceci interagirait avec les agents rï¿½els
     await new Promise(resolve => setTimeout(resolve, 100));
     
-    console.log(`=' Action ${action.type} simulée pour ${action.target}`);
+    console.log(`=' Action ${action.type} simulï¿½e pour ${action.target}`);
   }
 
   /**
-   * Notifie les agents d'une résolution
+   * Notifie les agents d'une rï¿½solution
    */
   private notifyAgents(agentIds: string[], notification: any): void {
     agentIds.forEach(agentId => {
-      console.log(`=ì Notification envoyée à ${agentId}:`, notification.type);
+      console.log(`=ï¿½ Notification envoyï¿½e ï¿½ ${agentId}:`, notification.type);
       this.emit('agent-notification', { agentId, notification });
     });
   }
@@ -502,7 +513,7 @@ export class ConflictResolver extends EventEmitter {
   }
 
   /**
-   * Analyse les priorités
+   * Analyse les prioritï¿½s
    */
   private analyzePriorities(agentIds: string[], taskIds: string[]): any {
     return {
@@ -516,7 +527,7 @@ export class ConflictResolver extends EventEmitter {
   }
 
   /**
-   * Analyse les dépendances
+   * Analyse les dï¿½pendances
    */
   private analyzeDependencies(taskIds: string[]): any {
     const midpoint = Math.floor(taskIds.length / 2);
@@ -529,7 +540,7 @@ export class ConflictResolver extends EventEmitter {
   }
 
   /**
-   * Obtient les statistiques de résolution
+   * Obtient les statistiques de rï¿½solution
    */
   getResolutionStatistics(): any {
     const activeConflicts = Array.from(this.conflicts.values());
@@ -571,7 +582,7 @@ export class ConflictResolver extends EventEmitter {
   }
 
   /**
-   * Groupe les conflits par sévérité
+   * Groupe les conflits par sï¿½vï¿½ritï¿½
    */
   private groupBySeverity(conflicts: Conflict[]): Record<string, number> {
     return conflicts.reduce((acc, conflict) => {
@@ -581,7 +592,7 @@ export class ConflictResolver extends EventEmitter {
   }
 
   /**
-   * Calcule le temps moyen de résolution
+   * Calcule le temps moyen de rï¿½solution
    */
   private calculateAverageResolutionTime(): number {
     if (this.resolutionHistory.length === 0) return 0;
@@ -599,7 +610,7 @@ export class ConflictResolver extends EventEmitter {
   }
 
   /**
-   * Calcule l'impact total des résolutions
+   * Calcule l'impact total des rï¿½solutions
    */
   private calculateTotalImpact(): any {
     if (this.resolutionHistory.length === 0) {
@@ -618,12 +629,12 @@ export class ConflictResolver extends EventEmitter {
   }
 
   /**
-   * Nettoie les conflits résolus anciens
+   * Nettoie les conflits rï¿½solus anciens
    */
   cleanup(): void {
     const oneHourAgo = new Date(Date.now() - 3600000);
     
-    // Supprimer les conflits résolus de plus d'une heure
+    // Supprimer les conflits rï¿½solus de plus d'une heure
     for (const [id, conflict] of this.conflicts) {
       if (conflict.status === 'resolved' && new Date(conflict.timestamp) < oneHourAgo) {
         this.conflicts.delete(id);
@@ -635,7 +646,7 @@ export class ConflictResolver extends EventEmitter {
       this.resolutionHistory = this.resolutionHistory.slice(-500);
     }
 
-    console.log('>ù Nettoyage des conflits anciens effectué');
+    console.log('>ï¿½ Nettoyage des conflits anciens effectuï¿½');
   }
 }
 
@@ -644,6 +655,693 @@ interface ResolutionStrategy {
   strategy: string;
   priority: number;
   handler: (conflict: Conflict) => Promise<ConflictResolution>;
+}
+
+// Advanced AI-powered conflict resolution interfaces and classes
+
+export interface ConflictPattern {
+  id: string;
+  type: string;
+  frequency: number;
+  participants: string[];
+  commonTriggers: string[];
+  successfulResolutions: string[];
+  averageResolutionTime: number;
+  impactScore: number;
+}
+
+export interface ConflictPrediction {
+  likelihood: number; // 0-100%
+  timeframe: number; // minutes until potential conflict
+  involvedAgents: string[];
+  conflictType: string;
+  suggestedPreventiveActions: string[];
+  confidence: number; // 0-100%
+}
+
+export interface MLResolutionRecommendation {
+  strategy: string;
+  confidence: number;
+  expectedOutcome: {
+    successProbability: number;
+    timeToResolution: number;
+    resourceCost: number;
+    qualityImpact: number;
+  };
+  alternativeStrategies: Array<{
+    strategy: string;
+    confidence: number;
+    pros: string[];
+    cons: string[];
+  }>;
+}
+
+export class ConflictPredictor {
+  private patterns: Map<string, ConflictPattern> = new Map();
+  private historicalData: Conflict[] = [];
+  private predictionModel: PredictionModel;
+
+  constructor() {
+    this.predictionModel = new PredictionModel();
+    this.initializePatterns();
+  }
+
+  private initializePatterns(): void {
+    // Common conflict patterns in multi-agent systems
+    const patterns: ConflictPattern[] = [
+      {
+        id: 'resource-contention-peak',
+        type: 'resource',
+        frequency: 0.25,
+        participants: ['webdev-agent', 'design-agent'],
+        commonTriggers: ['concurrent-api-calls', 'shared-database-access'],
+        successfulResolutions: ['time-slicing', 'resource-pooling'],
+        averageResolutionTime: 120,
+        impactScore: 7
+      },
+      {
+        id: 'dependency-cascade',
+        type: 'dependency',
+        frequency: 0.15,
+        participants: ['design-agent', 'webdev-agent', 'seo-agent'],
+        commonTriggers: ['delayed-deliverable', 'scope-change'],
+        successfulResolutions: ['parallel-execution', 'milestone-adjustment'],
+        averageResolutionTime: 180,
+        impactScore: 8
+      },
+      {
+        id: 'priority-inversion',
+        type: 'priority',
+        frequency: 0.20,
+        participants: ['seo-agent', 'marketing-agent'],
+        commonTriggers: ['client-request-change', 'deadline-pressure'],
+        successfulResolutions: ['priority-rebalancing', 'scope-negotiation'],
+        averageResolutionTime: 90,
+        impactScore: 6
+      }
+    ];
+
+    patterns.forEach(pattern => {
+      this.patterns.set(pattern.id, pattern);
+    });
+
+    console.log(`\ud83d\udcca ${patterns.length} conflict patterns initialized`);
+  }
+
+  async predictConflicts(currentState: AgentSystemState): Promise<ConflictPrediction[]> {
+    const predictions: ConflictPrediction[] = [];
+    
+    // Analyze resource utilization patterns
+    const resourcePredictions = await this.analyzeResourceContention(currentState);
+    predictions.push(...resourcePredictions);
+    
+    // Analyze dependency chains
+    const dependencyPredictions = await this.analyzeDependencyRisks(currentState);
+    predictions.push(...dependencyPredictions);
+    
+    // Analyze priority conflicts
+    const priorityPredictions = await this.analyzePriorityConflicts(currentState);
+    predictions.push(...priorityPredictions);
+    
+    // Sort by likelihood and impact
+    predictions.sort((a, b) => (b.likelihood * b.confidence) - (a.likelihood * a.confidence));
+    
+    return predictions.slice(0, 10); // Top 10 predictions
+  }
+
+  private async analyzeResourceContention(state: AgentSystemState): Promise<ConflictPrediction[]> {
+    const predictions: ConflictPrediction[] = [];
+    
+    // Simulate resource analysis using ML model
+    const resourceUtilization = state.agents.map(agent => ({
+      agentId: agent.id,
+      cpuUsage: agent.resources.cpu,
+      memoryUsage: agent.resources.memory,
+      apiCalls: agent.resources.apiCalls
+    }));
+    
+    // Detect potential resource bottlenecks
+    const highUtilizationAgents = resourceUtilization.filter(agent => 
+      agent.cpuUsage > 80 || agent.memoryUsage > 85 || agent.apiCalls > 50
+    );
+    
+    if (highUtilizationAgents.length >= 2) {
+      predictions.push({
+        likelihood: 75,
+        timeframe: 15, // 15 minutes
+        involvedAgents: highUtilizationAgents.map(a => a.agentId),
+        conflictType: 'resource',
+        suggestedPreventiveActions: [
+          'implement-resource-throttling',
+          'schedule-load-balancing',
+          'activate-overflow-agents'
+        ],
+        confidence: 85
+      });
+    }
+    
+    return predictions;
+  }
+
+  private async analyzeDependencyRisks(state: AgentSystemState): Promise<ConflictPrediction[]> {
+    const predictions: ConflictPrediction[] = [];
+    
+    // Analyze task dependency graph for potential conflicts
+    const activeTasks = state.tasks.filter(task => task.status === 'running' || task.status === 'queued');
+    const dependencyMap = this.buildDependencyMap(activeTasks);
+    
+    // Look for potential dependency cycles or bottlenecks
+    const criticalPaths = this.findCriticalPaths(dependencyMap);
+    
+    for (const path of criticalPaths) {
+      if (path.riskScore > 0.7) {
+        predictions.push({
+          likelihood: Math.round(path.riskScore * 100),
+          timeframe: path.estimatedDelay,
+          involvedAgents: path.agents,
+          conflictType: 'dependency',
+          suggestedPreventiveActions: [
+            'parallelize-independent-tasks',
+            'adjust-task-priorities',
+            'allocate-additional-resources'
+          ],
+          confidence: 80
+        });
+      }
+    }
+    
+    return predictions;
+  }
+
+  private async analyzePriorityConflicts(state: AgentSystemState): Promise<ConflictPrediction[]> {
+    const predictions: ConflictPrediction[] = [];
+    
+    // Analyze task priorities and agent workloads
+    const priorityConflicts = this.detectPriorityInversions(state.tasks);
+    
+    for (const conflict of priorityConflicts) {
+      predictions.push({
+        likelihood: 60,
+        timeframe: 30,
+        involvedAgents: conflict.involvedAgents,
+        conflictType: 'priority',
+        suggestedPreventiveActions: [
+          'rebalance-priorities',
+          'negotiate-deadlines',
+          'escalate-critical-tasks'
+        ],
+        confidence: 70
+      });
+    }
+    
+    return predictions;
+  }
+
+  private buildDependencyMap(tasks: any[]): Map<string, string[]> {
+    const map = new Map<string, string[]>();
+    
+    tasks.forEach(task => {
+      map.set(task.id, task.dependencies || []);
+    });
+    
+    return map;
+  }
+
+  private findCriticalPaths(dependencyMap: Map<string, string[]>): Array<{
+    path: string[];
+    riskScore: number;
+    estimatedDelay: number;
+    agents: string[];
+  }> {
+    // Simplified critical path analysis
+    return [
+      {
+        path: ['task1', 'task2', 'task3'],
+        riskScore: 0.8,
+        estimatedDelay: 45,
+        agents: ['design-agent', 'webdev-agent']
+      }
+    ];
+  }
+
+  private detectPriorityInversions(tasks: any[]): Array<{
+    involvedAgents: string[];
+    severity: number;
+  }> {
+    // Simplified priority conflict detection
+    return [
+      {
+        involvedAgents: ['seo-agent', 'marketing-agent'],
+        severity: 0.6
+      }
+    ];
+  }
+}
+
+export class MLResolutionEngine {
+  private model: ResolutionModel;
+  private trainingData: ConflictResolutionCase[] = [];
+  private successPatterns: Map<string, SuccessPattern> = new Map();
+
+  constructor() {
+    this.model = new ResolutionModel();
+    this.initializeTrainingData();
+  }
+
+  private initializeTrainingData(): void {
+    // Initialize with synthetic training data
+    // In production, this would be loaded from historical resolution data
+    console.log('\ud83e\udd16 ML Resolution Engine initialized with training data');
+  }
+
+  async recommendResolution(conflict: Conflict): Promise<MLResolutionRecommendation> {
+    // Analyze conflict features
+    const features = this.extractConflictFeatures(conflict);
+    
+    // Get predictions from ML model
+    const prediction = await this.model.predict(features);
+    
+    // Generate recommendation
+    const recommendation: MLResolutionRecommendation = {
+      strategy: prediction.primaryStrategy,
+      confidence: prediction.confidence,
+      expectedOutcome: {
+        successProbability: prediction.successProbability,
+        timeToResolution: prediction.estimatedTime,
+        resourceCost: prediction.resourceCost,
+        qualityImpact: prediction.qualityImpact
+      },
+      alternativeStrategies: prediction.alternatives.map(alt => ({
+        strategy: alt.strategy,
+        confidence: alt.confidence,
+        pros: alt.advantages,
+        cons: alt.disadvantages
+      }))
+    };
+    
+    return recommendation;
+  }
+
+  private extractConflictFeatures(conflict: Conflict): ConflictFeatures {
+    return {
+      type: conflict.type,
+      severity: conflict.severity,
+      participantCount: conflict.participants.length,
+      resourceTypes: conflict.context.resources,
+      timeConstraints: conflict.context.timeline,
+      historicalSuccess: this.getHistoricalSuccess(conflict.type),
+      systemLoad: this.getCurrentSystemLoad()
+    };
+  }
+
+  private getHistoricalSuccess(conflictType: string): number {
+    // Return historical success rate for this conflict type
+    return 0.85; // 85% success rate
+  }
+
+  private getCurrentSystemLoad(): number {
+    // Return current system load metric
+    return 0.65; // 65% system load
+  }
+
+  async learnFromResolution(conflict: Conflict, outcome: ResolutionOutcome): Promise<void> {
+    const case_: ConflictResolutionCase = {
+      conflict,
+      resolution: conflict.resolution!,
+      outcome,
+      timestamp: new Date().toISOString()
+    };
+    
+    this.trainingData.push(case_);
+    
+    // Update model with new data
+    await this.model.updateWithCase(case_);
+    
+    console.log('\ud83d\udcda ML model updated with new resolution case');
+  }
+}
+
+export class RealTimeConflictMonitor {
+  private monitoringInterval: NodeJS.Timeout | null = null;
+  private alertThresholds: ConflictThresholds;
+  private activeMonitoring = false;
+
+  constructor() {
+    this.alertThresholds = {
+      resourceContention: 0.8,
+      dependencyRisk: 0.7,
+      priorityConflict: 0.6,
+      systemOverload: 0.9
+    };
+  }
+
+  start(): void {
+    if (this.activeMonitoring) return;
+
+    this.monitoringInterval = setInterval(() => {
+      this.performMonitoringCycle();
+    }, 5000); // Every 5 seconds
+
+    this.activeMonitoring = true;
+    console.log('\ud83d\udd0d Real-time conflict monitoring started');
+  }
+
+  stop(): void {
+    if (this.monitoringInterval) {
+      clearInterval(this.monitoringInterval);
+      this.monitoringInterval = null;
+    }
+    this.activeMonitoring = false;
+    console.log('\u23f9\ufe0f Real-time conflict monitoring stopped');
+  }
+
+  private async performMonitoringCycle(): Promise<void> {
+    try {
+      // Monitor resource utilization
+      const resourceAlerts = await this.checkResourceContention();
+      
+      // Monitor dependency health
+      const dependencyAlerts = await this.checkDependencyHealth();
+      
+      // Monitor priority conflicts
+      const priorityAlerts = await this.checkPriorityConflicts();
+      
+      // Process alerts
+      const allAlerts = [...resourceAlerts, ...dependencyAlerts, ...priorityAlerts];
+      
+      for (const alert of allAlerts) {
+        this.processAlert(alert);
+      }
+      
+    } catch (error) {
+      console.error('\u274c Error in monitoring cycle:', error);
+    }
+  }
+
+  private async checkResourceContention(): Promise<ConflictAlert[]> {
+    // Simulate resource monitoring
+    return [];
+  }
+
+  private async checkDependencyHealth(): Promise<ConflictAlert[]> {
+    // Simulate dependency monitoring
+    return [];
+  }
+
+  private async checkPriorityConflicts(): Promise<ConflictAlert[]> {
+    // Simulate priority monitoring
+    return [];
+  }
+
+  private processAlert(alert: ConflictAlert): void {
+    console.log(`\ud83d\udea8 Conflict alert: ${alert.type} - ${alert.severity}`);
+    // Process alert (trigger preventive actions, notify orchestrator, etc.)
+  }
+}
+
+export class AdaptiveOptimizer {
+  private optimizationStrategies: Map<string, OptimizationStrategy> = new Map();
+  private performanceHistory: PerformanceMetric[] = [];
+  
+  constructor() {
+    this.initializeStrategies();
+  }
+
+  private initializeStrategies(): void {
+    const strategies: OptimizationStrategy[] = [
+      {
+        id: 'resource-rebalancing',
+        trigger: 'high-resource-contention',
+        action: this.optimizeResourceAllocation.bind(this),
+        effectiveness: 0.85
+      },
+      {
+        id: 'priority-adjustment',
+        trigger: 'priority-conflicts',
+        action: this.optimizePriorities.bind(this),
+        effectiveness: 0.78
+      },
+      {
+        id: 'load-distribution',
+        trigger: 'uneven-workload',
+        action: this.optimizeLoadDistribution.bind(this),
+        effectiveness: 0.82
+      }
+    ];
+
+    strategies.forEach(strategy => {
+      this.optimizationStrategies.set(strategy.id, strategy);
+    });
+
+    console.log(`\u2699\ufe0f ${strategies.length} optimization strategies initialized`);
+  }
+
+  async optimize(systemState: AgentSystemState): Promise<OptimizationResult> {
+    const optimizations: OptimizationAction[] = [];
+    
+    // Analyze system performance
+    const performance = this.analyzePerformance(systemState);
+    
+    // Apply relevant optimization strategies
+    for (const [id, strategy] of this.optimizationStrategies) {
+      if (this.shouldApplyStrategy(strategy, performance)) {
+        const result = await strategy.action(systemState);
+        if (result.success) {
+          optimizations.push(result.action);
+        }
+      }
+    }
+    
+    return {
+      optimizations,
+      expectedImprovement: this.calculateExpectedImprovement(optimizations),
+      confidence: this.calculateConfidence(optimizations)
+    };
+  }
+
+  private analyzePerformance(systemState: AgentSystemState): SystemPerformance {
+    return {
+      resourceUtilization: 0.75,
+      taskThroughput: 0.82,
+      conflictRate: 0.15,
+      systemEfficiency: 0.78
+    };
+  }
+
+  private shouldApplyStrategy(strategy: OptimizationStrategy, performance: SystemPerformance): boolean {
+    // Logic to determine if strategy should be applied
+    return Math.random() > 0.5; // Simplified
+  }
+
+  private async optimizeResourceAllocation(systemState: AgentSystemState): Promise<OptimizationActionResult> {
+    // Implement resource optimization logic
+    return {
+      success: true,
+      action: {
+        type: 'resource-rebalancing',
+        targets: ['webdev-agent', 'design-agent'],
+        parameters: { newAllocation: 0.6 }
+      }
+    };
+  }
+
+  private async optimizePriorities(systemState: AgentSystemState): Promise<OptimizationActionResult> {
+    // Implement priority optimization logic
+    return {
+      success: true,
+      action: {
+        type: 'priority-adjustment',
+        targets: ['seo-agent'],
+        parameters: { newPriority: 2 }
+      }
+    };
+  }
+
+  private async optimizeLoadDistribution(systemState: AgentSystemState): Promise<OptimizationActionResult> {
+    // Implement load distribution optimization logic
+    return {
+      success: true,
+      action: {
+        type: 'load-redistribution',
+        targets: ['all-agents'],
+        parameters: { distributionStrategy: 'even' }
+      }
+    };
+  }
+
+  private calculateExpectedImprovement(optimizations: OptimizationAction[]): number {
+    return optimizations.length * 0.15; // 15% improvement per optimization
+  }
+
+  private calculateConfidence(optimizations: OptimizationAction[]): number {
+    return Math.min(0.95, 0.7 + (optimizations.length * 0.05));
+  }
+}
+
+// Supporting interfaces and types
+
+interface AgentSystemState {
+  agents: Array<{
+    id: string;
+    status: string;
+    resources: {
+      cpu: number;
+      memory: number;
+      apiCalls: number;
+    };
+  }>;
+  tasks: Array<{
+    id: string;
+    status: string;
+    dependencies: string[];
+    priority: number;
+  }>;
+}
+
+interface ConflictFeatures {
+  type: string;
+  severity: string;
+  participantCount: number;
+  resourceTypes: string[];
+  timeConstraints: any;
+  historicalSuccess: number;
+  systemLoad: number;
+}
+
+interface ConflictResolutionCase {
+  conflict: Conflict;
+  resolution: ConflictResolution;
+  outcome: ResolutionOutcome;
+  timestamp: string;
+}
+
+interface ResolutionOutcome {
+  success: boolean;
+  actualTime: number;
+  actualCost: number;
+  qualityScore: number;
+  stakeholderSatisfaction: number;
+}
+
+interface SuccessPattern {
+  strategy: string;
+  conditions: string[];
+  successRate: number;
+}
+
+interface ConflictThresholds {
+  resourceContention: number;
+  dependencyRisk: number;
+  priorityConflict: number;
+  systemOverload: number;
+}
+
+interface ConflictAlert {
+  type: string;
+  severity: string;
+  message: string;
+  involvedAgents: string[];
+  suggestedActions: string[];
+}
+
+interface OptimizationStrategy {
+  id: string;
+  trigger: string;
+  action: (state: AgentSystemState) => Promise<OptimizationActionResult>;
+  effectiveness: number;
+}
+
+interface OptimizationAction {
+  type: string;
+  targets: string[];
+  parameters: any;
+}
+
+interface OptimizationActionResult {
+  success: boolean;
+  action: OptimizationAction;
+}
+
+interface OptimizationResult {
+  optimizations: OptimizationAction[];
+  expectedImprovement: number;
+  confidence: number;
+}
+
+interface SystemPerformance {
+  resourceUtilization: number;
+  taskThroughput: number;
+  conflictRate: number;
+  systemEfficiency: number;
+}
+
+interface PerformanceMetric {
+  timestamp: string;
+  metric: string;
+  value: number;
+}
+
+interface ConflictPerformanceMetrics {
+  detectionAccuracy: number;
+  resolutionSuccessRate: number;
+  averageResolutionTime: number;
+  systemImpact: number;
+}
+
+interface ConflictLearningDatabase {
+  cases: ConflictResolutionCase[];
+  patterns: ConflictPattern[];
+  successRates: Map<string, number>;
+}
+
+interface RiskAssessmentEngine {
+  assessRisk(conflict: Conflict): RiskAssessment;
+  updateRiskModel(outcome: ResolutionOutcome): void;
+}
+
+interface RiskAssessment {
+  riskLevel: 'low' | 'medium' | 'high' | 'critical';
+  riskFactors: string[];
+  mitigationStrategies: string[];
+  confidence: number;
+}
+
+// Simple ML model stubs
+class PredictionModel {
+  async predict(features: any): Promise<any> {
+    // Simplified prediction
+    return {
+      likelihood: Math.random() * 100,
+      confidence: 80
+    };
+  }
+}
+
+class ResolutionModel {
+  async predict(features: ConflictFeatures): Promise<any> {
+    // Simplified ML prediction
+    return {
+      primaryStrategy: 'resource-sharing',
+      confidence: 85,
+      successProbability: 0.82,
+      estimatedTime: 120,
+      resourceCost: 15,
+      qualityImpact: -1,
+      alternatives: [
+        {
+          strategy: 'priority-adjustment',
+          confidence: 70,
+          advantages: ['faster-resolution'],
+          disadvantages: ['potential-quality-impact']
+        }
+      ]
+    };
+  }
+
+  async updateWithCase(case_: ConflictResolutionCase): Promise<void> {
+    // Update model with new training case
+    console.log('Model updated with new case');
+  }
 }
 
 export const conflictResolver = new ConflictResolver();

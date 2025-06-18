@@ -1,0 +1,30 @@
+User-agent: *
+Allow: /
+
+# FitCoach Pro - Coach Sportif Paris 16ème
+Sitemap: https://fitcoach-pro.vercel.app/sitemap.xml
+
+# Autorisé pour SEO fitness
+Allow: /coach-sportif-paris-16
+Allow: /coaching-nutrition-en-ligne
+Allow: /perte-de-poids-femme
+Allow: /remise-en-forme-professionnel
+Allow: /personal-trainer-paris
+
+# Interdictions
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+Disallow: /dashboard/
+
+# Autorisé pour performance
+Allow: /images/
+Allow: /assets/
+Allow: *.css
+Allow: *.js
+Allow: *.webp
+Allow: *.jpg
+Allow: *.png
+
+# Crawl delay pour optimiser les performances
+Crawl-delay: 1

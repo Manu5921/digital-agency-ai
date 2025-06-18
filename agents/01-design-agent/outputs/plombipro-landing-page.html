@@ -1,0 +1,1239 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlombiPro - Plombier Professionnel Paris et Région Parisienne | Intervention 24h/7j</title>
+    <meta name="description" content="Plombier professionnel Paris et région parisienne. Intervention rapide 24h/7j, devis gratuit. Réparation fuite, débouchage, rénovation. Artisans certifiés.">
+    <meta name="keywords" content="plombier paris, intervention urgence, débouchage canalisation, réparation fuite, devis gratuit plombier, plombier 24h, chauffagiste">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "LocalBusiness",
+        "name": "PlombiPro",
+        "image": "/images/logo-plombier.jpg",
+        "telephone": "01-45-67-89-12",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "123 Avenue de la République",
+            "addressLocality": "Paris",
+            "postalCode": "75011",
+            "addressCountry": "FR"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 48.8566,
+            "longitude": 2.3522
+        },
+        "url": "https://plombipro.fr",
+        "priceRange": "€€",
+        "openingHours": ["Mo-Fr 08:00-18:00"],
+        "serviceArea": {
+            "@type": "City",
+            "name": "Paris et Région Parisienne"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.8",
+            "reviewCount": "156"
+        },
+        "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Services de Plomberie",
+            "itemListElement": [
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Réparation d'urgence",
+                        "description": "Intervention rapide 24h/7j pour fuites et pannes"
+                    }
+                },
+                {
+                    "@type": "Offer",
+                    "itemOffered": {
+                        "@type": "Service",
+                        "name": "Débouchage canalisations",
+                        "description": "Débouchage professionnel avec garantie résultat"
+                    }
+                }
+            ]
+        }
+    }
+    </script>
+    
+    <style>
+        :root {
+            /* Colors - Palette Plomberie Professionnelle */
+            --color-primary: #1e40af;
+            --color-secondary: #0ea5e9;
+            --color-accent: #16a34a;
+            --color-water-blue: #1e40af;
+            --color-tool-gray: #6b7280;
+            --color-copper-orange: #ea580c;
+            --color-safety-yellow: #fbbf24;
+            --color-urgent-red: #dc2626;
+            --color-trust-green: #16a34a;
+            
+            /* Neutral Scale */
+            --color-neutral-50: #f9fafb;
+            --color-neutral-100: #f3f4f6;
+            --color-neutral-200: #e5e7eb;
+            --color-neutral-300: #d1d5db;
+            --color-neutral-400: #9ca3af;
+            --color-neutral-500: #6b7280;
+            --color-neutral-600: #4b5563;
+            --color-neutral-700: #374151;
+            --color-neutral-800: #1f2937;
+            --color-neutral-900: #111827;
+            
+            /* Typography */
+            --font-heading: 'Space Grotesk', sans-serif;
+            --font-body: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            
+            /* Spacing */
+            --spacing-1: 4px;
+            --spacing-2: 8px;
+            --spacing-3: 12px;
+            --spacing-4: 16px;
+            --spacing-5: 20px;
+            --spacing-6: 24px;
+            --spacing-8: 32px;
+            --spacing-10: 40px;
+            --spacing-12: 48px;
+            --spacing-16: 64px;
+            --spacing-20: 80px;
+            --spacing-24: 96px;
+            
+            /* Shadows */
+            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            --shadow-base: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            line-height: 1.6;
+            color: var(--color-neutral-900);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--spacing-4);
+        }
+
+        /* Header Styles */
+        .plomberie-header {
+            background: white;
+            box-shadow: var(--shadow-md);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--color-neutral-200);
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-4) 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            font-size: 2rem;
+            margin-right: var(--spacing-2);
+        }
+
+        .nav-menu {
+            display: none;
+            gap: var(--spacing-6);
+        }
+
+        .nav-menu a {
+            color: var(--color-neutral-700);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-menu a:hover {
+            color: var(--color-primary);
+        }
+
+        .urgence-cta {
+            background: var(--color-urgent-red);
+            color: white;
+            padding: var(--spacing-2) var(--spacing-4);
+            border-radius: 6px;
+            font-weight: 700;
+            text-decoration: none;
+            font-size: 0.875rem;
+            text-align: center;
+            line-height: 1.2;
+            animation: pulse 2s infinite;
+            transition: transform 0.2s ease;
+        }
+
+        .urgence-cta:hover {
+            transform: scale(1.05);
+        }
+
+        .urgence-cta small {
+            display: block;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        /* Hero Section */
+        .hero-section {
+            background: linear-gradient(135deg, var(--color-neutral-50) 0%, var(--color-neutral-100) 100%);
+            padding: var(--spacing-20) 0;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-12);
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-family: var(--font-heading);
+            font-size: 2.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: var(--spacing-6);
+            color: var(--color-neutral-900);
+        }
+
+        .hero-content .highlight {
+            color: var(--color-primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--color-neutral-600);
+            margin-bottom: var(--spacing-8);
+        }
+
+        .hero-features {
+            list-style: none;
+            margin-bottom: var(--spacing-8);
+        }
+
+        .hero-features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-3);
+        }
+
+        .hero-features .check-icon {
+            color: var(--color-trust-green);
+            font-size: 1.125rem;
+            margin-right: var(--spacing-3);
+        }
+
+        .cta-group {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-4);
+        }
+
+        .cta-primary {
+            background: var(--color-urgent-red);
+            color: white;
+            padding: var(--spacing-4) var(--spacing-8);
+            border-radius: 8px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-decoration: none;
+            text-align: center;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .cta-primary:hover {
+            background: #b91c1c;
+            transform: translateY(-2px);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: var(--color-primary);
+            border: 2px solid var(--color-primary);
+            padding: var(--spacing-4) var(--spacing-8);
+            border-radius: 8px;
+            font-size: 1.125rem;
+            font-weight: 500;
+            text-decoration: none;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .cta-secondary:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+
+        .hero-visual {
+            background: white;
+            padding: var(--spacing-8);
+            border-radius: 12px;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-visual-icon {
+            font-size: 4rem;
+            margin-bottom: var(--spacing-4);
+        }
+
+        .hero-visual h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-neutral-900);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .hero-visual p {
+            color: var(--color-neutral-600);
+            margin-bottom: var(--spacing-4);
+        }
+
+        .trust-badge {
+            background: var(--color-trust-green);
+            color: white;
+            padding: var(--spacing-2) var(--spacing-4);
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+
+        /* Services Section */
+        .services-section {
+            padding: var(--spacing-20) 0;
+            background: white;
+        }
+
+        .services-title {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            font-weight: 700;
+            text-align: center;
+            color: var(--color-neutral-900);
+            margin-bottom: var(--spacing-12);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-8);
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 12px;
+            padding: var(--spacing-8);
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--color-neutral-200);
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: var(--spacing-4);
+        }
+
+        .service-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--color-neutral-900);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .service-description {
+            color: var(--color-neutral-600);
+            margin-bottom: var(--spacing-6);
+            line-height: 1.6;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-bottom: var(--spacing-6);
+            text-align: left;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-2);
+            font-size: 0.875rem;
+        }
+
+        .service-features .check {
+            color: var(--color-trust-green);
+            margin-right: var(--spacing-2);
+        }
+
+        .service-cta {
+            background: var(--color-primary);
+            color: white;
+            padding: var(--spacing-3) var(--spacing-6);
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .service-cta:hover {
+            background: #1e3a8a;
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: var(--spacing-20) 0;
+            background: var(--color-neutral-50);
+        }
+
+        .urgency-banner {
+            background: var(--color-urgent-red);
+            color: white;
+            text-align: center;
+            padding: var(--spacing-6);
+            border-radius: 8px;
+            margin-bottom: var(--spacing-12);
+        }
+
+        .urgency-banner h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-2);
+        }
+
+        .urgency-banner .phone {
+            font-size: 2rem;
+            font-weight: 700;
+            text-decoration: none;
+            color: white;
+        }
+
+        .urgency-banner p {
+            margin-top: var(--spacing-2);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-12);
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-neutral-900);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: var(--spacing-4);
+        }
+
+        .contact-icon {
+            font-size: 1.25rem;
+            color: var(--color-primary);
+            margin-right: var(--spacing-4);
+            margin-top: var(--spacing-1);
+        }
+
+        .contact-form h3 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-neutral-900);
+            margin-bottom: var(--spacing-6);
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-4);
+        }
+
+        .form-input {
+            width: 100%;
+            padding: var(--spacing-3);
+            border: 1px solid var(--color-neutral-300);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 3px rgba(30, 64, 175, 0.1);
+        }
+
+        .form-textarea {
+            width: 100%;
+            padding: var(--spacing-3);
+            border: 1px solid var(--color-neutral-300);
+            border-radius: 8px;
+            font-size: 1rem;
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-select {
+            width: 100%;
+            padding: var(--spacing-3);
+            border: 1px solid var(--color-neutral-300);
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: white;
+        }
+
+        .radio-group {
+            margin-top: var(--spacing-2);
+        }
+
+        .radio-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--spacing-2);
+        }
+
+        .radio-item input {
+            margin-right: var(--spacing-2);
+        }
+
+        .submit-button {
+            width: 100%;
+            background: var(--color-trust-green);
+            color: white;
+            padding: var(--spacing-4);
+            border: none;
+            border-radius: 8px;
+            font-size: 1.125rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .submit-button:hover {
+            background: #15803d;
+        }
+
+        /* Trust Badges */
+        .trust-section {
+            background: var(--color-neutral-50);
+            border-top: 1px solid var(--color-neutral-200);
+            padding: var(--spacing-10) 0;
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-6);
+            text-align: center;
+        }
+
+        .trust-badge-item {
+            padding: var(--spacing-4);
+        }
+
+        .trust-badge-icon {
+            font-size: 2rem;
+            margin-bottom: var(--spacing-2);
+        }
+
+        .trust-badge-title {
+            font-weight: 700;
+            margin-bottom: var(--spacing-1);
+        }
+
+        .trust-badge-subtitle {
+            font-size: 0.875rem;
+            color: var(--color-neutral-600);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--color-neutral-900);
+            color: white;
+            padding: var(--spacing-12) 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-8);
+        }
+
+        .footer-section h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-4);
+        }
+
+        .footer-section p {
+            color: var(--color-neutral-300);
+            margin-bottom: var(--spacing-4);
+            line-height: 1.6;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section li {
+            color: var(--color-neutral-300);
+            margin-bottom: var(--spacing-2);
+        }
+
+        .footer-urgency {
+            color: #fca5a5;
+            font-weight: 700;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--color-neutral-700);
+            margin-top: var(--spacing-8);
+            padding-top: var(--spacing-8);
+            text-align: center;
+            color: var(--color-neutral-400);
+        }
+
+        /* Floating Urgency Button */
+        .urgence-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--color-urgent-red);
+            color: white;
+            padding: var(--spacing-4) var(--spacing-6);
+            border-radius: 50px;
+            box-shadow: var(--shadow-xl);
+            z-index: 1000;
+            animation: bounce 3s infinite;
+            text-decoration: none;
+            text-align: center;
+            min-width: 120px;
+        }
+
+        .urgence-float-title {
+            font-size: 1rem;
+            font-weight: 700;
+            display: block;
+        }
+
+        .urgence-float-subtitle {
+            font-size: 0.75rem;
+            display: block;
+        }
+
+        .urgence-float-phone {
+            font-size: 0.625rem;
+            margin-top: var(--spacing-1);
+            display: block;
+        }
+
+        /* Animations */
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.8; }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 53%, 80%, 100% { transform: translate3d(0,0,0); }
+            40%, 43% { transform: translate3d(0, -10px, 0); }
+            70% { transform: translate3d(0, -5px, 0); }
+            90% { transform: translate3d(0, -2px, 0); }
+        }
+
+        /* Responsive Design */
+        @media (min-width: 640px) {
+            .cta-group {
+                flex-direction: row;
+            }
+            
+            .trust-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (min-width: 768px) {
+            .nav-menu {
+                display: flex;
+            }
+            
+            .hero-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .footer-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            
+            .trust-grid {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .hero-content h1 {
+                font-size: 3rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .urgence-float {
+                bottom: 10px;
+                right: 10px;
+                padding: var(--spacing-3) var(--spacing-5);
+                min-width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header avec CTA urgence -->
+    <header class="plomberie-header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#accueil" class="logo">
+                    <span class="logo-icon">🔧</span>
+                    PlombiPro
+                </a>
+                
+                <nav class="nav-menu">
+                    <a href="#accueil">Accueil</a>
+                    <a href="#services">Services</a>
+                    <a href="#apropos">À propos</a>
+                    <a href="#contact">Contact</a>
+                </nav>
+                
+                <a href="tel:0145678912" class="urgence-cta">
+                    📞 URGENCE 24h/7j
+                    <small>01 45 67 89 12</small>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Section Hero -->
+    <section id="accueil" class="hero-section">
+        <div class="container">
+            <div class="hero-grid">
+                <div class="hero-content">
+                    <h1>
+                        PlombiPro<br>
+                        <span class="highlight">Plombiers Professionnels</span>
+                    </h1>
+                    
+                    <p class="hero-subtitle">
+                        Intervention rapide 24h/7j • Artisans qualifiés • Devis gratuit
+                    </p>
+                    
+                    <ul class="hero-features">
+                        <li>
+                            <span class="check-icon">✅</span>
+                            Intervention sous 1h en urgence
+                        </li>
+                        <li>
+                            <span class="check-icon">✅</span>
+                            Devis gratuit et transparent
+                        </li>
+                        <li>
+                            <span class="check-icon">✅</span>
+                            Garantie sur tous nos travaux
+                        </li>
+                        <li>
+                            <span class="check-icon">✅</span>
+                            Artisans certifiés et assurés
+                        </li>
+                    </ul>
+                    
+                    <div class="cta-group">
+                        <a href="tel:0145678912" class="cta-primary">
+                            📞 Appeler maintenant
+                        </a>
+                        <a href="#contact" class="cta-secondary">
+                            Demander un devis
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="hero-visual-icon">🔧⚡</div>
+                    <h3>Intervention Express</h3>
+                    <p>Nos plombiers interviennent rapidement partout dans Paris et région parisienne</p>
+                    <div class="trust-badge">
+                        +500 interventions réussies ⭐
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Services -->
+    <section id="services" class="services-section">
+        <div class="container">
+            <h2 class="services-title">Nos Services de Plomberie</h2>
+            
+            <div class="services-grid">
+                <!-- Réparations d'urgence -->
+                <div class="service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3 class="service-title">Réparations d'Urgence</h3>
+                    <p class="service-description">
+                        Fuites, robinetterie, canalisations - Intervention rapide 24h/7j
+                    </p>
+                    <ul class="service-features">
+                        <li><span class="check">✓</span> Diagnostic gratuit</li>
+                        <li><span class="check">✓</span> Réparation immédiate</li>
+                        <li><span class="check">✓</span> Pièces de qualité</li>
+                    </ul>
+                    <a href="tel:0145678912" class="service-cta">Demander un devis</a>
+                </div>
+
+                <!-- Débouchage -->
+                <div class="service-card">
+                    <div class="service-icon">🚿</div>
+                    <h3 class="service-title">Débouchage Canalisations</h3>
+                    <p class="service-description">
+                        Évier, lavabo, WC, douche - Solutions professionnelles garanties
+                    </p>
+                    <ul class="service-features">
+                        <li><span class="check">✓</span> Haute pression</li>
+                        <li><span class="check">✓</span> Caméra d'inspection</li>
+                        <li><span class="check">✓</span> Garantie résultat</li>
+                    </ul>
+                    <a href="tel:0145678912" class="service-cta">Demander un devis</a>
+                </div>
+
+                <!-- Rénovation -->
+                <div class="service-card">
+                    <div class="service-icon">🛁</div>
+                    <h3 class="service-title">Rénovation Salle de Bain</h3>
+                    <p class="service-description">
+                        Installation complète, carrelage, sanitaires - Projet clé en main
+                    </p>
+                    <ul class="service-features">
+                        <li><span class="check">✓</span> Devis détaillé</li>
+                        <li><span class="check">✓</span> Matériaux inclus</li>
+                        <li><span class="check">✓</span> Finitions soignées</li>
+                    </ul>
+                    <a href="tel:0145678912" class="service-cta">Demander un devis</a>
+                </div>
+
+                <!-- Chauffage -->
+                <div class="service-card">
+                    <div class="service-icon">🔥</div>
+                    <h3 class="service-title">Chauffage & Chaudière</h3>
+                    <p class="service-description">
+                        Installation, entretien, dépannage - Toutes énergies
+                    </p>
+                    <ul class="service-features">
+                        <li><span class="check">✓</span> Certifié RGE</li>
+                        <li><span class="check">✓</span> Aides disponibles</li>
+                        <li><span class="check">✓</span> Maintenance incluse</li>
+                    </ul>
+                    <a href="tel:0145678912" class="service-cta">Demander un devis</a>
+                </div>
+
+                <!-- Installation sanitaire -->
+                <div class="service-card">
+                    <div class="service-icon">🚽</div>
+                    <h3 class="service-title">Installation Sanitaire</h3>
+                    <p class="service-description">
+                        WC, lavabo, douche, baignoire - Pose professionnelle
+                    </p>
+                    <ul class="service-features">
+                        <li><span class="check">✓</span> Matériel pro</li>
+                        <li><span class="check">✓</span> Respect des normes</li>
+                        <li><span class="check">✓</span> Garantie installation</li>
+                    </ul>
+                    <a href="tel:0145678912" class="service-cta">Demander un devis</a>
+                </div>
+
+                <!-- Service supplémentaire -->
+                <div class="service-card">
+                    <div class="service-icon">🔍</div>
+                    <h3 class="service-title">Diagnostic & Expertise</h3>
+                    <p class="service-description">
+                        Recherche de fuites, caméra d'inspection, audit complet
+                    </p>
+                    <ul class="service-features">
+                        <li><span class="check">✓</span> Équipement de pointe</li>
+                        <li><span class="check">✓</span> Rapport détaillé</li>
+                        <li><span class="check">✓</span> Solutions préventives</li>
+                    </ul>
+                    <a href="tel:0145678912" class="service-cta">Demander un devis</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Contact -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <!-- Banner urgence -->
+            <div class="urgency-banner">
+                <h3>Urgence plomberie ? Appelez maintenant !</h3>
+                <a href="tel:0145678912" class="phone">📞 01 45 67 89 12</a>
+                <p>24h/7j - Intervention sous 1h</p>
+            </div>
+            
+            <div class="contact-grid">
+                <!-- Informations contact -->
+                <div class="contact-info">
+                    <h3>Contactez-nous</h3>
+                    
+                    <div class="contact-item">
+                        <span class="contact-icon">📞</span>
+                        <div>
+                            <strong>Téléphone</strong><br>
+                            <a href="tel:0145678912" style="color: var(--color-primary); font-weight: 700;">01 45 67 89 12</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <div>
+                            <strong>Email</strong><br>
+                            <a href="mailto:contact@plombipro.fr" style="color: var(--color-primary);">contact@plombipro.fr</a>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <div>
+                            <strong>Adresse</strong><br>
+                            123 Avenue de la République<br>
+                            75011 Paris
+                        </div>
+                    </div>
+                    
+                    <div class="contact-item">
+                        <span class="contact-icon">🕒</span>
+                        <div>
+                            <strong>Horaires</strong><br>
+                            Lun-Ven: 8h-18h<br>
+                            <span style="color: var(--color-urgent-red); font-weight: 700;">Urgence: 24h/7j</span>
+                        </div>
+                    </div>
+
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <div>
+                            <strong>Zone d'intervention</strong><br>
+                            Paris et région parisienne<br>
+                            <small>(75, 77, 78, 91, 92, 93, 94, 95)</small>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Formulaire de contact -->
+                <div class="contact-form">
+                    <h3>Demande de Devis Gratuit</h3>
+                    
+                    <form>
+                        <div class="form-group">
+                            <input type="text" class="form-input" placeholder="Nom et Prénom *" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="tel" class="form-input" placeholder="Téléphone *" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" class="form-input" placeholder="Email">
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="text" class="form-input" placeholder="Adresse du chantier *" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <select class="form-select" required>
+                                <option value="">Type d'intervention *</option>
+                                <option value="reparation">Réparation fuite</option>
+                                <option value="debouchage">Débouchage canalisation</option>
+                                <option value="installation">Installation sanitaire</option>
+                                <option value="renovation">Rénovation salle de bain</option>
+                                <option value="chauffage">Dépannage chauffage</option>
+                                <option value="diagnostic">Diagnostic/Expertise</option>
+                                <option value="autre">Autre</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <p style="font-weight: 600; margin-bottom: var(--spacing-2);">Niveau d'urgence *</p>
+                            <div class="radio-group">
+                                <div class="radio-item">
+                                    <input type="radio" name="urgence" value="normal" id="normal">
+                                    <label for="normal">Non urgent - sous 48h</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" name="urgence" value="urgent" id="urgent">
+                                    <label for="urgent">Urgent - aujourd'hui</label>
+                                </div>
+                                <div class="radio-item">
+                                    <input type="radio" name="urgence" value="immediat" id="immediat">
+                                    <label for="immediat">Très urgent - maintenant</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea class="form-textarea" placeholder="Description du problème"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="submit-button">
+                            🚀 Demander mon devis gratuit
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trust Badges -->
+    <section class="trust-section">
+        <div class="container">
+            <div class="trust-grid">
+                <div class="trust-badge-item">
+                    <div class="trust-badge-icon">🛡️</div>
+                    <h4 class="trust-badge-title">Artisans Assurés</h4>
+                    <p class="trust-badge-subtitle">Responsabilité civile pro</p>
+                </div>
+                <div class="trust-badge-item">
+                    <div class="trust-badge-icon">⭐</div>
+                    <h4 class="trust-badge-title">4.8/5</h4>
+                    <p class="trust-badge-subtitle">+150 avis clients</p>
+                </div>
+                <div class="trust-badge-item">
+                    <div class="trust-badge-icon">🚀</div>
+                    <h4 class="trust-badge-title">Intervention Rapide</h4>
+                    <p class="trust-badge-subtitle">Sous 1h en urgence</p>
+                </div>
+                <div class="trust-badge-item">
+                    <div class="trust-badge-icon">✅</div>
+                    <h4 class="trust-badge-title">Devis Gratuit</h4>
+                    <p class="trust-badge-subtitle">Transparent et détaillé</p>
+                </div>
+                <div class="trust-badge-item">
+                    <div class="trust-badge-icon">🔧</div>
+                    <h4 class="trust-badge-title">Qualifiés RGE</h4>
+                    <p class="trust-badge-subtitle">Certifications reconnues</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>🔧 PlombiPro</h3>
+                    <p>
+                        Votre plombier de confiance Paris et région parisienne. 
+                        Intervention rapide, travail soigné, prix transparents.
+                    </p>
+                    <div class="footer-urgency">
+                        📞 URGENCE 24h/7j<br>
+                        01 45 67 89 12
+                    </div>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Nos Services</h3>
+                    <ul>
+                        <li>• Réparations d'urgence</li>
+                        <li>• Débouchage canalisations</li>
+                        <li>• Rénovation salle de bain</li>
+                        <li>• Chauffage et chaudière</li>
+                        <li>• Installation sanitaire</li>
+                        <li>• Diagnostic et expertise</li>
+                    </ul>
+                </div>
+                
+                <div class="footer-section">
+                    <h3>Zone d'Intervention</h3>
+                    <p>Paris et région parisienne</p>
+                    <ul>
+                        <li>• Paris (75)</li>
+                        <li>• Seine-et-Marne (77)</li>
+                        <li>• Yvelines (78)</li>
+                        <li>• Essonne (91)</li>
+                        <li>• Hauts-de-Seine (92)</li>
+                        <li>• Seine-Saint-Denis (93)</li>
+                        <li>• Val-de-Marne (94)</li>
+                        <li>• Val-d'Oise (95)</li>
+                    </ul>
+                    <p style="margin-top: var(--spacing-4);">
+                        Artisan plombier certifié • Devis gratuit • Garantie travaux
+                    </p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2024 PlombiPro. Tous droits réservés. | Mentions légales | Politique de confidentialité</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bouton urgence flottant -->
+    <a href="tel:0145678912" class="urgence-float">
+        <span class="urgence-float-title">URGENCE</span>
+        <span class="urgence-float-subtitle">24h/7j</span>
+        <span class="urgence-float-phone">☎️ Cliquez pour appeler</span>
+    </a>
+
+    <!-- Scripts -->
+    <script>
+        // Animation du bouton urgence flottant
+        document.addEventListener('DOMContentLoaded', function() {
+            const urgenceButton = document.querySelector('.urgence-float');
+            let hasShown = false;
+            
+            // Afficher le bouton après 50% de scroll
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > window.innerHeight * 0.5 && !hasShown) {
+                    urgenceButton.style.display = 'block';
+                    hasShown = true;
+                }
+            });
+            
+            // Tracking des clics CTA (à connecter avec Google Analytics)
+            document.querySelectorAll('a[href^="tel:"]').forEach(function(link) {
+                link.addEventListener('click', function() {
+                    console.log('CTA Call clicked:', this.href);
+                    // Ici on pourrait ajouter :
+                    // gtag('event', 'phone_call', { phone_number: '0145678912' });
+                    // fbq('track', 'Contact', { content_name: 'phone_call' });
+                });
+            });
+            
+            // Tracking des soumissions de formulaire
+            const contactForm = document.querySelector('form');
+            if (contactForm) {
+                contactForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    console.log('Contact form submitted');
+                    
+                    // Ici on traiterait la soumission du formulaire
+                    alert('Votre demande a été envoyée ! Nous vous recontactons sous 15 minutes.');
+                    
+                    // Reset du formulaire
+                    this.reset();
+                });
+            }
+            
+            // Smooth scroll pour la navigation
+            document.querySelectorAll('a[href^="#"]').forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const target = document.querySelector(targetId);
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                });
+            });
+
+            // Exit intent detection pour afficher une popup d'urgence
+            let exitIntentShown = false;
+            document.addEventListener('mouseleave', function(e) {
+                if (e.clientY <= 0 && !exitIntentShown) {
+                    exitIntentShown = true;
+                    if (confirm('Urgence plomberie ? Appelez maintenant le 01 45 67 89 12 !')) {
+                        window.location.href = 'tel:0145678912';
+                    }
+                }
+            });
+
+            // Auto-focus sur le champ téléphone si params URL indique urgence
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('urgence') === 'true') {
+                const phoneInput = document.querySelector('input[type="tel"]');
+                if (phoneInput) {
+                    phoneInput.focus();
+                    phoneInput.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    </script>
+
+    <!-- Google Analytics (à activer en production) -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'GA_MEASUREMENT_ID');
+    </script>
+    -->
+
+    <!-- Facebook Pixel (à activer en production) -->
+    <!--
+    <script>
+        !function(f,b,e,v,n,t,s)
+        {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+        n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+        if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+        n.queue=[];t=b.createElement(e);t.async=!0;
+        t.src=v;s=b.getElementsByTagName(e)[0];
+        s.parentNode.insertBefore(t,s)}(window,document,'script',
+        'https://connect.facebook.net/en_US/fbevents.js');
+        fbq('init', 'FB_PIXEL_ID');
+        fbq('track', 'PageView');
+    </script>
+    -->
+</body>
+</html>

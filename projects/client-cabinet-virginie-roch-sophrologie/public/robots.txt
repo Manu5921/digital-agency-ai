@@ -1,0 +1,16 @@
+User-agent: *
+Allow: /
+
+# Optimisé pour SEO par Digital Agency AI
+Sitemap: https://[DOMAIN]/sitemap.xml
+
+# Désallow admin et API
+Disallow: /api/
+Disallow: /admin/
+Disallow: /_next/
+
+# Allow images et assets
+Allow: /images/
+Allow: /assets/
+Allow: *.css
+Allow: *.js

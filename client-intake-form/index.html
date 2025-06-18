@@ -1,0 +1,840 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulaire Intelligent - Génération de Site Web | Digital Agency AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .progress-bar { transition: width 0.3s ease; }
+        .section-card { animation: fadeInUp 0.5s ease-out; }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-4xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
+                        <i data-lucide="zap" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-900">Digital Agency AI</h1>
+                        <p class="text-sm text-gray-600">Génération intelligente de sites web</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm font-medium text-gray-900">Formulaire Intelligent</p>
+                    <p class="text-xs text-gray-500">~10 minutes pour un site complet</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Progress Bar -->
+    <div class="bg-white border-b">
+        <div class="max-w-4xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between mb-2">
+                <span class="text-sm font-medium text-gray-700" id="progress-text">Section 1 sur 7</span>
+                <span class="text-sm text-gray-500" id="progress-percentage">14%</span>
+            </div>
+            <div class="w-full bg-gray-200 rounded-full h-2">
+                <div class="progress-bar bg-gradient-to-r from-blue-600 to-indigo-600 h-2 rounded-full" style="width: 14%" id="progress-bar"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <main class="max-w-4xl mx-auto px-6 py-8">
+        <form id="client-intake-form" class="space-y-8">
+            
+            <!-- Section A: Informations Entreprise -->
+            <section class="section-card bg-white rounded-2xl p-8 shadow-lg border" data-section="1">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-8 h-8 bg-blue-100 rounded-lg flex items-center justify-center">
+                        <i data-lucide="building-2" class="w-5 h-5 text-blue-600"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900">Informations sur votre entreprise</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Nom de votre entreprise/marque *
+                        </label>
+                        <input type="text" name="businessName" required 
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               placeholder="Ex: FitCoach Pro, Restaurant Le Jardin...">
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Secteur d'activité *
+                        </label>
+                        <select name="businessSector" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="">Sélectionnez votre secteur</option>
+                            <option value="fitness">Fitness & Sport</option>
+                            <option value="restaurant">Restaurant & Gastronomie</option>
+                            <option value="sante">Santé & Bien-être</option>
+                            <option value="beaute">Beauté & Esthétique</option>
+                            <option value="immobilier">Immobilier</option>
+                            <option value="education">Éducation & Formation</option>
+                            <option value="technologie">Technologie & Digital</option>
+                            <option value="artisanat">Artisanat & Services</option>
+                            <option value="commerce">Commerce & Retail</option>
+                            <option value="finance">Finance & Conseil</option>
+                            <option value="autre">Autre secteur</option>
+                        </select>
+                    </div>
+
+                    <div class="md:col-span-2">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Décrivez votre entreprise en quelques phrases (votre "pitch") *
+                        </label>
+                        <textarea name="businessPitch" rows="4" required
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                  placeholder="Ex: Nous sommes un studio de coaching fitness personnalisé pour professionnels actifs. Nous proposons des séances individuelles et des plans nutrition adaptés aux emplois du temps chargés..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Budget approximatif *
+                        </label>
+                        <select name="budget" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="">Sélectionnez votre budget</option>
+                            <option value="startup">Moins de 1000€ (Startup)</option>
+                            <option value="small">1000€ - 3000€ (Standard)</option>
+                            <option value="medium">3000€ - 5000€ (Premium)</option>
+                            <option value="large">Plus de 5000€ (Enterprise)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Délai souhaité *
+                        </label>
+                        <select name="timeline" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="">Sélectionnez le délai</option>
+                            <option value="urgent">Urgent (48h)</option>
+                            <option value="week">1 semaine</option>
+                            <option value="2weeks">2 semaines</option>
+                            <option value="month">1 mois</option>
+                            <option value="flexible">Flexible</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="flex justify-end pt-6 border-t mt-8">
+                    <button type="button" onclick="nextSection()" 
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors">
+                        Continuer
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2 inline"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Section B: Public Cible -->
+            <section class="section-card bg-white rounded-2xl p-8 shadow-lg border hidden" data-section="2">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                        <i data-lucide="users" class="w-5 h-5 text-green-600"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900">Votre public cible</h2>
+                </div>
+
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Qui sont vos clients idéaux ? *
+                        </label>
+                        <textarea name="targetAudience" rows="4" required
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                  placeholder="Ex: Femmes et hommes de 30-45 ans, cadres supérieurs, revenus élevés, manque de temps pour le sport, soucieux de leur santé..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Quel problème principal résolvez-vous pour vos clients ? *
+                        </label>
+                        <textarea name="problemSolved" rows="3" required
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                  placeholder="Ex: Manque de temps pour faire du sport, difficulté à maintenir une routine fitness, besoin d'un suivi personnalisé..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Qu'est-ce qui motive vos clients à choisir votre solution ? *
+                        </label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="clientMotivation" value="time" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Gagner du temps</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="clientMotivation" value="money" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Économiser de l'argent</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="clientMotivation" value="health" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Améliorer leur bien-être</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="clientMotivation" value="results" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Obtenir des résultats</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="clientMotivation" value="expertise" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Expertise professionnelle</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="clientMotivation" value="convenience" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Praticité / Simplicité</span>
+                            </label>
+                        </div>
+                        <div class="mt-3">
+                            <input type="text" name="clientMotivationOther" placeholder="Autre motivation..."
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between pt-6 border-t mt-8">
+                    <button type="button" onclick="prevSection()" 
+                            class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-8 py-3 rounded-lg font-medium transition-colors">
+                        <i data-lucide="arrow-left" class="w-4 h-4 mr-2 inline"></i>
+                        Précédent
+                    </button>
+                    <button type="button" onclick="nextSection()" 
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors">
+                        Continuer
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2 inline"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Section C: Concurrence & Différenciation -->
+            <section class="section-card bg-white rounded-2xl p-8 shadow-lg border hidden" data-section="3">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-8 h-8 bg-purple-100 rounded-lg flex items-center justify-center">
+                        <i data-lucide="trending-up" class="w-5 h-5 text-purple-600"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900">Concurrence & différenciation</h2>
+                </div>
+
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Principaux concurrents (2-3 max)
+                        </label>
+                        <textarea name="competitors" rows="3"
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                  placeholder="Ex: BasicFit (salle low-cost), L'Orange Bleue (coaching semi-personnalisé), coachs indépendants locaux..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Qu'est-ce qui vous différencie ? (Votre avantage unique) *
+                        </label>
+                        <textarea name="uniqueValue" rows="4" required
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                  placeholder="Ex: Seul coach certifié STAPS avec spécialisation nutrition dans le 16ème. Horaires flexibles 6h-21h. Suivi 24/7 par WhatsApp. Méthode exclusive pour professionnels..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Marques que vous admirez (inspiration)
+                        </label>
+                        <textarea name="brandInspiration" rows="2"
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                  placeholder="Ex: Nike (motivation), Apple (simplicité), Tesla (innovation)..."></textarea>
+                    </div>
+                </div>
+
+                <div class="flex justify-between pt-6 border-t mt-8">
+                    <button type="button" onclick="prevSection()" 
+                            class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-8 py-3 rounded-lg font-medium transition-colors">
+                        <i data-lucide="arrow-left" class="w-4 h-4 mr-2 inline"></i>
+                        Précédent
+                    </button>
+                    <button type="button" onclick="nextSection()" 
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors">
+                        Continuer
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2 inline"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Section D: Personnalité & Ton -->
+            <section class="section-card bg-white rounded-2xl p-8 shadow-lg border hidden" data-section="4">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-8 h-8 bg-orange-100 rounded-lg flex items-center justify-center">
+                        <i data-lucide="message-circle" class="w-5 h-5 text-orange-600"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900">Personnalité & ton de voix</h2>
+                </div>
+
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-3">
+                            Personnalité de votre marque (3-5 adjectifs) *
+                        </label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="brandPersonality" value="innovante" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Innovante</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="brandPersonality" value="fiable" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Fiable</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="brandPersonality" value="chaleureuse" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Chaleureuse</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="brandPersonality" value="audacieuse" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Audacieuse</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="brandPersonality" value="sophistiquee" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Sophistiquée</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="brandPersonality" value="accessible" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Accessible</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="brandPersonality" value="professionnelle" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Professionnelle</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="brandPersonality" value="dynamique" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Dynamique</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="brandPersonality" value="authentique" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Authentique</span>
+                            </label>
+                        </div>
+                        <div class="mt-3">
+                            <input type="text" name="brandPersonalityOther" placeholder="Autres adjectifs..."
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Ton de voix principal *
+                        </label>
+                        <select name="toneOfVoice" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="">Sélectionnez le ton</option>
+                            <option value="amical">Amical et accessible</option>
+                            <option value="expert">Expert et formel</option>
+                            <option value="inspirant">Inspirant et motivant</option>
+                            <option value="ludique">Ludique et décalé</option>
+                            <option value="serieux">Sérieux et factuel</option>
+                            <option value="technique">Technique et précis</option>
+                            <option value="simple">Simple et direct</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Jargon/expressions spécifiques à utiliser
+                        </label>
+                        <textarea name="specificTerms" rows="2"
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                  placeholder="Ex: transformation physique, objectifs fitness, bilan corporel..."></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Mots/ton à éviter absolument
+                        </label>
+                        <textarea name="avoidTerms" rows="2"
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                  placeholder="Ex: régime, diet, perte de poids rapide..."></textarea>
+                    </div>
+                </div>
+
+                <div class="flex justify-between pt-6 border-t mt-8">
+                    <button type="button" onclick="prevSection()" 
+                            class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-8 py-3 rounded-lg font-medium transition-colors">
+                        <i data-lucide="arrow-left" class="w-4 h-4 mr-2 inline"></i>
+                        Précédent
+                    </button>
+                    <button type="button" onclick="nextSection()" 
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors">
+                        Continuer
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2 inline"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Section E: Préférences Visuelles -->
+            <section class="section-card bg-white rounded-2xl p-8 shadow-lg border hidden" data-section="5">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-8 h-8 bg-pink-100 rounded-lg flex items-center justify-center">
+                        <i data-lucide="palette" class="w-5 h-5 text-pink-600"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900">Préférences visuelles</h2>
+                </div>
+
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Couleurs préférées pour votre marque *
+                        </label>
+                        <div class="grid grid-cols-4 gap-3 mb-3">
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="preferredColors" value="bleu" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Bleu</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="preferredColors" value="rouge" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Rouge</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="preferredColors" value="vert" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Vert</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="preferredColors" value="orange" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Orange</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="preferredColors" value="violet" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Violet</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="preferredColors" value="noir" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Noir</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="preferredColors" value="or" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Or</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="preferredColors" value="rose" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Rose</span>
+                            </label>
+                        </div>
+                        <textarea name="colorDescription" rows="2"
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                  placeholder="Décrivez l'ambiance colorée souhaitée (ex: tons chauds et énergiques, palette épurée et moderne...)"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Couleurs à éviter
+                        </label>
+                        <input type="text" name="avoidColors"
+                               class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                               placeholder="Ex: rose, couleurs criardes, trop de couleurs vives...">
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Style d'images/photos préféré *
+                        </label>
+                        <select name="imageStyle" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="">Sélectionnez le style</option>
+                            <option value="lumineux">Lumineux et épuré</option>
+                            <option value="sombre">Sombre et sophistiqué</option>
+                            <option value="authentique">Authentique et naturel</option>
+                            <option value="dynamique">Dynamique et coloré</option>
+                            <option value="minimaliste">Minimaliste et abstrait</option>
+                            <option value="illustrations">Illustrations</option>
+                            <option value="personnes">Photos de personnes</option>
+                            <option value="produits">Photos de produits</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Style de polices *
+                        </label>
+                        <select name="fontStyle" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="">Sélectionnez le style</option>
+                            <option value="moderne">Modernes et simples (sans-serif)</option>
+                            <option value="classique">Classiques et élégantes (serif)</option>
+                            <option value="manuscrite">Manuscrites et créatives</option>
+                            <option value="industrielle">Industrielles et audacieuses</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Avez-vous un logo existant ?
+                        </label>
+                        <div class="flex items-center space-x-4">
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="hasLogo" value="yes" class="text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Oui</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="hasLogo" value="no" class="text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Non</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="radio" name="hasLogo" value="partial" class="text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">En cours de création</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between pt-6 border-t mt-8">
+                    <button type="button" onclick="prevSection()" 
+                            class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-8 py-3 rounded-lg font-medium transition-colors">
+                        <i data-lucide="arrow-left" class="w-4 h-4 mr-2 inline"></i>
+                        Précédent
+                    </button>
+                    <button type="button" onclick="nextSection()" 
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors">
+                        Continuer
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2 inline"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Section F: Fonctionnalités -->
+            <section class="section-card bg-white rounded-2xl p-8 shadow-lg border hidden" data-section="6">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center">
+                        <i data-lucide="settings" class="w-5 h-5 text-indigo-600"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900">Fonctionnalités souhaitées</h2>
+                </div>
+
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-3">
+                            Fonctionnalités essentielles *
+                        </label>
+                        <div class="grid grid-cols-2 gap-3">
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="features" value="contact" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Formulaire de contact</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="features" value="booking" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Réservation en ligne</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="features" value="ecommerce" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">E-commerce</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="features" value="blog" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Blog/actualités</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="features" value="gallery" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Galerie photos</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="features" value="testimonials" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Témoignages clients</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="features" value="map" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Carte interactive</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="features" value="chat" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Chat en ligne</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="features" value="newsletter" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Newsletter</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="features" value="multilingual" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Multi-langues</span>
+                            </label>
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Objectif principal du site *
+                        </label>
+                        <select name="websiteGoal" required 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="">Sélectionnez l'objectif</option>
+                            <option value="leads">Générer des prospects/demandes</option>
+                            <option value="sales">Vendre des produits/services</option>
+                            <option value="information">Fournir de l'information</option>
+                            <option value="branding">Asseoir la notoriété</option>
+                            <option value="community">Créer une communauté</option>
+                            <option value="recruitment">Recruter</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Contenus existants
+                        </label>
+                        <select name="existingContent" 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="">Sélectionnez votre situation</option>
+                            <option value="complete">Oui, tout prêt (textes, images, vidéos)</option>
+                            <option value="partial">Partiellement (quelques éléments)</option>
+                            <option value="help">Non, besoin d'aide pour créer</option>
+                            <option value="create">À créer entièrement</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Langues du site
+                        </label>
+                        <div class="grid grid-cols-3 gap-3">
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="languages" value="fr" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Français</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="languages" value="en" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Anglais</span>
+                            </label>
+                            <label class="flex items-center space-x-2">
+                                <input type="checkbox" name="languages" value="es" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                <span class="text-sm">Espagnol</span>
+                            </label>
+                        </div>
+                        <div class="mt-3">
+                            <input type="text" name="otherLanguages" placeholder="Autres langues..."
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex justify-between pt-6 border-t mt-8">
+                    <button type="button" onclick="prevSection()" 
+                            class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-8 py-3 rounded-lg font-medium transition-colors">
+                        <i data-lucide="arrow-left" class="w-4 h-4 mr-2 inline"></i>
+                        Précédent
+                    </button>
+                    <button type="button" onclick="nextSection()" 
+                            class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium transition-colors">
+                        Continuer
+                        <i data-lucide="arrow-right" class="w-4 h-4 ml-2 inline"></i>
+                    </button>
+                </div>
+            </section>
+
+            <!-- Section G: Contact & Validation -->
+            <section class="section-card bg-white rounded-2xl p-8 shadow-lg border hidden" data-section="7">
+                <div class="flex items-center space-x-3 mb-6">
+                    <div class="w-8 h-8 bg-green-100 rounded-lg flex items-center justify-center">
+                        <i data-lucide="check-circle" class="w-5 h-5 text-green-600"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-gray-900">Contact & finalisation</h2>
+                </div>
+
+                <div class="space-y-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Email principal *
+                            </label>
+                            <input type="email" name="email" required 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                   placeholder="votre@email.com">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">
+                                Téléphone
+                            </label>
+                            <input type="tel" name="phone" 
+                                   class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                   placeholder="06 12 34 56 78">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Adresse physique (si pertinent)
+                        </label>
+                        <textarea name="address" rows="2"
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                  placeholder="45 Avenue de la Grande Armée, 75116 Paris"></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Processus de validation souhaité
+                        </label>
+                        <select name="validationProcess" 
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                            <option value="each">Validation à chaque étape (Design → WebDev → SEO → Déploiement)</option>
+                            <option value="final">Validation finale seulement (site complet)</option>
+                            <option value="auto">Automatique complet (je fais confiance)</option>
+                        </select>
+                    </div>
+
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">
+                            Informations complémentaires
+                        </label>
+                        <textarea name="additionalInfo" rows="3"
+                                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                                  placeholder="Toute information importante que nous devons connaître..."></textarea>
+                    </div>
+                </div>
+
+                <div class="flex justify-between pt-6 border-t mt-8">
+                    <button type="button" onclick="prevSection()" 
+                            class="bg-gray-100 hover:bg-gray-200 text-gray-700 px-8 py-3 rounded-lg font-medium transition-colors">
+                        <i data-lucide="arrow-left" class="w-4 h-4 mr-2 inline"></i>
+                        Précédent
+                    </button>
+                    <button type="submit" id="submit-button"
+                            class="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-8 py-3 rounded-lg font-medium transition-all">
+                        <i data-lucide="rocket" class="w-4 h-4 mr-2 inline"></i>
+                        Lancer la Génération
+                    </button>
+                </div>
+            </section>
+
+        </form>
+
+        <!-- Loading State -->
+        <div id="loading-state" class="hidden text-center py-16">
+            <div class="bg-white rounded-2xl p-12 shadow-lg border">
+                <div class="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center mx-auto mb-6">
+                    <div class="w-8 h-8 border-3 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                </div>
+                <h3 class="text-2xl font-bold text-gray-900 mb-4">Génération en cours...</h3>
+                <p class="text-gray-600 mb-6">Nos agents IA travaillent sur votre site web</p>
+                <div class="space-y-3">
+                    <div class="flex items-center justify-center space-x-3">
+                        <div class="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
+                        <span class="text-sm text-gray-700">Agent Design : Analyse et création du design</span>
+                    </div>
+                    <div class="flex items-center justify-center space-x-3">
+                        <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+                        <span class="text-sm text-gray-500">Agent WebDev : Transformation en Next.js</span>
+                    </div>
+                    <div class="flex items-center justify-center space-x-3">
+                        <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+                        <span class="text-sm text-gray-500">Agent SEO : Optimisation référencement</span>
+                    </div>
+                    <div class="flex items-center justify-center space-x-3">
+                        <div class="w-2 h-2 bg-gray-300 rounded-full"></div>
+                        <span class="text-sm text-gray-500">Agent TechOps : Déploiement Vercel</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <script>
+        // Initialize Lucide icons
+        lucide.createIcons();
+
+        let currentSection = 1;
+        const totalSections = 7;
+
+        function updateProgress() {
+            const percentage = Math.round((currentSection / totalSections) * 100);
+            document.getElementById('progress-bar').style.width = percentage + '%';
+            document.getElementById('progress-text').textContent = `Section ${currentSection} sur ${totalSections}`;
+            document.getElementById('progress-percentage').textContent = percentage + '%';
+        }
+
+        function showSection(sectionNumber) {
+            // Hide all sections
+            document.querySelectorAll('[data-section]').forEach(section => {
+                section.classList.add('hidden');
+            });
+            
+            // Show current section
+            document.querySelector(`[data-section="${sectionNumber}"]`).classList.remove('hidden');
+            
+            currentSection = sectionNumber;
+            updateProgress();
+        }
+
+        function nextSection() {
+            if (currentSection < totalSections) {
+                showSection(currentSection + 1);
+            }
+        }
+
+        function prevSection() {
+            if (currentSection > 1) {
+                showSection(currentSection - 1);
+            }
+        }
+
+        // Form submission
+        document.getElementById('client-intake-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Hide form and show loading
+            document.querySelector('form').classList.add('hidden');
+            document.getElementById('loading-state').classList.remove('hidden');
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const clientData = {};
+            
+            // Convert FormData to object
+            for (let [key, value] of formData.entries()) {
+                if (clientData[key]) {
+                    if (Array.isArray(clientData[key])) {
+                        clientData[key].push(value);
+                    } else {
+                        clientData[key] = [clientData[key], value];
+                    }
+                } else {
+                    clientData[key] = value;
+                }
+            }
+            
+            // Handle checkboxes
+            document.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+                const name = checkbox.name;
+                const value = checkbox.value;
+                if (!clientData[name]) clientData[name] = [];
+                if (Array.isArray(clientData[name])) {
+                    if (!clientData[name].includes(value)) {
+                        clientData[name].push(value);
+                    }
+                } else {
+                    clientData[name] = [clientData[name], value];
+                }
+            });
+            
+            console.log('Client Data:', clientData);
+            
+            // Simulate processing (replace with actual API call)
+            setTimeout(() => {
+                alert('Formulaire soumis avec succès ! Notre équipe d\'agents IA va commencer la génération de votre site.');
+            }, 3000);
+        });
+
+        // Initialize
+        updateProgress();
+    </script>
+</body>
+</html>

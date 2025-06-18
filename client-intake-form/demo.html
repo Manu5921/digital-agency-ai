@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demo - Formulaire Intelligent + Génération Site | Digital Agency AI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .progress-bar { transition: width 0.3s ease; }
+        .agent-card { transition: all 0.3s ease; }
+        .pulse-animation { animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite; }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen">
+    
+    <!-- Header -->
+    <header class="bg-white shadow-sm border-b">
+        <div class="max-w-6xl mx-auto px-6 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                    <div class="w-10 h-10 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
+                        <i data-lucide="zap" class="w-6 h-6 text-white"></i>
+                    </div>
+                    <div>
+                        <h1 class="text-xl font-bold text-gray-900">Digital Agency AI</h1>
+                        <p class="text-sm text-gray-600">Demo - Génération Intelligente</p>
+                    </div>
+                </div>
+                <div class="text-right">
+                    <p class="text-sm font-medium text-gray-900">Mode Demo</p>
+                    <p class="text-xs text-gray-500">Formulaire + 4 Agents IA</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-6xl mx-auto px-6 py-8">
+        
+        <!-- Demo Controls -->
+        <div class="bg-white rounded-2xl p-6 mb-8 shadow-lg border">
+            <h2 class="text-2xl font-bold text-gray-900 mb-4">🎬 Demo - Génération Automatique de Site</h2>
+            <p class="text-gray-600 mb-6">
+                Testez le formulaire intelligent et visualisez le travail des 4 agents IA en temps réel.
+            </p>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <!-- Exemple Fitness Coach -->
+                <button onclick="loadFitnessExample()" 
+                        class="bg-gradient-to-r from-orange-500 to-orange-600 text-white p-4 rounded-lg hover:from-orange-600 hover:to-orange-700 transition-all">
+                    <div class="flex items-center space-x-3">
+                        <i data-lucide="dumbbell" class="w-6 h-6"></i>
+                        <div class="text-left">
+                            <div class="font-semibold">Coach Sportif</div>
+                            <div class="text-sm opacity-90">Exemple: Sarah Martin Fitness</div>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Exemple Restaurant -->
+                <button onclick="loadRestaurantExample()" 
+                        class="bg-gradient-to-r from-red-500 to-red-600 text-white p-4 rounded-lg hover:from-red-600 hover:to-red-700 transition-all">
+                    <div class="flex items-center space-x-3">
+                        <i data-lucide="chef-hat" class="w-6 h-6"></i>
+                        <div class="text-left">
+                            <div class="font-semibold">Restaurant</div>
+                            <div class="text-sm opacity-90">Exemple: Le Bistrot Moderne</div>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Exemple Artisan -->
+                <button onclick="loadArtisanExample()" 
+                        class="bg-gradient-to-r from-amber-500 to-amber-600 text-white p-4 rounded-lg hover:from-amber-600 hover:to-amber-700 transition-all">
+                    <div class="flex items-center space-x-3">
+                        <i data-lucide="hammer" class="w-6 h-6"></i>
+                        <div class="text-left">
+                            <div class="font-semibold">Artisan</div>
+                            <div class="text-sm opacity-90">Exemple: Menuiserie Deluxe</div>
+                        </div>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <!-- Quick Form (Simulation) -->
+        <div id="quick-form" class="bg-white rounded-2xl p-8 shadow-lg border mb-8">
+            <h3 class="text-xl font-bold text-gray-900 mb-6">⚡ Formulaire Rapide (Demo)</h3>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Nom entreprise</label>
+                    <input type="text" id="demo-business-name" placeholder="Ex: Sarah Martin Fitness"
+                           class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Secteur</label>
+                    <select id="demo-sector" 
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent">
+                        <option value="">Sélectionnez</option>
+                        <option value="fitness">Fitness & Sport</option>
+                        <option value="restaurant">Restaurant</option>
+                        <option value="artisanat">Artisanat</option>
+                        <option value="sante">Santé & Bien-être</option>
+                        <option value="beaute">Beauté</option>
+                    </select>
+                </div>
+                
+                <div class="md:col-span-2">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Description rapide</label>
+                    <textarea id="demo-description" rows="3" 
+                              placeholder="Ex: Coach fitness certifié spécialisé dans l'accompagnement de professionnels actifs..."
+                              class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
+                </div>
+            </div>
+            
+            <div class="mt-6">
+                <button onclick="startGeneration()" 
+                        class="bg-gradient-to-r from-green-600 to-green-700 hover:from-green-700 hover:to-green-800 text-white px-8 py-3 rounded-lg font-medium transition-all">
+                    <i data-lucide="rocket" class="w-4 h-4 mr-2 inline"></i>
+                    Générer le Site (Demo)
+                </button>
+            </div>
+        </div>
+
+        <!-- Agents Dashboard -->
+        <div id="agents-dashboard" class="hidden">
+            <div class="bg-white rounded-2xl p-8 shadow-lg border mb-8">
+                <h3 class="text-xl font-bold text-gray-900 mb-6">🤖 Tableau de Bord des Agents IA</h3>
+                
+                <!-- Progress Global -->
+                <div class="mb-8">
+                    <div class="flex items-center justify-between mb-2">
+                        <span class="text-sm font-medium text-gray-700">Progression Globale</span>
+                        <span class="text-sm text-gray-500" id="overall-progress">0%</span>
+                    </div>
+                    <div class="w-full bg-gray-200 rounded-full h-3">
+                        <div class="progress-bar bg-gradient-to-r from-blue-600 to-indigo-600 h-3 rounded-full" 
+                             style="width: 0%" id="overall-progress-bar"></div>
+                    </div>
+                </div>
+
+                <!-- Agents Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    
+                    <!-- Agent Design -->
+                    <div class="agent-card bg-purple-50 border-2 border-purple-200 rounded-xl p-6" id="agent-design">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center">
+                                <i data-lucide="palette" class="w-6 h-6 text-purple-600"></i>
+                            </div>
+                            <div class="text-xs font-medium px-2 py-1 bg-gray-100 text-gray-600 rounded-full" id="design-status">
+                                En attente
+                            </div>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Agent Design</h4>
+                        <p class="text-sm text-gray-600 mb-4">Analyse secteur et création design</p>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs">
+                                <span>Progression</span>
+                                <span id="design-progress">0%</span>
+                            </div>
+                            <div class="w-full bg-purple-200 rounded-full h-2">
+                                <div class="bg-purple-600 h-2 rounded-full transition-all duration-300" 
+                                     style="width: 0%" id="design-progress-bar"></div>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-xs text-gray-500" id="design-current">-</div>
+                    </div>
+
+                    <!-- Agent WebDev -->
+                    <div class="agent-card bg-blue-50 border-2 border-blue-200 rounded-xl p-6" id="agent-webdev">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center">
+                                <i data-lucide="code" class="w-6 h-6 text-blue-600"></i>
+                            </div>
+                            <div class="text-xs font-medium px-2 py-1 bg-gray-100 text-gray-600 rounded-full" id="webdev-status">
+                                En attente
+                            </div>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Agent WebDev</h4>
+                        <p class="text-sm text-gray-600 mb-4">Transformation Next.js</p>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs">
+                                <span>Progression</span>
+                                <span id="webdev-progress">0%</span>
+                            </div>
+                            <div class="w-full bg-blue-200 rounded-full h-2">
+                                <div class="bg-blue-600 h-2 rounded-full transition-all duration-300" 
+                                     style="width: 0%" id="webdev-progress-bar"></div>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-xs text-gray-500" id="webdev-current">-</div>
+                    </div>
+
+                    <!-- Agent SEO -->
+                    <div class="agent-card bg-green-50 border-2 border-green-200 rounded-xl p-6" id="agent-seo">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center">
+                                <i data-lucide="search" class="w-6 h-6 text-green-600"></i>
+                            </div>
+                            <div class="text-xs font-medium px-2 py-1 bg-gray-100 text-gray-600 rounded-full" id="seo-status">
+                                En attente
+                            </div>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Agent SEO</h4>
+                        <p class="text-sm text-gray-600 mb-4">Optimisation référencement</p>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs">
+                                <span>Progression</span>
+                                <span id="seo-progress">0%</span>
+                            </div>
+                            <div class="w-full bg-green-200 rounded-full h-2">
+                                <div class="bg-green-600 h-2 rounded-full transition-all duration-300" 
+                                     style="width: 0%" id="seo-progress-bar"></div>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-xs text-gray-500" id="seo-current">-</div>
+                    </div>
+
+                    <!-- Agent TechOps -->
+                    <div class="agent-card bg-orange-50 border-2 border-orange-200 rounded-xl p-6" id="agent-techops">
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center">
+                                <i data-lucide="server" class="w-6 h-6 text-orange-600"></i>
+                            </div>
+                            <div class="text-xs font-medium px-2 py-1 bg-gray-100 text-gray-600 rounded-full" id="techops-status">
+                                En attente
+                            </div>
+                        </div>
+                        <h4 class="font-bold text-gray-900 mb-2">Agent TechOps</h4>
+                        <p class="text-sm text-gray-600 mb-4">Déploiement Vercel</p>
+                        <div class="space-y-2">
+                            <div class="flex justify-between text-xs">
+                                <span>Progression</span>
+                                <span id="techops-progress">0%</span>
+                            </div>
+                            <div class="w-full bg-orange-200 rounded-full h-2">
+                                <div class="bg-orange-600 h-2 rounded-full transition-all duration-300" 
+                                     style="width: 0%" id="techops-progress-bar"></div>
+                            </div>
+                        </div>
+                        <div class="mt-3 text-xs text-gray-500" id="techops-current">-</div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Results -->
+        <div id="results-section" class="hidden">
+            <div class="bg-gradient-to-r from-green-500 to-green-600 rounded-2xl p-8 text-white mb-8">
+                <div class="flex items-center space-x-4 mb-6">
+                    <div class="w-12 h-12 bg-white bg-opacity-20 rounded-xl flex items-center justify-center">
+                        <i data-lucide="check-circle" class="w-8 h-8"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-2xl font-bold">Site Généré avec Succès ! 🚀</h3>
+                        <p class="text-green-100">Votre site web est maintenant en ligne et optimisé</p>
+                    </div>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="bg-white bg-opacity-10 rounded-lg p-4">
+                        <div class="text-sm text-green-100 mb-1">URL du site</div>
+                        <div class="font-semibold" id="site-url">https://exemple.vercel.app</div>
+                    </div>
+                    <div class="bg-white bg-opacity-10 rounded-lg p-4">
+                        <div class="text-sm text-green-100 mb-1">Temps de génération</div>
+                        <div class="font-semibold" id="generation-time">8 min 30s</div>
+                    </div>
+                    <div class="bg-white bg-opacity-10 rounded-lg p-4">
+                        <div class="text-sm text-green-100 mb-1">Score Performance</div>
+                        <div class="font-semibold" id="performance-score">95/100</div>
+                    </div>
+                </div>
+                
+                <div class="mt-6 flex space-x-4">
+                    <a href="#" target="_blank" id="visit-site"
+                       class="bg-white text-green-600 px-6 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors">
+                        <i data-lucide="external-link" class="w-4 h-4 mr-2 inline"></i>
+                        Visiter le Site
+                    </a>
+                    <button onclick="resetDemo()" 
+                            class="bg-white bg-opacity-20 text-white px-6 py-3 rounded-lg font-semibold hover:bg-opacity-30 transition-colors">
+                        <i data-lucide="refresh-cw" class="w-4 h-4 mr-2 inline"></i>
+                        Nouveau Test
+                    </button>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Scripts -->
+    <script src="form-processor.js"></script>
+    <script src="agent-coordinator.js"></script>
+    <script>
+        // Initialize
+        lucide.createIcons();
+        
+        const processor = new ClientFormProcessor();
+        const coordinator = new AgentCoordinator();
+        
+        // Setup callbacks
+        coordinator.setProgressCallback(updateAgentProgress);
+        coordinator.setCompleteCallback(showResults);
+
+        // Example data
+        const examples = {
+            fitness: {
+                businessName: "Sarah Martin Fitness",
+                businessSector: "fitness",
+                businessPitch: "Coach fitness certifié spécialisé dans l'accompagnement de professionnels actifs. Séances individuelles et plans nutrition adaptés aux emplois du temps chargés.",
+                budget: "medium",
+                timeline: "week"
+            },
+            restaurant: {
+                businessName: "Le Bistrot Moderne",
+                businessSector: "restaurant",
+                businessPitch: "Restaurant gastronomique proposant une cuisine française moderne avec des produits de saison. Ambiance chaleureuse au cœur de Paris.",
+                budget: "medium",
+                timeline: "2weeks"
+            },
+            artisanat: {
+                businessName: "Menuiserie Deluxe",
+                businessSector: "artisanat",
+                businessPitch: "Menuiserie artisanale spécialisée dans la création de meubles sur-mesure et la rénovation. Savoir-faire traditionnel et matériaux nobles.",
+                budget: "small",
+                timeline: "month"
+            }
+        };
+
+        function loadFitnessExample() {
+            loadExample(examples.fitness);
+        }
+
+        function loadRestaurantExample() {
+            loadExample(examples.restaurant);
+        }
+
+        function loadArtisanExample() {
+            loadExample(examples.artisanat);
+        }
+
+        function loadExample(data) {
+            document.getElementById('demo-business-name').value = data.businessName;
+            document.getElementById('demo-sector').value = data.businessSector;
+            document.getElementById('demo-description').value = data.businessPitch;
+        }
+
+        async function startGeneration() {
+            const businessName = document.getElementById('demo-business-name').value;
+            const sector = document.getElementById('demo-sector').value;
+            const description = document.getElementById('demo-description').value;
+
+            if (!businessName || !sector || !description) {
+                alert('Veuillez remplir tous les champs ou utiliser un exemple');
+                return;
+            }
+
+            // Hide form, show dashboard
+            document.getElementById('quick-form').classList.add('hidden');
+            document.getElementById('agents-dashboard').classList.remove('hidden');
+
+            // Create mock client data
+            const mockData = {
+                businessName: businessName,
+                businessSector: sector,
+                businessPitch: description,
+                budget: 'medium',
+                timeline: 'week',
+                email: 'demo@example.com',
+                targetAudience: 'Professionnels actifs, 30-45 ans',
+                uniqueValue: 'Approche personnalisée et flexible',
+                brandPersonality: ['professionnel', 'fiable', 'moderne'],
+                toneOfVoice: 'professionnel',
+                preferredColors: ['bleu', 'blanc'],
+                imageStyle: 'professionnel',
+                fontStyle: 'moderne',
+                features: ['contact', 'testimonials', 'gallery'],
+                websiteGoal: 'leads',
+                languages: ['fr']
+            };
+
+            // Process data
+            const clientConfig = processor.processClientData(mockData);
+            
+            // Start generation
+            await coordinator.generateSite(clientConfig);
+        }
+
+        function updateAgentProgress(progress) {
+            // Update overall progress
+            document.getElementById('overall-progress').textContent = progress.overall + '%';
+            document.getElementById('overall-progress-bar').style.width = progress.overall + '%';
+
+            // Update individual agents
+            Object.keys(progress.agents).forEach(agentName => {
+                const agent = progress.agents[agentName];
+                
+                // Update status
+                const statusEl = document.getElementById(agentName + '-status');
+                const progressEl = document.getElementById(agentName + '-progress');
+                const progressBarEl = document.getElementById(agentName + '-progress-bar');
+                const currentEl = document.getElementById(agentName + '-current');
+                const cardEl = document.getElementById('agent-' + agentName);
+
+                if (agent.status === 'running') {
+                    statusEl.textContent = 'En cours';
+                    statusEl.className = 'text-xs font-medium px-2 py-1 bg-blue-100 text-blue-600 rounded-full pulse-animation';
+                    cardEl.className = cardEl.className.replace('border-gray-200', 'border-blue-300 shadow-lg');
+                } else if (agent.status === 'completed') {
+                    statusEl.textContent = 'Terminé';
+                    statusEl.className = 'text-xs font-medium px-2 py-1 bg-green-100 text-green-600 rounded-full';
+                    cardEl.className = cardEl.className.replace('border-blue-300', 'border-green-300');
+                } else if (agent.status === 'failed') {
+                    statusEl.textContent = 'Erreur';
+                    statusEl.className = 'text-xs font-medium px-2 py-1 bg-red-100 text-red-600 rounded-full';
+                }
+
+                progressEl.textContent = agent.progress + '%';
+                progressBarEl.style.width = agent.progress + '%';
+                
+                if (progress.phase === agentName && progress.message) {
+                    currentEl.textContent = progress.message.replace(agentName.toUpperCase() + ': ', '');
+                }
+            });
+        }
+
+        function showResults(summary) {
+            document.getElementById('agents-dashboard').classList.add('hidden');
+            document.getElementById('results-section').classList.remove('hidden');
+            
+            document.getElementById('site-url').textContent = summary.websiteUrl || 'https://demo-site.vercel.app';
+            document.getElementById('generation-time').textContent = summary.report.performance.totalTime;
+            document.getElementById('performance-score').textContent = summary.report.performance.performanceScore;
+            
+            const visitLink = document.getElementById('visit-site');
+            visitLink.href = summary.websiteUrl || '#';
+        }
+
+        function resetDemo() {
+            // Reset coordinator
+            coordinator.reset();
+            
+            // Reset UI
+            document.getElementById('quick-form').classList.remove('hidden');
+            document.getElementById('agents-dashboard').classList.add('hidden');
+            document.getElementById('results-section').classList.add('hidden');
+            
+            // Clear form
+            document.getElementById('demo-business-name').value = '';
+            document.getElementById('demo-sector').value = '';
+            document.getElementById('demo-description').value = '';
+            
+            // Reset progress bars
+            document.getElementById('overall-progress').textContent = '0%';
+            document.getElementById('overall-progress-bar').style.width = '0%';
+            
+            ['design', 'webdev', 'seo', 'techops'].forEach(agent => {
+                document.getElementById(agent + '-status').textContent = 'En attente';
+                document.getElementById(agent + '-status').className = 'text-xs font-medium px-2 py-1 bg-gray-100 text-gray-600 rounded-full';
+                document.getElementById(agent + '-progress').textContent = '0%';
+                document.getElementById(agent + '-progress-bar').style.width = '0%';
+                document.getElementById(agent + '-current').textContent = '-';
+            });
+        }
+    </script>
+</body>
+</html>

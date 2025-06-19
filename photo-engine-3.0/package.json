@@ -1,0 +1,30 @@
+{
+  "name": "photo-engine-3.0-universal",
+  "version": "3.0.0",
+  "description": "Universal photo engine for premium websites using free sources",
+  "type": "module",
+  "main": "universal-photo-engine.js",
+  "scripts": {
+    "demo": "node demo-universal-showcase.js",
+    "test": "node test-universal-engine.js",
+    "test-apis": "node test-real-apis.js",
+    "setup": "cp .env.example .env && echo 'Fichier .env créé. Ajoutez vos clés API.'"
+  },
+  "dependencies": {
+    "node-fetch": "^3.3.2",
+    "dotenv": "^16.3.1"
+  },
+  "keywords": [
+    "photos",
+    "unsplash",
+    "pexels",
+    "pixabay",
+    "universal",
+    "business",
+    "premium",
+    "free"
+  ],
+  "author": "Digital Agency AI",
+  "license": "MIT",
+  "devDependencies": {}
+}

@@ -1,0 +1,770 @@
+{
+  "success": true,
+  "sector": "avocat",
+  "profile": {
+    "category": "conseil_expertise",
+    "keywords": {
+      "hero": [
+        "professional lawyer",
+        "law office",
+        "legal consultation"
+      ],
+      "services": [
+        "legal document",
+        "court representation",
+        "legal advice",
+        "law consultation"
+      ],
+      "about": [
+        "experienced lawyer",
+        "legal expert",
+        "attorney portrait"
+      ],
+      "testimonials": [
+        "satisfied client",
+        "legal success",
+        "professional service",
+        "legal victory"
+      ],
+      "gallery": [
+        "law office",
+        "legal library",
+        "professional meeting",
+        "legal documents"
+      ]
+    },
+    "colors": {
+      "primary": "#1e40af",
+      "secondary": "#6b7280",
+      "accent": "#f9fafb",
+      "text": "#111827"
+    },
+    "mood": "authoritative, professional, trustworthy, serious",
+    "style": "formal, clean, professional",
+    "sector": "avocat",
+    "confidence": 1
+  },
+  "photos": {
+    "photos": {
+      "hero": [
+        {
+          "id": "unsplash-948",
+          "url": "https://images.unsplash.com/photo-948?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          "alt": "professional lawyer OR law office OR legal consultation - professional photography",
+          "source": "unsplash",
+          "quality": "premium",
+          "mood": "authoritative, professional, trustworthy, serious",
+          "width": 800,
+          "height": 600,
+          "score": 10,
+          "selected": true,
+          "reason": "Score: 10.00/10",
+          "filters": {
+            "brightness": 1,
+            "contrast": 1,
+            "saturation": 0.85,
+            "warmth": 1
+          },
+          "colorScheme": {
+            "primary": "#1e40af",
+            "secondary": "#6b7280",
+            "accent": "#f9fafb",
+            "text": "#111827"
+          },
+          "consistency": true,
+          "optimizations": {
+            "webp": "https://images.unsplash.com/photo-948?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "avif": "https://images.unsplash.com/photo-948?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "responsive": {
+              "mobile": {
+                "width": 400,
+                "height": 300
+              },
+              "tablet": {
+                "width": 768,
+                "height": 576
+              },
+              "desktop": {
+                "width": 1200,
+                "height": 900
+              }
+            },
+            "lazyLoading": true,
+            "priority": true
+          }
+        },
+        {
+          "id": "unsplash-949",
+          "url": "https://images.unsplash.com/photo-949?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          "alt": "professional lawyer OR law office OR legal consultation - professional photography",
+          "source": "unsplash",
+          "quality": "premium",
+          "mood": "authoritative, professional, trustworthy, serious",
+          "width": 800,
+          "height": 600,
+          "score": 10,
+          "selected": true,
+          "reason": "Score: 10.00/10",
+          "filters": {
+            "brightness": 1,
+            "contrast": 1,
+            "saturation": 0.85,
+            "warmth": 1
+          },
+          "colorScheme": {
+            "primary": "#1e40af",
+            "secondary": "#6b7280",
+            "accent": "#f9fafb",
+            "text": "#111827"
+          },
+          "consistency": true,
+          "optimizations": {
+            "webp": "https://images.unsplash.com/photo-949?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "avif": "https://images.unsplash.com/photo-949?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "responsive": {
+              "mobile": {
+                "width": 400,
+                "height": 300
+              },
+              "tablet": {
+                "width": 768,
+                "height": 576
+              },
+              "desktop": {
+                "width": 1200,
+                "height": 900
+              }
+            },
+            "lazyLoading": true,
+            "priority": true
+          }
+        },
+        {
+          "id": "unsplash-950",
+          "url": "https://images.unsplash.com/photo-950?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          "alt": "professional lawyer OR law office OR legal consultation - professional photography",
+          "source": "unsplash",
+          "quality": "premium",
+          "mood": "authoritative, professional, trustworthy, serious",
+          "width": 800,
+          "height": 600,
+          "score": 10,
+          "selected": true,
+          "reason": "Score: 10.00/10",
+          "filters": {
+            "brightness": 1,
+            "contrast": 1,
+            "saturation": 0.85,
+            "warmth": 1
+          },
+          "colorScheme": {
+            "primary": "#1e40af",
+            "secondary": "#6b7280",
+            "accent": "#f9fafb",
+            "text": "#111827"
+          },
+          "consistency": true,
+          "optimizations": {
+            "webp": "https://images.unsplash.com/photo-950?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "avif": "https://images.unsplash.com/photo-950?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "responsive": {
+              "mobile": {
+                "width": 400,
+                "height": 300
+              },
+              "tablet": {
+                "width": 768,
+                "height": 576
+              },
+              "desktop": {
+                "width": 1200,
+                "height": 900
+              }
+            },
+            "lazyLoading": true,
+            "priority": true
+          }
+        }
+      ],
+      "services": [
+        {
+          "id": "unsplash-491",
+          "url": "https://images.unsplash.com/photo-491?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          "alt": "legal document OR court representation OR legal advice OR law consultation - professional photography",
+          "source": "unsplash",
+          "quality": "premium",
+          "mood": "authoritative, professional, trustworthy, serious",
+          "width": 800,
+          "height": 600,
+          "score": 10,
+          "selected": true,
+          "reason": "Score: 10.00/10",
+          "filters": {
+            "brightness": 1,
+            "contrast": 1,
+            "saturation": 0.85,
+            "warmth": 1
+          },
+          "colorScheme": {
+            "primary": "#1e40af",
+            "secondary": "#6b7280",
+            "accent": "#f9fafb",
+            "text": "#111827"
+          },
+          "consistency": true,
+          "optimizations": {
+            "webp": "https://images.unsplash.com/photo-491?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "avif": "https://images.unsplash.com/photo-491?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "responsive": {
+              "mobile": {
+                "width": 400,
+                "height": 300
+              },
+              "tablet": {
+                "width": 768,
+                "height": 576
+              },
+              "desktop": {
+                "width": 1200,
+                "height": 900
+              }
+            },
+            "lazyLoading": true,
+            "priority": false
+          }
+        },
+        {
+          "id": "unsplash-492",
+          "url": "https://images.unsplash.com/photo-492?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          "alt": "legal document OR court representation OR legal advice OR law consultation - professional photography",
+          "source": "unsplash",
+          "quality": "premium",
+          "mood": "authoritative, professional, trustworthy, serious",
+          "width": 800,
+          "height": 600,
+          "score": 10,
+          "selected": true,
+          "reason": "Score: 10.00/10",
+          "filters": {
+            "brightness": 1,
+            "contrast": 1,
+            "saturation": 0.85,
+            "warmth": 1
+          },
+          "colorScheme": {
+            "primary": "#1e40af",
+            "secondary": "#6b7280",
+            "accent": "#f9fafb",
+            "text": "#111827"
+          },
+          "consistency": true,
+          "optimizations": {
+            "webp": "https://images.unsplash.com/photo-492?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "avif": "https://images.unsplash.com/photo-492?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "responsive": {
+              "mobile": {
+                "width": 400,
+                "height": 300
+              },
+              "tablet": {
+                "width": 768,
+                "height": 576
+              },
+              "desktop": {
+                "width": 1200,
+                "height": 900
+              }
+            },
+            "lazyLoading": true,
+            "priority": false
+          }
+        },
+        {
+          "id": "unsplash-493",
+          "url": "https://images.unsplash.com/photo-493?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          "alt": "legal document OR court representation OR legal advice OR law consultation - professional photography",
+          "source": "unsplash",
+          "quality": "premium",
+          "mood": "authoritative, professional, trustworthy, serious",
+          "width": 800,
+          "height": 600,
+          "score": 10,
+          "selected": true,
+          "reason": "Score: 10.00/10",
+          "filters": {
+            "brightness": 1,
+            "contrast": 1,
+            "saturation": 0.85,
+            "warmth": 1
+          },
+          "colorScheme": {
+            "primary": "#1e40af",
+            "secondary": "#6b7280",
+            "accent": "#f9fafb",
+            "text": "#111827"
+          },
+          "consistency": true,
+          "optimizations": {
+            "webp": "https://images.unsplash.com/photo-493?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "avif": "https://images.unsplash.com/photo-493?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "responsive": {
+              "mobile": {
+                "width": 400,
+                "height": 300
+              },
+              "tablet": {
+                "width": 768,
+                "height": 576
+              },
+              "desktop": {
+                "width": 1200,
+                "height": 900
+              }
+            },
+            "lazyLoading": true,
+            "priority": false
+          }
+        }
+      ],
+      "about": [
+        {
+          "id": "unsplash-729",
+          "url": "https://images.unsplash.com/photo-729?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          "alt": "experienced lawyer OR legal expert OR attorney portrait - professional photography",
+          "source": "unsplash",
+          "quality": "premium",
+          "mood": "authoritative, professional, trustworthy, serious",
+          "width": 800,
+          "height": 600,
+          "score": 10,
+          "selected": true,
+          "reason": "Score: 10.00/10",
+          "filters": {
+            "brightness": 1,
+            "contrast": 1,
+            "saturation": 0.85,
+            "warmth": 1
+          },
+          "colorScheme": {
+            "primary": "#1e40af",
+            "secondary": "#6b7280",
+            "accent": "#f9fafb",
+            "text": "#111827"
+          },
+          "consistency": true,
+          "optimizations": {
+            "webp": "https://images.unsplash.com/photo-729?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "avif": "https://images.unsplash.com/photo-729?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "responsive": {
+              "mobile": {
+                "width": 400,
+                "height": 300
+              },
+              "tablet": {
+                "width": 768,
+                "height": 576
+              },
+              "desktop": {
+                "width": 1200,
+                "height": 900
+              }
+            },
+            "lazyLoading": true,
+            "priority": false
+          }
+        },
+        {
+          "id": "unsplash-730",
+          "url": "https://images.unsplash.com/photo-730?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          "alt": "experienced lawyer OR legal expert OR attorney portrait - professional photography",
+          "source": "unsplash",
+          "quality": "premium",
+          "mood": "authoritative, professional, trustworthy, serious",
+          "width": 800,
+          "height": 600,
+          "score": 10,
+          "selected": true,
+          "reason": "Score: 10.00/10",
+          "filters": {
+            "brightness": 1,
+            "contrast": 1,
+            "saturation": 0.85,
+            "warmth": 1
+          },
+          "colorScheme": {
+            "primary": "#1e40af",
+            "secondary": "#6b7280",
+            "accent": "#f9fafb",
+            "text": "#111827"
+          },
+          "consistency": true,
+          "optimizations": {
+            "webp": "https://images.unsplash.com/photo-730?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "avif": "https://images.unsplash.com/photo-730?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "responsive": {
+              "mobile": {
+                "width": 400,
+                "height": 300
+              },
+              "tablet": {
+                "width": 768,
+                "height": 576
+              },
+              "desktop": {
+                "width": 1200,
+                "height": 900
+              }
+            },
+            "lazyLoading": true,
+            "priority": false
+          }
+        },
+        {
+          "id": "unsplash-731",
+          "url": "https://images.unsplash.com/photo-731?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          "alt": "experienced lawyer OR legal expert OR attorney portrait - professional photography",
+          "source": "unsplash",
+          "quality": "premium",
+          "mood": "authoritative, professional, trustworthy, serious",
+          "width": 800,
+          "height": 600,
+          "score": 10,
+          "selected": true,
+          "reason": "Score: 10.00/10",
+          "filters": {
+            "brightness": 1,
+            "contrast": 1,
+            "saturation": 0.85,
+            "warmth": 1
+          },
+          "colorScheme": {
+            "primary": "#1e40af",
+            "secondary": "#6b7280",
+            "accent": "#f9fafb",
+            "text": "#111827"
+          },
+          "consistency": true,
+          "optimizations": {
+            "webp": "https://images.unsplash.com/photo-731?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "avif": "https://images.unsplash.com/photo-731?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "responsive": {
+              "mobile": {
+                "width": 400,
+                "height": 300
+              },
+              "tablet": {
+                "width": 768,
+                "height": 576
+              },
+              "desktop": {
+                "width": 1200,
+                "height": 900
+              }
+            },
+            "lazyLoading": true,
+            "priority": false
+          }
+        }
+      ],
+      "testimonials": [
+        {
+          "id": "unsplash-848",
+          "url": "https://images.unsplash.com/photo-848?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          "alt": "satisfied client OR legal success OR professional service OR legal victory - professional photography",
+          "source": "unsplash",
+          "quality": "premium",
+          "mood": "authoritative, professional, trustworthy, serious",
+          "width": 800,
+          "height": 600,
+          "score": 10,
+          "selected": true,
+          "reason": "Score: 10.00/10",
+          "filters": {
+            "brightness": 1,
+            "contrast": 1,
+            "saturation": 0.85,
+            "warmth": 1
+          },
+          "colorScheme": {
+            "primary": "#1e40af",
+            "secondary": "#6b7280",
+            "accent": "#f9fafb",
+            "text": "#111827"
+          },
+          "consistency": true,
+          "optimizations": {
+            "webp": "https://images.unsplash.com/photo-848?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "avif": "https://images.unsplash.com/photo-848?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "responsive": {
+              "mobile": {
+                "width": 400,
+                "height": 300
+              },
+              "tablet": {
+                "width": 768,
+                "height": 576
+              },
+              "desktop": {
+                "width": 1200,
+                "height": 900
+              }
+            },
+            "lazyLoading": true,
+            "priority": false
+          }
+        },
+        {
+          "id": "unsplash-849",
+          "url": "https://images.unsplash.com/photo-849?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          "alt": "satisfied client OR legal success OR professional service OR legal victory - professional photography",
+          "source": "unsplash",
+          "quality": "premium",
+          "mood": "authoritative, professional, trustworthy, serious",
+          "width": 800,
+          "height": 600,
+          "score": 10,
+          "selected": true,
+          "reason": "Score: 10.00/10",
+          "filters": {
+            "brightness": 1,
+            "contrast": 1,
+            "saturation": 0.85,
+            "warmth": 1
+          },
+          "colorScheme": {
+            "primary": "#1e40af",
+            "secondary": "#6b7280",
+            "accent": "#f9fafb",
+            "text": "#111827"
+          },
+          "consistency": true,
+          "optimizations": {
+            "webp": "https://images.unsplash.com/photo-849?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "avif": "https://images.unsplash.com/photo-849?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "responsive": {
+              "mobile": {
+                "width": 400,
+                "height": 300
+              },
+              "tablet": {
+                "width": 768,
+                "height": 576
+              },
+              "desktop": {
+                "width": 1200,
+                "height": 900
+              }
+            },
+            "lazyLoading": true,
+            "priority": false
+          }
+        },
+        {
+          "id": "unsplash-850",
+          "url": "https://images.unsplash.com/photo-850?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          "alt": "satisfied client OR legal success OR professional service OR legal victory - professional photography",
+          "source": "unsplash",
+          "quality": "premium",
+          "mood": "authoritative, professional, trustworthy, serious",
+          "width": 800,
+          "height": 600,
+          "score": 10,
+          "selected": true,
+          "reason": "Score: 10.00/10",
+          "filters": {
+            "brightness": 1,
+            "contrast": 1,
+            "saturation": 0.85,
+            "warmth": 1
+          },
+          "colorScheme": {
+            "primary": "#1e40af",
+            "secondary": "#6b7280",
+            "accent": "#f9fafb",
+            "text": "#111827"
+          },
+          "consistency": true,
+          "optimizations": {
+            "webp": "https://images.unsplash.com/photo-850?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "avif": "https://images.unsplash.com/photo-850?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "responsive": {
+              "mobile": {
+                "width": 400,
+                "height": 300
+              },
+              "tablet": {
+                "width": 768,
+                "height": 576
+              },
+              "desktop": {
+                "width": 1200,
+                "height": 900
+              }
+            },
+            "lazyLoading": true,
+            "priority": false
+          }
+        }
+      ],
+      "gallery": [
+        {
+          "id": "unsplash-913",
+          "url": "https://images.unsplash.com/photo-913?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          "alt": "law office OR legal library OR professional meeting OR legal documents - professional photography",
+          "source": "unsplash",
+          "quality": "premium",
+          "mood": "authoritative, professional, trustworthy, serious",
+          "width": 800,
+          "height": 600,
+          "score": 10,
+          "selected": true,
+          "reason": "Score: 10.00/10",
+          "filters": {
+            "brightness": 1,
+            "contrast": 1,
+            "saturation": 0.85,
+            "warmth": 1
+          },
+          "colorScheme": {
+            "primary": "#1e40af",
+            "secondary": "#6b7280",
+            "accent": "#f9fafb",
+            "text": "#111827"
+          },
+          "consistency": true,
+          "optimizations": {
+            "webp": "https://images.unsplash.com/photo-913?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "avif": "https://images.unsplash.com/photo-913?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "responsive": {
+              "mobile": {
+                "width": 400,
+                "height": 300
+              },
+              "tablet": {
+                "width": 768,
+                "height": 576
+              },
+              "desktop": {
+                "width": 1200,
+                "height": 900
+              }
+            },
+            "lazyLoading": true,
+            "priority": false
+          }
+        },
+        {
+          "id": "unsplash-914",
+          "url": "https://images.unsplash.com/photo-914?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          "alt": "law office OR legal library OR professional meeting OR legal documents - professional photography",
+          "source": "unsplash",
+          "quality": "premium",
+          "mood": "authoritative, professional, trustworthy, serious",
+          "width": 800,
+          "height": 600,
+          "score": 10,
+          "selected": true,
+          "reason": "Score: 10.00/10",
+          "filters": {
+            "brightness": 1,
+            "contrast": 1,
+            "saturation": 0.85,
+            "warmth": 1
+          },
+          "colorScheme": {
+            "primary": "#1e40af",
+            "secondary": "#6b7280",
+            "accent": "#f9fafb",
+            "text": "#111827"
+          },
+          "consistency": true,
+          "optimizations": {
+            "webp": "https://images.unsplash.com/photo-914?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "avif": "https://images.unsplash.com/photo-914?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "responsive": {
+              "mobile": {
+                "width": 400,
+                "height": 300
+              },
+              "tablet": {
+                "width": 768,
+                "height": 576
+              },
+              "desktop": {
+                "width": 1200,
+                "height": 900
+              }
+            },
+            "lazyLoading": true,
+            "priority": false
+          }
+        },
+        {
+          "id": "unsplash-915",
+          "url": "https://images.unsplash.com/photo-915?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+          "alt": "law office OR legal library OR professional meeting OR legal documents - professional photography",
+          "source": "unsplash",
+          "quality": "premium",
+          "mood": "authoritative, professional, trustworthy, serious",
+          "width": 800,
+          "height": 600,
+          "score": 10,
+          "selected": true,
+          "reason": "Score: 10.00/10",
+          "filters": {
+            "brightness": 1,
+            "contrast": 1,
+            "saturation": 0.85,
+            "warmth": 1
+          },
+          "colorScheme": {
+            "primary": "#1e40af",
+            "secondary": "#6b7280",
+            "accent": "#f9fafb",
+            "text": "#111827"
+          },
+          "consistency": true,
+          "optimizations": {
+            "webp": "https://images.unsplash.com/photo-915?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "avif": "https://images.unsplash.com/photo-915?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+            "responsive": {
+              "mobile": {
+                "width": 400,
+                "height": 300
+              },
+              "tablet": {
+                "width": 768,
+                "height": 576
+              },
+              "desktop": {
+                "width": 1200,
+                "height": 900
+              }
+            },
+            "lazyLoading": true,
+            "priority": false
+          }
+        }
+      ]
+    },
+    "totalCount": 15,
+    "optimized": true,
+    "formats": [
+      "webp",
+      "avif",
+      "jpeg"
+    ],
+    "responsive": true
+  },
+  "metrics": {
+    "totalPhotos": 15,
+    "qualityScore": 9.61111111111111,
+    "consistencyScore": 8.5,
+    "sources": [
+      "unsplash",
+      "pexels",
+      "pixabay"
+    ],
+    "processingTime": 1750250665824
+  }
+}

@@ -1,0 +1,790 @@
+{
+  "timestamp": "2025-06-19T04:40:38.510Z",
+  "cabinet": {
+    "name": "Cabinet Maître Dubois",
+    "sector": "avocat",
+    "description": "Cabinet d'avocat spécialisé en droit des affaires et droit de la famille. Expertise juridique de qualité, conseil personnalisé et représentation devant les tribunaux.",
+    "location": "Paris, France",
+    "specialties": [
+      "droit des affaires",
+      "droit de la famille",
+      "droit immobilier"
+    ]
+  },
+  "results": {
+    "success": true,
+    "sector": "avocat",
+    "profile": {
+      "category": "conseil_expertise",
+      "keywords": {
+        "hero": [
+          "professional lawyer",
+          "law office",
+          "legal consultation"
+        ],
+        "services": [
+          "legal document",
+          "court representation",
+          "legal advice",
+          "law consultation"
+        ],
+        "about": [
+          "experienced lawyer",
+          "legal expert",
+          "attorney portrait"
+        ],
+        "testimonials": [
+          "satisfied client",
+          "legal success",
+          "professional service",
+          "legal victory"
+        ],
+        "gallery": [
+          "law office",
+          "legal library",
+          "professional meeting",
+          "legal documents"
+        ]
+      },
+      "colors": {
+        "primary": "#1e40af",
+        "secondary": "#6b7280",
+        "accent": "#f9fafb",
+        "text": "#111827"
+      },
+      "mood": "authoritative, professional, trustworthy, serious",
+      "style": "formal, clean, professional",
+      "sector": "avocat",
+      "confidence": 1
+    },
+    "photos": {
+      "photos": {
+        "hero": [
+          {
+            "id": "pexels-443",
+            "url": "https://images.pexels.com/photos/443/photo-443.jpg?auto=compress&cs=tinysrgb&w=800",
+            "alt": "professional lawyer - high quality photography",
+            "source": "pexels",
+            "quality": "high",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 800,
+            "height": 600,
+            "score": 9.5,
+            "selected": true,
+            "reason": "Score: 9.50/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.pexels.com/photos/443/photo-443.webp?auto=compress&cs=tinysrgb&w=800",
+              "avif": "https://images.pexels.com/photos/443/photo-443.avif?auto=compress&cs=tinysrgb&w=800",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 300
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 576
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 900
+                }
+              },
+              "lazyLoading": true,
+              "priority": true
+            }
+          },
+          {
+            "id": "pexels-444",
+            "url": "https://images.pexels.com/photos/444/photo-444.jpg?auto=compress&cs=tinysrgb&w=800",
+            "alt": "professional lawyer - high quality photography",
+            "source": "pexels",
+            "quality": "high",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 800,
+            "height": 600,
+            "score": 9.5,
+            "selected": true,
+            "reason": "Score: 9.50/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.pexels.com/photos/444/photo-444.webp?auto=compress&cs=tinysrgb&w=800",
+              "avif": "https://images.pexels.com/photos/444/photo-444.avif?auto=compress&cs=tinysrgb&w=800",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 300
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 576
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 900
+                }
+              },
+              "lazyLoading": true,
+              "priority": true
+            }
+          },
+          {
+            "id": "pexels-445",
+            "url": "https://images.pexels.com/photos/445/photo-445.jpg?auto=compress&cs=tinysrgb&w=800",
+            "alt": "professional lawyer - high quality photography",
+            "source": "pexels",
+            "quality": "high",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 800,
+            "height": 600,
+            "score": 9.5,
+            "selected": true,
+            "reason": "Score: 9.50/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.pexels.com/photos/445/photo-445.webp?auto=compress&cs=tinysrgb&w=800",
+              "avif": "https://images.pexels.com/photos/445/photo-445.avif?auto=compress&cs=tinysrgb&w=800",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 300
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 576
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 900
+                }
+              },
+              "lazyLoading": true,
+              "priority": true
+            }
+          }
+        ],
+        "services": [
+          {
+            "id": "pexels-557",
+            "url": "https://images.pexels.com/photos/557/photo-557.jpg?auto=compress&cs=tinysrgb&w=800",
+            "alt": "legal document - high quality photography",
+            "source": "pexels",
+            "quality": "high",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 800,
+            "height": 600,
+            "score": 9.5,
+            "selected": true,
+            "reason": "Score: 9.50/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.pexels.com/photos/557/photo-557.webp?auto=compress&cs=tinysrgb&w=800",
+              "avif": "https://images.pexels.com/photos/557/photo-557.avif?auto=compress&cs=tinysrgb&w=800",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 300
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 576
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 900
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          },
+          {
+            "id": "pexels-558",
+            "url": "https://images.pexels.com/photos/558/photo-558.jpg?auto=compress&cs=tinysrgb&w=800",
+            "alt": "legal document - high quality photography",
+            "source": "pexels",
+            "quality": "high",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 800,
+            "height": 600,
+            "score": 9.5,
+            "selected": true,
+            "reason": "Score: 9.50/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.pexels.com/photos/558/photo-558.webp?auto=compress&cs=tinysrgb&w=800",
+              "avif": "https://images.pexels.com/photos/558/photo-558.avif?auto=compress&cs=tinysrgb&w=800",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 300
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 576
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 900
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          },
+          {
+            "id": "pexels-559",
+            "url": "https://images.pexels.com/photos/559/photo-559.jpg?auto=compress&cs=tinysrgb&w=800",
+            "alt": "legal document - high quality photography",
+            "source": "pexels",
+            "quality": "high",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 800,
+            "height": 600,
+            "score": 9.5,
+            "selected": true,
+            "reason": "Score: 9.50/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.pexels.com/photos/559/photo-559.webp?auto=compress&cs=tinysrgb&w=800",
+              "avif": "https://images.pexels.com/photos/559/photo-559.avif?auto=compress&cs=tinysrgb&w=800",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 300
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 576
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 900
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          }
+        ],
+        "about": [
+          {
+            "id": "pexels-96",
+            "url": "https://images.pexels.com/photos/96/photo-96.jpg?auto=compress&cs=tinysrgb&w=800",
+            "alt": "experienced lawyer - high quality photography",
+            "source": "pexels",
+            "quality": "high",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 800,
+            "height": 600,
+            "score": 9.5,
+            "selected": true,
+            "reason": "Score: 9.50/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.pexels.com/photos/96/photo-96.webp?auto=compress&cs=tinysrgb&w=800",
+              "avif": "https://images.pexels.com/photos/96/photo-96.avif?auto=compress&cs=tinysrgb&w=800",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 300
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 576
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 900
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          },
+          {
+            "id": "pexels-97",
+            "url": "https://images.pexels.com/photos/97/photo-97.jpg?auto=compress&cs=tinysrgb&w=800",
+            "alt": "experienced lawyer - high quality photography",
+            "source": "pexels",
+            "quality": "high",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 800,
+            "height": 600,
+            "score": 9.5,
+            "selected": true,
+            "reason": "Score: 9.50/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.pexels.com/photos/97/photo-97.webp?auto=compress&cs=tinysrgb&w=800",
+              "avif": "https://images.pexels.com/photos/97/photo-97.avif?auto=compress&cs=tinysrgb&w=800",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 300
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 576
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 900
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          },
+          {
+            "id": "pexels-98",
+            "url": "https://images.pexels.com/photos/98/photo-98.jpg?auto=compress&cs=tinysrgb&w=800",
+            "alt": "experienced lawyer - high quality photography",
+            "source": "pexels",
+            "quality": "high",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 800,
+            "height": 600,
+            "score": 9.5,
+            "selected": true,
+            "reason": "Score: 9.50/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.pexels.com/photos/98/photo-98.webp?auto=compress&cs=tinysrgb&w=800",
+              "avif": "https://images.pexels.com/photos/98/photo-98.avif?auto=compress&cs=tinysrgb&w=800",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 300
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 576
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 900
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          }
+        ],
+        "testimonials": [
+          {
+            "id": "pexels-861",
+            "url": "https://images.pexels.com/photos/861/photo-861.jpg?auto=compress&cs=tinysrgb&w=800",
+            "alt": "satisfied client - high quality photography",
+            "source": "pexels",
+            "quality": "high",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 800,
+            "height": 600,
+            "score": 9.5,
+            "selected": true,
+            "reason": "Score: 9.50/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.pexels.com/photos/861/photo-861.webp?auto=compress&cs=tinysrgb&w=800",
+              "avif": "https://images.pexels.com/photos/861/photo-861.avif?auto=compress&cs=tinysrgb&w=800",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 300
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 576
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 900
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          },
+          {
+            "id": "pexels-862",
+            "url": "https://images.pexels.com/photos/862/photo-862.jpg?auto=compress&cs=tinysrgb&w=800",
+            "alt": "satisfied client - high quality photography",
+            "source": "pexels",
+            "quality": "high",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 800,
+            "height": 600,
+            "score": 9.5,
+            "selected": true,
+            "reason": "Score: 9.50/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.pexels.com/photos/862/photo-862.webp?auto=compress&cs=tinysrgb&w=800",
+              "avif": "https://images.pexels.com/photos/862/photo-862.avif?auto=compress&cs=tinysrgb&w=800",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 300
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 576
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 900
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          },
+          {
+            "id": "pexels-863",
+            "url": "https://images.pexels.com/photos/863/photo-863.jpg?auto=compress&cs=tinysrgb&w=800",
+            "alt": "satisfied client - high quality photography",
+            "source": "pexels",
+            "quality": "high",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 800,
+            "height": 600,
+            "score": 9.5,
+            "selected": true,
+            "reason": "Score: 9.50/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.pexels.com/photos/863/photo-863.webp?auto=compress&cs=tinysrgb&w=800",
+              "avif": "https://images.pexels.com/photos/863/photo-863.avif?auto=compress&cs=tinysrgb&w=800",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 300
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 576
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 900
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          }
+        ],
+        "gallery": [
+          {
+            "id": "pexels-468",
+            "url": "https://images.pexels.com/photos/468/photo-468.jpg?auto=compress&cs=tinysrgb&w=800",
+            "alt": "law office - high quality photography",
+            "source": "pexels",
+            "quality": "high",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 800,
+            "height": 600,
+            "score": 9.5,
+            "selected": true,
+            "reason": "Score: 9.50/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.pexels.com/photos/468/photo-468.webp?auto=compress&cs=tinysrgb&w=800",
+              "avif": "https://images.pexels.com/photos/468/photo-468.avif?auto=compress&cs=tinysrgb&w=800",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 300
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 576
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 900
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          },
+          {
+            "id": "pexels-469",
+            "url": "https://images.pexels.com/photos/469/photo-469.jpg?auto=compress&cs=tinysrgb&w=800",
+            "alt": "law office - high quality photography",
+            "source": "pexels",
+            "quality": "high",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 800,
+            "height": 600,
+            "score": 9.5,
+            "selected": true,
+            "reason": "Score: 9.50/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.pexels.com/photos/469/photo-469.webp?auto=compress&cs=tinysrgb&w=800",
+              "avif": "https://images.pexels.com/photos/469/photo-469.avif?auto=compress&cs=tinysrgb&w=800",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 300
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 576
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 900
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          },
+          {
+            "id": "pexels-470",
+            "url": "https://images.pexels.com/photos/470/photo-470.jpg?auto=compress&cs=tinysrgb&w=800",
+            "alt": "law office - high quality photography",
+            "source": "pexels",
+            "quality": "high",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 800,
+            "height": 600,
+            "score": 9.5,
+            "selected": true,
+            "reason": "Score: 9.50/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.pexels.com/photos/470/photo-470.webp?auto=compress&cs=tinysrgb&w=800",
+              "avif": "https://images.pexels.com/photos/470/photo-470.avif?auto=compress&cs=tinysrgb&w=800",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 300
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 576
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 900
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          }
+        ]
+      },
+      "totalCount": 15,
+      "optimized": true,
+      "formats": [
+        "webp",
+        "avif",
+        "jpeg"
+      ],
+      "responsive": true
+    },
+    "metrics": {
+      "totalPhotos": 15,
+      "qualityScore": 8.944444444444445,
+      "consistencyScore": 8.5,
+      "sources": [
+        "unsplash",
+        "pexels",
+        "pixabay"
+      ],
+      "processingTime": 1750308038508
+    }
+  },
+  "analysis": {
+    "totalRealPhotos": 15,
+    "totalSimulatedPhotos": 0,
+    "apiSuccessRate": "100.0%",
+    "qualityGrade": "A"
+  }
+}

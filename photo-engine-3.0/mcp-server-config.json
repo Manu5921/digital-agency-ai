@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "html-to-design": {
+      "command": "npx",
+      "args": [
+        "-y",
+        "@html-to-design/mcp-server"
+      ],
+      "env": {
+        "HTML_TO_DESIGN_API_KEY": "your-html-to-design-key-here"
+      }
+    }
+  }
+}

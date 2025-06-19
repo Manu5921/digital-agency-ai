@@ -1,0 +1,820 @@
+{
+  "timestamp": "2025-06-19T04:41:35.357Z",
+  "cabinet": {
+    "name": "Cabinet Maître Dubois",
+    "sector": "avocat",
+    "description": "Cabinet d'avocat spécialisé en droit des affaires et droit de la famille. Expertise juridique de qualité, conseil personnalisé et représentation devant les tribunaux.",
+    "location": "Paris, France",
+    "specialties": [
+      "droit des affaires",
+      "droit de la famille",
+      "droit immobilier"
+    ]
+  },
+  "results": {
+    "success": true,
+    "sector": "avocat",
+    "profile": {
+      "category": "conseil_expertise",
+      "keywords": {
+        "hero": [
+          "professional lawyer",
+          "law office",
+          "legal consultation"
+        ],
+        "services": [
+          "legal document",
+          "court representation",
+          "legal advice",
+          "law consultation"
+        ],
+        "about": [
+          "experienced lawyer",
+          "legal expert",
+          "attorney portrait"
+        ],
+        "testimonials": [
+          "satisfied client",
+          "legal success",
+          "professional service",
+          "legal victory"
+        ],
+        "gallery": [
+          "law office",
+          "legal library",
+          "professional meeting",
+          "legal documents"
+        ]
+      },
+      "colors": {
+        "primary": "#1e40af",
+        "secondary": "#6b7280",
+        "accent": "#f9fafb",
+        "text": "#111827"
+      },
+      "mood": "authoritative, professional, trustworthy, serious",
+      "style": "formal, clean, professional",
+      "sector": "avocat",
+      "confidence": 1
+    },
+    "photos": {
+      "photos": {
+        "hero": [
+          {
+            "id": "unsplash-5fNmWej4tAA",
+            "url": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBsYXd5ZXIlMjBPUiUyMGxhdyUyMG9mZmljZSUyME9SJTIwbGVnYWwlMjBjb25zdWx0YXRpb258ZW58MHwwfHx8MTc1MDMwNzgyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+            "alt": "person holding pencil near laptop computer",
+            "source": "unsplash",
+            "quality": "premium",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 7360,
+            "height": 4912,
+            "photographer": "Scott Graham",
+            "download_url": "https://api.unsplash.com/photos/5fNmWej4tAA/download?ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBsYXd5ZXIlMjBPUiUyMGxhdyUyMG9mZmljZSUyME9SJTIwbGVnYWwlMjBjb25zdWx0YXRpb258ZW58MHwwfHx8MTc1MDMwNzgyN3ww",
+            "score": 10,
+            "selected": true,
+            "reason": "Score: 10.00/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBsYXd5ZXIlMjBPUiUyMGxhdyUyMG9mZmljZSUyME9SJTIwbGVnYWwlMjBjb25zdWx0YXRpb258ZW58MHwwfHx8MTc1MDMwNzgyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+              "avif": "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBsYXd5ZXIlMjBPUiUyMGxhdyUyMG9mZmljZSUyME9SJTIwbGVnYWwlMjBjb25zdWx0YXRpb258ZW58MHwwfHx8MTc1MDMwNzgyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 267
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 513
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 801
+                }
+              },
+              "lazyLoading": true,
+              "priority": true
+            }
+          },
+          {
+            "id": "unsplash-HJckKnwCXxQ",
+            "url": "https://images.unsplash.com/photo-1562564055-71e051d33c19?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBsYXd5ZXIlMjBPUiUyMGxhdyUyMG9mZmljZSUyME9SJTIwbGVnYWwlMjBjb25zdWx0YXRpb258ZW58MHwwfHx8MTc1MDMwNzgyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+            "alt": "woman signing on white printer paper beside woman about to touch the documents",
+            "source": "unsplash",
+            "quality": "premium",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 6000,
+            "height": 4000,
+            "photographer": "Gabrielle Henderson",
+            "download_url": "https://api.unsplash.com/photos/HJckKnwCXxQ/download?ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBsYXd5ZXIlMjBPUiUyMGxhdyUyMG9mZmljZSUyME9SJTIwbGVnYWwlMjBjb25zdWx0YXRpb258ZW58MHwwfHx8MTc1MDMwNzgyN3ww",
+            "score": 10,
+            "selected": true,
+            "reason": "Score: 10.00/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.unsplash.com/photo-1562564055-71e051d33c19?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBsYXd5ZXIlMjBPUiUyMGxhdyUyMG9mZmljZSUyME9SJTIwbGVnYWwlMjBjb25zdWx0YXRpb258ZW58MHwwfHx8MTc1MDMwNzgyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+              "avif": "https://images.unsplash.com/photo-1562564055-71e051d33c19?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBsYXd5ZXIlMjBPUiUyMGxhdyUyMG9mZmljZSUyME9SJTIwbGVnYWwlMjBjb25zdWx0YXRpb258ZW58MHwwfHx8MTc1MDMwNzgyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 267
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 512
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 800
+                }
+              },
+              "lazyLoading": true,
+              "priority": true
+            }
+          },
+          {
+            "id": "unsplash-gp8BLyaTaA0",
+            "url": "https://images.unsplash.com/photo-1417733403748-83bbc7c05140?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwzfHxwcm9mZXNzaW9uYWwlMjBsYXd5ZXIlMjBPUiUyMGxhdyUyMG9mZmljZSUyME9SJTIwbGVnYWwlMjBjb25zdWx0YXRpb258ZW58MHwwfHx8MTc1MDMwNzgyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+            "alt": "person using laptop",
+            "source": "unsplash",
+            "quality": "premium",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 4705,
+            "height": 3137,
+            "photographer": "Thomas Lefebvre",
+            "download_url": "https://api.unsplash.com/photos/gp8BLyaTaA0/download?ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwzfHxwcm9mZXNzaW9uYWwlMjBsYXd5ZXIlMjBPUiUyMGxhdyUyMG9mZmljZSUyME9SJTIwbGVnYWwlMjBjb25zdWx0YXRpb258ZW58MHwwfHx8MTc1MDMwNzgyN3ww",
+            "score": 10,
+            "selected": true,
+            "reason": "Score: 10.00/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.unsplash.com/photo-1417733403748-83bbc7c05140?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwzfHxwcm9mZXNzaW9uYWwlMjBsYXd5ZXIlMjBPUiUyMGxhdyUyMG9mZmljZSUyME9SJTIwbGVnYWwlMjBjb25zdWx0YXRpb258ZW58MHwwfHx8MTc1MDMwNzgyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+              "avif": "https://images.unsplash.com/photo-1417733403748-83bbc7c05140?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwzfHxwcm9mZXNzaW9uYWwlMjBsYXd5ZXIlMjBPUiUyMGxhdyUyMG9mZmljZSUyME9SJTIwbGVnYWwlMjBjb25zdWx0YXRpb258ZW58MHwwfHx8MTc1MDMwNzgyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 267
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 512
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 800
+                }
+              },
+              "lazyLoading": true,
+              "priority": true
+            }
+          }
+        ],
+        "services": [
+          {
+            "id": "unsplash-DZpc4UY8ZtY",
+            "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwxfHxsZWdhbCUyMGRvY3VtZW50JTIwT1IlMjBjb3VydCUyMHJlcHJlc2VudGF0aW9uJTIwT1IlMjBsZWdhbCUyMGFkdmljZSUyME9SJTIwbGF3JTIwY29uc3VsdGF0aW9ufGVufDB8MHx8fDE3NTAzMDc4Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+            "alt": "woman holding sword statue during daytime",
+            "source": "unsplash",
+            "quality": "premium",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 5664,
+            "height": 3776,
+            "photographer": "Tingey Injury Law Firm",
+            "download_url": "https://api.unsplash.com/photos/DZpc4UY8ZtY/download?ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwxfHxsZWdhbCUyMGRvY3VtZW50JTIwT1IlMjBjb3VydCUyMHJlcHJlc2VudGF0aW9uJTIwT1IlMjBsZWdhbCUyMGFkdmljZSUyME9SJTIwbGF3JTIwY29uc3VsdGF0aW9ufGVufDB8MHx8fDE3NTAzMDc4Mjd8MA",
+            "score": 10,
+            "selected": true,
+            "reason": "Score: 10.00/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwxfHxsZWdhbCUyMGRvY3VtZW50JTIwT1IlMjBjb3VydCUyMHJlcHJlc2VudGF0aW9uJTIwT1IlMjBsZWdhbCUyMGFkdmljZSUyME9SJTIwbGF3JTIwY29uc3VsdGF0aW9ufGVufDB8MHx8fDE3NTAzMDc4Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+              "avif": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwxfHxsZWdhbCUyMGRvY3VtZW50JTIwT1IlMjBjb3VydCUyMHJlcHJlc2VudGF0aW9uJTIwT1IlMjBsZWdhbCUyMGFkdmljZSUyME9SJTIwbGF3JTIwY29uc3VsdGF0aW9ufGVufDB8MHx8fDE3NTAzMDc4Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 267
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 512
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 800
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          },
+          {
+            "id": "unsplash-yCdPU73kGSc",
+            "url": "https://images.unsplash.com/photo-1589994965851-a8f479c573a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwyfHxsZWdhbCUyMGRvY3VtZW50JTIwT1IlMjBjb3VydCUyMHJlcHJlc2VudGF0aW9uJTIwT1IlMjBsZWdhbCUyMGFkdmljZSUyME9SJTIwbGF3JTIwY29uc3VsdGF0aW9ufGVufDB8MHx8fDE3NTAzMDc4Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+            "alt": "woman in dress holding sword figurine",
+            "source": "unsplash",
+            "quality": "premium",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 5892,
+            "height": 3928,
+            "photographer": "Tingey Injury Law Firm",
+            "download_url": "https://api.unsplash.com/photos/yCdPU73kGSc/download?ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwyfHxsZWdhbCUyMGRvY3VtZW50JTIwT1IlMjBjb3VydCUyMHJlcHJlc2VudGF0aW9uJTIwT1IlMjBsZWdhbCUyMGFkdmljZSUyME9SJTIwbGF3JTIwY29uc3VsdGF0aW9ufGVufDB8MHx8fDE3NTAzMDc4Mjd8MA",
+            "score": 10,
+            "selected": true,
+            "reason": "Score: 10.00/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.unsplash.com/photo-1589994965851-a8f479c573a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwyfHxsZWdhbCUyMGRvY3VtZW50JTIwT1IlMjBjb3VydCUyMHJlcHJlc2VudGF0aW9uJTIwT1IlMjBsZWdhbCUyMGFkdmljZSUyME9SJTIwbGF3JTIwY29uc3VsdGF0aW9ufGVufDB8MHx8fDE3NTAzMDc4Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+              "avif": "https://images.unsplash.com/photo-1589994965851-a8f479c573a9?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwyfHxsZWdhbCUyMGRvY3VtZW50JTIwT1IlMjBjb3VydCUyMHJlcHJlc2VudGF0aW9uJTIwT1IlMjBsZWdhbCUyMGFkdmljZSUyME9SJTIwbGF3JTIwY29uc3VsdGF0aW9ufGVufDB8MHx8fDE3NTAzMDc4Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 267
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 512
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 800
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          },
+          {
+            "id": "unsplash-DUV8TJtD2QY",
+            "url": "https://images.unsplash.com/photo-1496487611274-f4cd790205d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwzfHxsZWdhbCUyMGRvY3VtZW50JTIwT1IlMjBjb3VydCUyMHJlcHJlc2VudGF0aW9uJTIwT1IlMjBsZWdhbCUyMGFkdmljZSUyME9SJTIwbGF3JTIwY29uc3VsdGF0aW9ufGVufDB8MHx8fDE3NTAzMDc4Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+            "alt": "angel holding round wreath statue]",
+            "source": "unsplash",
+            "quality": "premium",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 4928,
+            "height": 3264,
+            "photographer": "Luke Michael",
+            "download_url": "https://api.unsplash.com/photos/DUV8TJtD2QY/download?ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwzfHxsZWdhbCUyMGRvY3VtZW50JTIwT1IlMjBjb3VydCUyMHJlcHJlc2VudGF0aW9uJTIwT1IlMjBsZWdhbCUyMGFkdmljZSUyME9SJTIwbGF3JTIwY29uc3VsdGF0aW9ufGVufDB8MHx8fDE3NTAzMDc4Mjd8MA",
+            "score": 10,
+            "selected": true,
+            "reason": "Score: 10.00/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.unsplash.com/photo-1496487611274-f4cd790205d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwzfHxsZWdhbCUyMGRvY3VtZW50JTIwT1IlMjBjb3VydCUyMHJlcHJlc2VudGF0aW9uJTIwT1IlMjBsZWdhbCUyMGFkdmljZSUyME9SJTIwbGF3JTIwY29uc3VsdGF0aW9ufGVufDB8MHx8fDE3NTAzMDc4Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+              "avif": "https://images.unsplash.com/photo-1496487611274-f4cd790205d2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwzfHxsZWdhbCUyMGRvY3VtZW50JTIwT1IlMjBjb3VydCUyMHJlcHJlc2VudGF0aW9uJTIwT1IlMjBsZWdhbCUyMGFkdmljZSUyME9SJTIwbGF3JTIwY29uc3VsdGF0aW9ufGVufDB8MHx8fDE3NTAzMDc4Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 265
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 509
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 795
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          }
+        ],
+        "about": [
+          {
+            "id": "unsplash-0fN7Fxv1eWA",
+            "url": "https://images.unsplash.com/photo-1506863530036-1efeddceb993?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwxfHxleHBlcmllbmNlZCUyMGxhd3llciUyME9SJTIwbGVnYWwlMjBleHBlcnQlMjBPUiUyMGF0dG9ybmV5JTIwcG9ydHJhaXR8ZW58MHwwfHx8MTc1MDMwNzgyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+            "alt": "grayscale photo of woman wearing necklace and top",
+            "source": "unsplash",
+            "quality": "premium",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 3813,
+            "height": 2975,
+            "photographer": "Rachel McDermott",
+            "download_url": "https://api.unsplash.com/photos/0fN7Fxv1eWA/download?ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwxfHxleHBlcmllbmNlZCUyMGxhd3llciUyME9SJTIwbGVnYWwlMjBleHBlcnQlMjBPUiUyMGF0dG9ybmV5JTIwcG9ydHJhaXR8ZW58MHwwfHx8MTc1MDMwNzgyN3ww",
+            "score": 10,
+            "selected": true,
+            "reason": "Score: 10.00/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.unsplash.com/photo-1506863530036-1efeddceb993?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwxfHxleHBlcmllbmNlZCUyMGxhd3llciUyME9SJTIwbGVnYWwlMjBleHBlcnQlMjBPUiUyMGF0dG9ybmV5JTIwcG9ydHJhaXR8ZW58MHwwfHx8MTc1MDMwNzgyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+              "avif": "https://images.unsplash.com/photo-1506863530036-1efeddceb993?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwxfHxleHBlcmllbmNlZCUyMGxhd3llciUyME9SJTIwbGVnYWwlMjBleHBlcnQlMjBPUiUyMGF0dG9ybmV5JTIwcG9ydHJhaXR8ZW58MHwwfHx8MTc1MDMwNzgyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 312
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 599
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 936
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          },
+          {
+            "id": "unsplash-rDEOVtE7vOs",
+            "url": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwyfHxleHBlcmllbmNlZCUyMGxhd3llciUyME9SJTIwbGVnYWwlMjBleHBlcnQlMjBPUiUyMGF0dG9ybmV5JTIwcG9ydHJhaXR8ZW58MHwwfHx8MTc1MDMwNzgyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+            "alt": "shallow focus photography of woman outdoor during day",
+            "source": "unsplash",
+            "quality": "premium",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 5184,
+            "height": 3456,
+            "photographer": "Christopher Campbell",
+            "download_url": "https://api.unsplash.com/photos/rDEOVtE7vOs/download?ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwyfHxleHBlcmllbmNlZCUyMGxhd3llciUyME9SJTIwbGVnYWwlMjBleHBlcnQlMjBPUiUyMGF0dG9ybmV5JTIwcG9ydHJhaXR8ZW58MHwwfHx8MTc1MDMwNzgyN3ww",
+            "score": 10,
+            "selected": true,
+            "reason": "Score: 10.00/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwyfHxleHBlcmllbmNlZCUyMGxhd3llciUyME9SJTIwbGVnYWwlMjBleHBlcnQlMjBPUiUyMGF0dG9ybmV5JTIwcG9ydHJhaXR8ZW58MHwwfHx8MTc1MDMwNzgyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+              "avif": "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwyfHxleHBlcmllbmNlZCUyMGxhd3llciUyME9SJTIwbGVnYWwlMjBleHBlcnQlMjBPUiUyMGF0dG9ybmV5JTIwcG9ydHJhaXR8ZW58MHwwfHx8MTc1MDMwNzgyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 267
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 512
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 800
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          },
+          {
+            "id": "unsplash-4nulm-JUYFo",
+            "url": "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwzfHxleHBlcmllbmNlZCUyMGxhd3llciUyME9SJTIwbGVnYWwlMjBleHBlcnQlMjBPUiUyMGF0dG9ybmV5JTIwcG9ydHJhaXR8ZW58MHwwfHx8MTc1MDMwNzgyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+            "alt": "woman standing next to pink wall while scratching her head",
+            "source": "unsplash",
+            "quality": "premium",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 5760,
+            "height": 3840,
+            "photographer": "averie woodard",
+            "download_url": "https://api.unsplash.com/photos/4nulm-JUYFo/download?ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwzfHxleHBlcmllbmNlZCUyMGxhd3llciUyME9SJTIwbGVnYWwlMjBleHBlcnQlMjBPUiUyMGF0dG9ybmV5JTIwcG9ydHJhaXR8ZW58MHwwfHx8MTc1MDMwNzgyN3ww",
+            "score": 10,
+            "selected": true,
+            "reason": "Score: 10.00/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwzfHxleHBlcmllbmNlZCUyMGxhd3llciUyME9SJTIwbGVnYWwlMjBleHBlcnQlMjBPUiUyMGF0dG9ybmV5JTIwcG9ydHJhaXR8ZW58MHwwfHx8MTc1MDMwNzgyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+              "avif": "https://images.unsplash.com/photo-1500917293891-ef795e70e1f6?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwzfHxleHBlcmllbmNlZCUyMGxhd3llciUyME9SJTIwbGVnYWwlMjBleHBlcnQlMjBPUiUyMGF0dG9ybmV5JTIwcG9ydHJhaXR8ZW58MHwwfHx8MTc1MDMwNzgyN3ww&ixlib=rb-4.1.0&q=80&w=1080",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 267
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 512
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 800
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          }
+        ],
+        "testimonials": [
+          {
+            "id": "unsplash-WdJkXFQ4VHY",
+            "url": "https://images.unsplash.com/photo-1425421669292-0c3da3b8f529?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwxfHxzYXRpc2ZpZWQlMjBjbGllbnQlMjBPUiUyMGxlZ2FsJTIwc3VjY2VzcyUyME9SJTIwcHJvZmVzc2lvbmFsJTIwc2VydmljZSUyME9SJTIwbGVnYWwlMjB2aWN0b3J5fGVufDB8MHx8fDE3NTAzMDc4Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+            "alt": "A man in a black suit loosening his tie",
+            "source": "unsplash",
+            "quality": "premium",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 5048,
+            "height": 3370,
+            "photographer": "Ben Rosett",
+            "download_url": "https://api.unsplash.com/photos/WdJkXFQ4VHY/download?ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwxfHxzYXRpc2ZpZWQlMjBjbGllbnQlMjBPUiUyMGxlZ2FsJTIwc3VjY2VzcyUyME9SJTIwcHJvZmVzc2lvbmFsJTIwc2VydmljZSUyME9SJTIwbGVnYWwlMjB2aWN0b3J5fGVufDB8MHx8fDE3NTAzMDc4Mjd8MA",
+            "score": 10,
+            "selected": true,
+            "reason": "Score: 10.00/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.unsplash.com/photo-1425421669292-0c3da3b8f529?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwxfHxzYXRpc2ZpZWQlMjBjbGllbnQlMjBPUiUyMGxlZ2FsJTIwc3VjY2VzcyUyME9SJTIwcHJvZmVzc2lvbmFsJTIwc2VydmljZSUyME9SJTIwbGVnYWwlMjB2aWN0b3J5fGVufDB8MHx8fDE3NTAzMDc4Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+              "avif": "https://images.unsplash.com/photo-1425421669292-0c3da3b8f529?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwxfHxzYXRpc2ZpZWQlMjBjbGllbnQlMjBPUiUyMGxlZ2FsJTIwc3VjY2VzcyUyME9SJTIwcHJvZmVzc2lvbmFsJTIwc2VydmljZSUyME9SJTIwbGVnYWwlMjB2aWN0b3J5fGVufDB8MHx8fDE3NTAzMDc4Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 267
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 513
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 801
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          },
+          {
+            "id": "unsplash-iJ1lw8iNIy8",
+            "url": "https://images.unsplash.com/photo-1496180470114-6ef490f3ff22?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwyfHxzYXRpc2ZpZWQlMjBjbGllbnQlMjBPUiUyMGxlZ2FsJTIwc3VjY2VzcyUyME9SJTIwcHJvZmVzc2lvbmFsJTIwc2VydmljZSUyME9SJTIwbGVnYWwlMjB2aWN0b3J5fGVufDB8MHx8fDE3NTAzMDc4Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+            "alt": "woman talking through mobile phone while sitting on swivel armchair",
+            "source": "unsplash",
+            "quality": "premium",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 2750,
+            "height": 2200,
+            "photographer": "Dane Deaner",
+            "download_url": "https://api.unsplash.com/photos/iJ1lw8iNIy8/download?ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwyfHxzYXRpc2ZpZWQlMjBjbGllbnQlMjBPUiUyMGxlZ2FsJTIwc3VjY2VzcyUyME9SJTIwcHJvZmVzc2lvbmFsJTIwc2VydmljZSUyME9SJTIwbGVnYWwlMjB2aWN0b3J5fGVufDB8MHx8fDE3NTAzMDc4Mjd8MA",
+            "score": 10,
+            "selected": true,
+            "reason": "Score: 10.00/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.unsplash.com/photo-1496180470114-6ef490f3ff22?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwyfHxzYXRpc2ZpZWQlMjBjbGllbnQlMjBPUiUyMGxlZ2FsJTIwc3VjY2VzcyUyME9SJTIwcHJvZmVzc2lvbmFsJTIwc2VydmljZSUyME9SJTIwbGVnYWwlMjB2aWN0b3J5fGVufDB8MHx8fDE3NTAzMDc4Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+              "avif": "https://images.unsplash.com/photo-1496180470114-6ef490f3ff22?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwyfHxzYXRpc2ZpZWQlMjBjbGllbnQlMjBPUiUyMGxlZ2FsJTIwc3VjY2VzcyUyME9SJTIwcHJvZmVzc2lvbmFsJTIwc2VydmljZSUyME9SJTIwbGVnYWwlMjB2aWN0b3J5fGVufDB8MHx8fDE3NTAzMDc4Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 320
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 614
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 960
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          },
+          {
+            "id": "unsplash-DZpc4UY8ZtY",
+            "url": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwzfHxzYXRpc2ZpZWQlMjBjbGllbnQlMjBPUiUyMGxlZ2FsJTIwc3VjY2VzcyUyME9SJTIwcHJvZmVzc2lvbmFsJTIwc2VydmljZSUyME9SJTIwbGVnYWwlMjB2aWN0b3J5fGVufDB8MHx8fDE3NTAzMDc4Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+            "alt": "woman holding sword statue during daytime",
+            "source": "unsplash",
+            "quality": "premium",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 5664,
+            "height": 3776,
+            "photographer": "Tingey Injury Law Firm",
+            "download_url": "https://api.unsplash.com/photos/DZpc4UY8ZtY/download?ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwzfHxzYXRpc2ZpZWQlMjBjbGllbnQlMjBPUiUyMGxlZ2FsJTIwc3VjY2VzcyUyME9SJTIwcHJvZmVzc2lvbmFsJTIwc2VydmljZSUyME9SJTIwbGVnYWwlMjB2aWN0b3J5fGVufDB8MHx8fDE3NTAzMDc4Mjd8MA",
+            "score": 10,
+            "selected": true,
+            "reason": "Score: 10.00/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwzfHxzYXRpc2ZpZWQlMjBjbGllbnQlMjBPUiUyMGxlZ2FsJTIwc3VjY2VzcyUyME9SJTIwcHJvZmVzc2lvbmFsJTIwc2VydmljZSUyME9SJTIwbGVnYWwlMjB2aWN0b3J5fGVufDB8MHx8fDE3NTAzMDc4Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+              "avif": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwzfHxzYXRpc2ZpZWQlMjBjbGllbnQlMjBPUiUyMGxlZ2FsJTIwc3VjY2VzcyUyME9SJTIwcHJvZmVzc2lvbmFsJTIwc2VydmljZSUyME9SJTIwbGVnYWwlMjB2aWN0b3J5fGVufDB8MHx8fDE3NTAzMDc4Mjd8MA&ixlib=rb-4.1.0&q=80&w=1080",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 267
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 512
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 800
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          }
+        ],
+        "gallery": [
+          {
+            "id": "unsplash-9l_326FISzk",
+            "url": "https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwxfHxsYXclMjBvZmZpY2UlMjBPUiUyMGxlZ2FsJTIwbGlicmFyeSUyME9SJTIwcHJvZmVzc2lvbmFsJTIwbWVldGluZyUyME9SJTIwbGVnYWwlMjBkb2N1bWVudHN8ZW58MHwwfHx8MTc1MDMwNzgyOHww&ixlib=rb-4.1.0&q=80&w=1080",
+            "alt": "Apple MacBook beside computer mouse on table",
+            "source": "unsplash",
+            "quality": "premium",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 5426,
+            "height": 3617,
+            "photographer": "Luca Bravo",
+            "download_url": "https://api.unsplash.com/photos/9l_326FISzk/download?ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwxfHxsYXclMjBvZmZpY2UlMjBPUiUyMGxlZ2FsJTIwbGlicmFyeSUyME9SJTIwcHJvZmVzc2lvbmFsJTIwbWVldGluZyUyME9SJTIwbGVnYWwlMjBkb2N1bWVudHN8ZW58MHwwfHx8MTc1MDMwNzgyOHww",
+            "score": 10,
+            "selected": true,
+            "reason": "Score: 10.00/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwxfHxsYXclMjBvZmZpY2UlMjBPUiUyMGxlZ2FsJTIwbGlicmFyeSUyME9SJTIwcHJvZmVzc2lvbmFsJTIwbWVldGluZyUyME9SJTIwbGVnYWwlMjBkb2N1bWVudHN8ZW58MHwwfHx8MTc1MDMwNzgyOHww&ixlib=rb-4.1.0&q=80&w=1080",
+              "avif": "https://images.unsplash.com/photo-1487017159836-4e23ece2e4cf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwxfHxsYXclMjBvZmZpY2UlMjBPUiUyMGxlZ2FsJTIwbGlicmFyeSUyME9SJTIwcHJvZmVzc2lvbmFsJTIwbWVldGluZyUyME9SJTIwbGVnYWwlMjBkb2N1bWVudHN8ZW58MHwwfHx8MTc1MDMwNzgyOHww&ixlib=rb-4.1.0&q=80&w=1080",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 267
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 512
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 800
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          },
+          {
+            "id": "unsplash-yWwob8kwOCk",
+            "url": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwyfHxsYXclMjBvZmZpY2UlMjBPUiUyMGxlZ2FsJTIwbGlicmFyeSUyME9SJTIwcHJvZmVzc2lvbmFsJTIwbWVldGluZyUyME9SJTIwbGVnYWwlMjBkb2N1bWVudHN8ZW58MHwwfHx8MTc1MDMwNzgyOHww&ixlib=rb-4.1.0&q=80&w=1080",
+            "alt": "hallway between glass-panel doors",
+            "source": "unsplash",
+            "quality": "premium",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 2301,
+            "height": 1536,
+            "photographer": "Nastuh Abootalebi",
+            "download_url": "https://api.unsplash.com/photos/yWwob8kwOCk/download?ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwyfHxsYXclMjBvZmZpY2UlMjBPUiUyMGxlZ2FsJTIwbGlicmFyeSUyME9SJTIwcHJvZmVzc2lvbmFsJTIwbWVldGluZyUyME9SJTIwbGVnYWwlMjBkb2N1bWVudHN8ZW58MHwwfHx8MTc1MDMwNzgyOHww",
+            "score": 10,
+            "selected": true,
+            "reason": "Score: 10.00/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwyfHxsYXclMjBvZmZpY2UlMjBPUiUyMGxlZ2FsJTIwbGlicmFyeSUyME9SJTIwcHJvZmVzc2lvbmFsJTIwbWVldGluZyUyME9SJTIwbGVnYWwlMjBkb2N1bWVudHN8ZW58MHwwfHx8MTc1MDMwNzgyOHww&ixlib=rb-4.1.0&q=80&w=1080",
+              "avif": "https://images.unsplash.com/photo-1497366754035-f200968a6e72?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwyfHxsYXclMjBvZmZpY2UlMjBPUiUyMGxlZ2FsJTIwbGlicmFyeSUyME9SJTIwcHJvZmVzc2lvbmFsJTIwbWVldGluZyUyME9SJTIwbGVnYWwlMjBkb2N1bWVudHN8ZW58MHwwfHx8MTc1MDMwNzgyOHww&ixlib=rb-4.1.0&q=80&w=1080",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 267
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 513
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 801
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          },
+          {
+            "id": "unsplash-hGV2TfOh0ns",
+            "url": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwzfHxsYXclMjBvZmZpY2UlMjBPUiUyMGxlZ2FsJTIwbGlicmFyeSUyME9SJTIwcHJvZmVzc2lvbmFsJTIwbWVldGluZyUyME9SJTIwbGVnYWwlMjBkb2N1bWVudHN8ZW58MHwwfHx8MTc1MDMwNzgyOHww&ixlib=rb-4.1.0&q=80&w=1080",
+            "alt": "MacBook Pro on table beside white iMac and Magic Mouse",
+            "source": "unsplash",
+            "quality": "premium",
+            "mood": "authoritative, professional, trustworthy, serious",
+            "width": 5848,
+            "height": 3899,
+            "photographer": "Domenico Loia",
+            "download_url": "https://api.unsplash.com/photos/hGV2TfOh0ns/download?ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwzfHxsYXclMjBvZmZpY2UlMjBPUiUyMGxlZ2FsJTIwbGlicmFyeSUyME9SJTIwcHJvZmVzc2lvbmFsJTIwbWVldGluZyUyME9SJTIwbGVnYWwlMjBkb2N1bWVudHN8ZW58MHwwfHx8MTc1MDMwNzgyOHww",
+            "score": 10,
+            "selected": true,
+            "reason": "Score: 10.00/10",
+            "filters": {
+              "brightness": 1,
+              "contrast": 1,
+              "saturation": 0.85,
+              "warmth": 1
+            },
+            "colorScheme": {
+              "primary": "#1e40af",
+              "secondary": "#6b7280",
+              "accent": "#f9fafb",
+              "text": "#111827"
+            },
+            "consistency": true,
+            "optimizations": {
+              "webp": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwzfHxsYXclMjBvZmZpY2UlMjBPUiUyMGxlZ2FsJTIwbGlicmFyeSUyME9SJTIwcHJvZmVzc2lvbmFsJTIwbWVldGluZyUyME9SJTIwbGVnYWwlMjBkb2N1bWVudHN8ZW58MHwwfHx8MTc1MDMwNzgyOHww&ixlib=rb-4.1.0&q=80&w=1080",
+              "avif": "https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NjYwNjZ8MHwxfHNlYXJjaHwzfHxsYXclMjBvZmZpY2UlMjBPUiUyMGxlZ2FsJTIwbGlicmFyeSUyME9SJTIwcHJvZmVzc2lvbmFsJTIwbWVldGluZyUyME9SJTIwbGVnYWwlMjBkb2N1bWVudHN8ZW58MHwwfHx8MTc1MDMwNzgyOHww&ixlib=rb-4.1.0&q=80&w=1080",
+              "responsive": {
+                "mobile": {
+                  "width": 400,
+                  "height": 267
+                },
+                "tablet": {
+                  "width": 768,
+                  "height": 512
+                },
+                "desktop": {
+                  "width": 1200,
+                  "height": 800
+                }
+              },
+              "lazyLoading": true,
+              "priority": false
+            }
+          }
+        ]
+      },
+      "totalCount": 15,
+      "optimized": true,
+      "formats": [
+        "webp",
+        "avif",
+        "jpeg"
+      ],
+      "responsive": true
+    },
+    "metrics": {
+      "totalPhotos": 15,
+      "qualityScore": 9.833333333333334,
+      "consistencyScore": 8.5,
+      "sources": [
+        "unsplash",
+        "pexels",
+        "pixabay"
+      ],
+      "processingTime": 1750308095355
+    }
+  },
+  "analysis": {
+    "totalRealPhotos": 15,
+    "totalSimulatedPhotos": 0,
+    "apiSuccessRate": "100.0%",
+    "qualityGrade": "A+"
+  }
+}
